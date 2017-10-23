@@ -7,13 +7,15 @@
 @section('main-content')
     <tasks></tasks>
 
-    <message title="Error"></message>
+    <message title="Message" message="{{ $message or '' }}" color="info"></message>
 
-    <message title="Error" message="Error greu"></message>
+    {{--<message title="Error"></message>--}}
 
-    <message message="Error greu"></message>
+    {{--<message title="Error" message="Error greu"></message>--}}
 
-    <message></message>
+    {{--<message message="Error greu"></message>--}}
+
+    {{--<message></message>--}}
 
     {{--<message title="Error">Error ha petat tot!</message>--}}
 

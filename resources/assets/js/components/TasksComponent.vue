@@ -73,6 +73,11 @@
           return filters[this.filter](this.tasks)
         }
       },
+      watch: {
+        tasks: function() {
+//          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.tasks))
+        }
+      },
       methods: {
         show(filter) {
           this.filter = filter
@@ -95,11 +100,39 @@
         }
       },
       mounted() {
-        console.log('Inici!')
-        this.tasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]')
+//        this.tasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]')
         console.log(this.tasks)
-        console.log('Inici 2!')
 
+        // TODO Connectat a Internet i agafam la llista de tasques
+//        this.tasks = ???
+
+        // HTTP CLIENT
+        let url = '/api/tasks'
+        //Promises
+        var component = this
+        axios.get(url).then(function(response) {
+          console.log('OK!!!!!!!!!!!!!!!!')
+          console.log(response)
+          console.log(response.data)
+          console.log(response.status)
+          component.tasks = response.data;
+        }).catch((error) => {
+          console.log('PROVA!!!!!!!!!!!!!!!!')
+          console.log(error)
+          console.log('FI PROVA')
+//          flash(error)
+        })
+//        setTimeout( () => {
+//          component.hide()
+//        },3000)
+
+
+
+        // API HTTP amb JSON <- Web service
+        // URL GET http://NOM_SERVIDOR/api/task
+        // URL POST http://NOM_SERVIDOR/api/task
+        // URL DELETE http://NOM_SERVIDOR/api/task/{task}
+        // URL PUT/PATCH http://NOM_SERVIDOR/api/task/{task}
       }
     }
 </script>
