@@ -110,12 +110,12 @@
         let url = '/api/tasks'
         //Promises
         var component = this
-        axios.get(url).then(function(response) {
+        axios.get(url).then((response) =>  {
           console.log('OK!!!!!!!!!!!!!!!!')
           console.log(response)
           console.log(response.data)
           console.log(response.status)
-          component.tasks = response.data;
+          this.tasks = response.data;
         }).catch((error) => {
           console.log('PROVA!!!!!!!!!!!!!!!!')
           console.log(error)
