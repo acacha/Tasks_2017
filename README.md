@@ -45,4 +45,21 @@ TLTR:
  - Altres llibreries i noms  
    - Toastr: http://codeseven.github.io/toastr/demo.html
    - Gritter
+   
+## COMPONENTS
+  
+- tasks
+  - adminlte-widget
+    - HEADER: title
+    - CONTENT: Task list
+    - FOOTER: 
+      - create-task
+      - Filters
+- message component   
+
 ## Done
+
+## Recursos
+
+- https://github.com/ratiw/vuetable-2
+  - https://github.com/acacha/users-test/blob/master/resources/assets/js/components/users/UsersList.vue
