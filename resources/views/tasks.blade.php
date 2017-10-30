@@ -5,7 +5,12 @@
 @endsection
 
 @section('main-content')
+
     <tasks></tasks>
+
+    <root>
+        <child></child>
+    </root>
 
     <message title="Message" message="{{ $message or '' }}" color="info"></message>
 

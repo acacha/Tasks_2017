@@ -18,6 +18,17 @@ window.Vue = require('vue');
 Vue.component('tasks', require('./components/TasksComponent.vue'));
 Vue.component('message', require('./components/MessageComponent.vue'));
 
+import Vuetable from 'vuetable-2/src/components/Vuetable'
+Vue.use(Vuetable)
+
+Vue.component("vuetable", Vuetable);
+// Vue.component("vuetable-pagination", VueTablePaginationInfo);
+// Vue.component("vuetable-pagination-dropdown", VueTablePaginationDropDown);
+// Vue.component("vuetable-pagination-info", VueTablePaginationInfo);
+
+// import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
+// import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
+
 // Vue Single file component
 
 const app = new Vue({

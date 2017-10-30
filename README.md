@@ -63,3 +63,11 @@ TLTR:
 
 - https://github.com/ratiw/vuetable-2
   - https://github.com/acacha/users-test/blob/master/resources/assets/js/components/users/UsersList.vue
+  
+ Vuetable:
+ 
+  npm i babel-plugin-transform-runtime babel-preset-stage-2 babel-preset-es2015 
+  
+  
+https://github.com/ratiw/vuetable-2-with-laravel-5.4/blob/master/resources/assets/js/components/MyVuetable.vue  
+  
