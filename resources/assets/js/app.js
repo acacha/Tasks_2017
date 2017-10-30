@@ -18,6 +18,8 @@ window.Vue = require('vue');
 Vue.component('tasks', require('./components/TasksComponent.vue'));
 Vue.component('message', require('./components/MessageComponent.vue'));
 Vue.component('widget', require('./components/WidgetComponent.vue'));
+Vue.component('tasks-view', require('./components/TasksViewComponent.vue'));
+
 
 import Vuetable from 'vuetable-2/src/components/Vuetable'
 Vue.use(Vuetable)

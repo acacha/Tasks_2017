@@ -108,17 +108,23 @@
 //        this.tasks = ???
 
         // HTTP CLIENT
-        let url = '/api/tasksasdasdas'
+        let url = '/api/tasks'
         //Promises
         var component = this
 
         // PROMISES
-        axios.get(url).then().then((response) =>  {
+        console.log('PROVA:')
+        this.$emit('loading',true)
+        console.log('PROVA1:')
+        axios.get(url).then((response) =>  {
           this.tasks = response.data;
         }).catch((error) => {
           console.log(error.message)
           flash(error.message)
+        }).then(() => {
+          this.$emit('loading',false)
         })
+
 
 //        setTimeout( () => {
 //          component.hide()

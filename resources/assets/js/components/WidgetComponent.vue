@@ -12,6 +12,9 @@
 
         <div class="box-body" style="">
             <slot></slot>
+            <div class="overlay" v-if="internalLoading">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
         </div>
         <div class="box-footer"><slot name="footer">@Copyright Sergi Tur</slot></div>
     </div>
@@ -26,6 +29,18 @@
   export default {
       data() {
         return {
+          internalLoading: this.loading
+        }
+      },
+      watch: {
+        loading(newValue) {
+          console.log('loading has changed')
+          this.internalLoading = newValue
+        }
+      },
+      props: {
+        loading: {
+          required: false
         }
       },
       mounted() {
