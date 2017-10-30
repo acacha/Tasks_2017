@@ -6,7 +6,12 @@
 
 @section('main-content')
 
-    <tasks></tasks>
+    <widget>
+        <p slot="title">Tasques</p>
+        <tasks></tasks>
+        <p slot="Footer">Footer</p>
+    </widget>
+
 
     <root>
         <child></child>

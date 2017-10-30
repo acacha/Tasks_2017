@@ -1,45 +1,29 @@
 <template>
-    <div class="box box-primary" v-cloak>
-        <div class="box-header with-border">
-            <h3 class="box-title">Llista de tasques</h3>
-
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </button>
-            </div>
-
-        </div>
-
-        <div class="box-body" style="">
-
-            <ul>
-                <li v-for="task in filteredTasks" :class="{ completed: isCompleted(task) }"
-                    @dblclick="updateTask(task)">
+    <div v-cloak>
+        <ul>
+            <li v-for="task in filteredTasks" :class="{ completed: isCompleted(task) }"
+                @dblclick="updateTask(task)">
 
 
-                    <input type="text" v-if="task == editedTask">
-                    <div v-else>
-                        {{task.name}}
-                        <i class="fa fa-pencil" aria-hidden="true" @click="updateTask(task)"></i>
-                        <i class="fa fa-times" aria-hidden="true" @click="deleteTask(task)"></i>
-                    </div>
+                <input type="text" v-if="task == editedTask">
+                <div v-else>
+                    {{task.name}}
+                    <i class="fa fa-pencil" aria-hidden="true" @click="updateTask(task)"></i>
+                    <i class="fa fa-times" aria-hidden="true" @click="deleteTask(task)"></i>
+                </div>
 
-                </li>
-            </ul>
-            Nova Tasca a afegir: <input type="text" v-model="newTask" id="newTask" @keyup.enter="addTask">
-            <button id="add" @click="addTask">Afegir</button>
+            </li>
+        </ul>
+        Nova Tasca a afegir: <input type="text" v-model="newTask" id="newTask" @keyup.enter="addTask">
+        <button id="add" @click="addTask">Afegir</button>
 
-            <h2>Filtres</h2>
+        <h2>Filtres</h2>
 
-            <ul>
-                <li @click="show('all')" :class="{ active: this.filter === 'all' }">All</li>
-                <li @click="show('completed')" :class="{ active: this.filter === 'completed' }">Completed</li>
-                <li @click="show('pending')" :class="{ active: this.filter === 'pending' }">Pending</li>
-            </ul>
-
-        </div>
-        <div class="box-footer">Footer TODO</div>
+        <ul>
+            <li @click="show('all')" :class="{ active: this.filter === 'all' }">All</li>
+            <li @click="show('completed')" :class="{ active: this.filter === 'completed' }">Completed</li>
+            <li @click="show('pending')" :class="{ active: this.filter === 'pending' }">Pending</li>
+        </ul>
     </div>
 </template>
 
