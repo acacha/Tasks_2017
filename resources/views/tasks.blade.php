@@ -12,10 +12,22 @@
         <p slot="Footer">Footer</p>
     </widget>
 
+    <div class="box box-primary" v-cloak>
+        <div class="box-header with-border">
+            <h3 class="box-title"><slot name="title">Tasks:</slot></h3>
 
-    <root>
-        <child></child>
-    </root>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+
+        </div>
+
+        <div class="box-body" style="">
+            <tasks></tasks>
+        </div>
+        <div class="box-footer"><slot name="footer">@Copyright Sergi Tur</slot></div>
+    </div>
 
     <message title="Message" message="{{ $message or '' }}" color="info"></message>
 
