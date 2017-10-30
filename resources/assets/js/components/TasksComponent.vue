@@ -108,16 +108,16 @@
 //        this.tasks = ???
 
         // HTTP CLIENT
-        let url = '/api/tasks'
+        let url = '/api/tasksasdasdas'
         //Promises
         var component = this
 
         // PROMISES
         axios.get(url).then().then((response) =>  {
           this.tasks = response.data;
-          console.log('Primer')
         }).catch((error) => {
-//          flash(error)
+          console.log(error.message)
+          flash(error.message)
         })
 
 //        setTimeout( () => {
