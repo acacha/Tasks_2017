@@ -60,7 +60,9 @@
 
   const LOCAL_STORAGE_KEY = 'TASKS'
 
-    export default {
+  import { wait } from './utils.js'
+
+  export default {
       data() {
         return {
           editedTask: null,
@@ -116,7 +118,7 @@
         console.log('PROVA:')
         this.$emit('loading',true)
         console.log('PROVA1:')
-        axios.get(url).then((response) =>  {
+        axios.get(url).then(wait(5000)).then((response) =>  {
           this.tasks = response.data;
         }).catch((error) => {
           console.log(error.message)
