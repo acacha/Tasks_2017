@@ -32,7 +32,6 @@ class CreateTaskCommandTest extends TestCase
 
 //        Task::create(['name' => 'Comprar pa']);
 //        dd($resultAsText);
-        //TODO Assert database Has?
         $this->assertDatabaseHas('tasks', [
            'name' => 'Comprar pa'
         ]);
@@ -45,29 +44,29 @@ class CreateTaskCommandTest extends TestCase
 
     public function testItAsksForATaskNameAndThenCreatesNewTask()
     {
+        // 1) Prepare
 
-        // MOCKING
-        // https://themsaid.com/building-testing-interactive-console-20160409
-        $command = Mockery::mock(
-            '\App\Console\Commands\CreateTask[ask]');
+        $command = Mockery::mock('App\Console\Commands\CreateTaskCommand[ask]');
 
-        // We expect the ask method to be called asking us to provide a task name
         $command->shouldReceive('ask')
             ->once()
             ->with('Event name?')
-            ->andReturn('Pool party');
+            ->andReturn('Comprar llet');
 
         $this->app['Illuminate\Contracts\Console\Kernel']->registerCommand($command);
 
 
-//        dd($command);
-        $this->artisan('create:task', ['--no-interaction' => true]);
+//        2) Execute
+        $this->artisan('task:create');
 
+        $this->assertDatabaseHas('tasks', [
+            'name' => 'Comprar llet'
+        ]);
+
+//        3) Assert
         $resultAsText = Artisan::output();
-
-        // See differences in output, check the same but error messages are not the same!
-//        $this->assertTrue(str_contains($resultAsText,'Task name:'));
-//        $this->assertContains($resultAsText,'Task name:');
-
+        $this->assertContains('Task has been added to database succesfully', $resultAsText);
     }
+
+
 }
