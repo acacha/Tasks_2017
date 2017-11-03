@@ -59,6 +59,28 @@ TLTR:
 
 ## Done
 
+## Commands
+
+CLI: another interface (like WEB or API JSON)
+
+https://laravel.com/docs/5.5/artisan
+
+php artisan make:command CreateTask
+
+API:
+
+1) Wizard:
+```
+php artisan make:task
+```
+Preguntar pel nom de la tasca
+
+2) Nom de la tasca com a paràmetre
+
+```
+php artisan make:task taskname
+```
+
 ## Recursos
 
 - https://github.com/ratiw/vuetable-2
