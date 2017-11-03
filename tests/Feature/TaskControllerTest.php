@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Illuminate\Support\Facades\Artisan;
 use Mockery;
 use Tests\TestCase;
@@ -18,7 +19,9 @@ class CreateTaskCommandTest extends TestCase
 
     public function testStoreTask()
     {
-        $response = $this->post('/task', [ 'name' => 'Comprar llet']);
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+        $response = $this->post('/tasks', [ 'name' => 'Comprar llet']);
 
         $response->assertSuccessful();
 

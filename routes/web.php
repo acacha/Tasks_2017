@@ -26,6 +26,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('tasks','TaskController@index');
 
+    Route::post('tasks','TaskController@store');
+
+
+
     Route::get('api/tasks','ApiTaskController@index');
 
     Route::view('/proves','proves');
