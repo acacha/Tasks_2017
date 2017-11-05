@@ -11,6 +11,15 @@ MP7:
   - Crear els tests necessàris per les comandes. Utilitzar Mocks per tal de poder respondre a preguntes
 
 MP8: Crud per interfície JSON API
+- Només treballem amb Javascript/Vue (no hi ha controlador només vista)
+- La vista es comunica amb el servidor(backend) via peticions API JSON
+- URL: /tasks
+- Components Vue: resources/asssets/js/components. Crear:
+  - TaskViewsComponent que inclou els següents components:
+    - MessageComponent per mostrar missatges flash
+    - WidgetComponent per utilitza widget adminlte
+    - TaskComponent: mostra les tasques dind del widget
+  - Comunicació entre widgets i events.
 
 MP9:
 - CRUD per interfície web
