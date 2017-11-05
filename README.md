@@ -1,3 +1,27 @@
+# Tasques
+
+MP7:
+
+- CRUD de tasques per línia de comandes:
+  - Comanda task:create: 
+     - Dos opcions amb nom de tasca o sense nom i executar un assistens pregunti pel nom
+  - Idem que l'anterior però Task:delete
+  - Comanda task:list: mostrar la llista de tasques
+  - Opcional task:edit i task:show
+  - Crear els tests necessàris per les comandes. Utilitzar Mocks per tal de poder respondre a preguntes
+
+MP8: Crud per interfície JSON API
+
+MP9:
+- CRUD per interfície web
+  - Totes les operacions amb test
+
+TODO Comparar 3 interfícies i aprofitar codi:
+
+- WEB
+- JSON API
+- CLI
+  
 
 ## TODO
 
