@@ -86,24 +86,17 @@
           this.filter = filter
         },
         addTask() {
+          let task = this.newTask
           this.tasks.push({ name : this.newTask, completed : false})
           this.newTask=''
-          // CRUD
-          // GET -> QUE NO MODIFICAN RES A SERVIDOR
-          // POST / PUT/PATCH DELETE
+
           let url = '/api/tasks'
-          axios.post(url).then((response) =>  {
-            console.log('HOLA 1')
-            this.tasks = response.data;
+          axios.post(url, { name: task } ).then((response) =>  {
           }).catch((error) => {
-            console.log('HOLA 2')
-            console.log(error.message)
             flash(error.message)
           }).then(() => {
-            console.log('HOLA 3')
             this.$emit('loading',false)
           })
-          console.log('HOLA')
         },
         isCompleted(task) {
           return task.completed
@@ -112,7 +105,6 @@
           this.tasks.splice( this.tasks.indexOf(task) , 1 )
         },
         updateTask(task){
-          console.log('Ok ja editare');
           this.editedTask = task
         }
       },
