@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('tasks','TaskController@store');
 
     Route::get('api/tasks','ApiTaskController@index');
+    Route::post('api/tasks','ApiTaskController@store');
 
     Route::view('/proves','proves');
 });
+

@@ -86,10 +86,24 @@
           this.filter = filter
         },
         addTask() {
-          console.log('addTask')
           this.tasks.push({ name : this.newTask, completed : false})
-          console.log('3')
           this.newTask=''
+          // CRUD
+          // GET -> QUE NO MODIFICAN RES A SERVIDOR
+          // POST / PUT/PATCH DELETE
+          let url = '/api/tasks'
+          axios.post(url).then((response) =>  {
+            console.log('HOLA 1')
+            this.tasks = response.data;
+          }).catch((error) => {
+            console.log('HOLA 2')
+            console.log(error.message)
+            flash(error.message)
+          }).then(() => {
+            console.log('HOLA 3')
+            this.$emit('loading',false)
+          })
+          console.log('HOLA')
         },
         isCompleted(task) {
           return task.completed
@@ -103,22 +117,9 @@
         }
       },
       mounted() {
-//        this.tasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]')
-        console.log(this.tasks)
-
-        // TODO Connectat a Internet i agafam la llista de tasques
-//        this.tasks = ???
-
-        // HTTP CLIENT
         let url = '/api/tasks'
-        //Promises
-        var component = this
-
-        // PROMISES
-        console.log('PROVA:')
         this.$emit('loading',true)
-        console.log('PROVA1:')
-        axios.get(url).then(wait(5000)).then((response) =>  {
+        axios.get(url).then((response) =>  {
           this.tasks = response.data;
         }).catch((error) => {
           console.log(error.message)
@@ -126,12 +127,6 @@
         }).then(() => {
           this.$emit('loading',false)
         })
-
-
-//        setTimeout( () => {
-//          component.hide()
-//        },3000)
-
 
 
         // API HTTP amb JSON <- Web service
