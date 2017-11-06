@@ -29,6 +29,30 @@ class ApiTaskControllerTest extends TestCase
     /**
      * @test
      */
+    public function can_list_tasks()
+    {
+        $tasks = factory(Task::class,3)->create();
+
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $response = $this->json('GET', '/api/tasks');
+
+        $response->assertSuccessful();
+
+//        $response->dump();
+
+        $response->assertJsonStructure([[
+          'id',
+          'name',
+          'created_at',
+          'updated_at'
+        ]]);
+    }
+
+    /**
+     * @test
+     */
     public function cannot_add_task_if_not_logged()
     {
         $faker = Factory::create();
@@ -120,7 +144,7 @@ class ApiTaskControllerTest extends TestCase
     public function can_edit_task()
     {
         // PREPARE
-        $task = Factory(Task::class)->create();
+        $task = factory(Task::class)->create();
 
         $user = factory(User::class)->create();
         $this->actingAs($user);

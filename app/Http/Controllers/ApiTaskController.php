@@ -24,9 +24,11 @@ class ApiTaskController extends Controller
             'name' => 'required'
         ]);
 
-        Task::create([
+        $task = Task::create([
             'name' => $request->name
         ]);
+
+        return $task;
     }
 
     /**
@@ -38,6 +40,20 @@ class ApiTaskController extends Controller
     {
 //        $task = Task::findOrFail($id);
         $task->delete();
+
+        return $task;
+    }
+
+    public function update(Request $request, Task $task)
+    {
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $task->name = $request->name;
+        $task->save();
+
+        return $task;
     }
 
 
