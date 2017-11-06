@@ -103,6 +103,12 @@ class ApiTaskControllerTest extends TestCase
         $this->assertDatabaseHas('tasks', [
            'name' => $name
         ]);
+
+//        $response->dump();
+
+        $response->assertJson([
+            'name' => $name
+        ]);
     }
 
     /**
@@ -121,6 +127,11 @@ class ApiTaskControllerTest extends TestCase
 
         $this->assertDatabaseMissing('tasks',[
            'id' =>  $task->id
+        ]);
+
+        $response->assertJson([
+            'id' => $task->id,
+            'name' => $task->name
         ]);
     }
 
@@ -165,6 +176,11 @@ class ApiTaskControllerTest extends TestCase
         $this->assertDatabaseMissing('tasks', [
             'id' => $task->id,
             'name' => $task->name,
+        ]);
+
+        $response->assertJson([
+            'id' => $task->id,
+            'name' => $newName
         ]);
     }
 
