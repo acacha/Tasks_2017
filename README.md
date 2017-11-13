@@ -157,7 +157,7 @@ File content:
 require('jsdom-global')()
 ```
 
-Add mpm script test on package.json:
+Add npm script test on package.json:
 
 ```
 "test" : mocha-webpack --webpack-config=node_modules/laravel-mix/setup/webpack.config.js --require tests/Javascript/setup.js tests/Javascript/**/*.spec.js
