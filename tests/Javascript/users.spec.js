@@ -3,7 +3,7 @@ import expect from 'expect'
 import Users from '../../resources/assets/js/components/Users.vue'
 import moxios from 'moxios';
 
-describe('Users', () => {
+describe('Usexers', () => {
   let component
 
   const USERS = [
@@ -25,13 +25,13 @@ describe('Users', () => {
   ]
 
   beforeEach(() => {
-    moxios.install();
+    moxios.install()
 
     component = mount(Users)
   })
 
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall()
   });
 
   it('contains example', () => {
