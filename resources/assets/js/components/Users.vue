@@ -1,7 +1,13 @@
 <template>
     <div>
-        example
-        {{prova}}
+        Users:
+        <!--<ul>-->
+            <!--<li v-for="user in users"> {{ user.name }}</li>-->
+        <!--</ul>-->
+
+        <select>
+            <option v-for="user in users" :value="user.id"> {{ user.name }} - {{ user.email }}</option>
+        </select>
     </div>
 </template>
 
@@ -21,7 +27,6 @@
       }
     },
     mounted() {
-      console.log('Mounted ok')
       axios.get('/api/v1/users').then( response => {
         this.users = response.data
       }).catch( error => {

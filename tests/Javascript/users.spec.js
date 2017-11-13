@@ -35,11 +35,11 @@ describe('Users', () => {
   });
 
   it('contains example', () => {
-    expect(component.html()).toContain('example')
+    expect(component.html()).toContain('Users')
   })
 
   it('contains example with helper', () => {
-    see('example')
+    see('Users')
   })
 
   it('expect users to be empty', () => {
