@@ -32,12 +32,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     //API JSON
     // API: TODO move to routes/api.php file
-    Route::get('api/tasks','ApiTaskController@index');
-    Route::get('api/tasks/{task}','ApiTaskController@show');
-    Route::post('api/tasks','ApiTaskController@store');
-    Route::delete('api/tasks/{task}','ApiTaskController@destroy');
-    Route::put('api/tasks/{task}','ApiTaskController@update');
-
+    Route::get('api/tasks',                     'ApiTaskController@index');
+    Route::get('api/tasks/{task}',              'ApiTaskController@show');
+    Route::post('api/tasks',                    'ApiTaskController@store');
+    Route::put('api/tasks/{task}',              'ApiTaskController@update');
+    Route::delete('api/tasks/{task}',           'ApiTaskController@destroy');
 
     Route::view('/proves','proves');
 });
