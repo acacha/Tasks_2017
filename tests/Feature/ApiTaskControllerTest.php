@@ -27,11 +27,13 @@ class ApiTaskControllerTest extends TestCase
     }
 
     /**
+     * Can list tasks.
+     *
      * @test
      */
     public function can_list_tasks()
     {
-        $tasks = factory(Task::class,3)->create();
+        factory(Task::class,3)->create();
 
         $user = factory(User::class)->create();
         $this->actingAs($user);
@@ -40,14 +42,33 @@ class ApiTaskControllerTest extends TestCase
 
         $response->assertSuccessful();
 
-//        $response->dump();
-
         $response->assertJsonStructure([[
           'id',
           'name',
           'created_at',
           'updated_at'
         ]]);
+    }
+
+    /**
+     * Can show a task.
+     * @test
+     */
+    public function can_show_a_task()
+    {
+        $task = factory(Task::class)->create();
+
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $response = $this->json('GET', '/api/tasks/' . $task->id);
+
+        $response->assertSuccessful();
+
+        $response->assertJson([
+            'id' => $task->id,
+            'name' => $task->name
+        ]);
     }
 
     /**

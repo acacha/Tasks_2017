@@ -13,7 +13,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
  *
  * @package Tests\Feature
  */
-class CreateTaskCommandTest extends TestCase
+class TaskControllerTest extends TestCase
 {
     use RefreshDatabase;
 

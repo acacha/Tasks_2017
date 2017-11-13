@@ -11,13 +11,32 @@ use Illuminate\Http\Request;
  */
 class ApiTaskController extends Controller
 {
+    /**
+     * Show all tasks.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function index()
     {
         return Task::all();
     }
 
+    /**
+     * Show a task.
+     * @param Task $task
+     * @return Task
+     */
+    public function show(Task $task)
+    {
+        return $task;
+    }
 
-    // Injecció de dependències => DI
+    /**
+     * Store task.
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -32,18 +51,26 @@ class ApiTaskController extends Controller
     }
 
     /**
-     * Delete
+     * Delete task.
+     *
      * @param Request $request
      * @param Task $task
+     * @return Task
      */
     public function destroy(Request $request, Task $task)
     {
-//        $task = Task::findOrFail($id);
         $task->delete();
 
         return $task;
     }
 
+    /**
+     * Update task.
+     *
+     * @param Request $request
+     * @param Task $task
+     * @return Task
+     */
     public function update(Request $request, Task $task)
     {
         $request->validate([
@@ -55,7 +82,5 @@ class ApiTaskController extends Controller
 
         return $task;
     }
-
-
 
 }
