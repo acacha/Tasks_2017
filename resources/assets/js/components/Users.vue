@@ -1,6 +1,6 @@
 <template>
     <div>
-        Users:
+        Users ({{count}}):
         <!--<ul>-->
             <!--<li v-for="user in users"> {{ user.name }}</li>-->
         <!--</ul>-->
@@ -24,6 +24,11 @@
     data() {
       return {
         users: []
+      }
+    },
+    computed: {
+      count() {
+        return this.users.length
       }
     },
     mounted() {

@@ -46,6 +46,10 @@ describe('Users', () => {
     expect(component.vm.users).toEqual([])
   })
 
+  it('expect count to be zero', () => {
+    expect(component.vm.count).toBe(0)
+  })
+
   it('expect users to be filled after mounted', done => {
     moxios.stubRequest('/api/v1/users', {
       status: 200,
@@ -58,7 +62,47 @@ describe('Users', () => {
     })
   })
 
+  it('expect users to be filled after mounted with promise', done => {
+    fetchUsers().then( () => {
+      expect(component.vm.users).toBe(USERS)
+      done()
+    })
+  })
+
+  it('expect count to 3 after mounted', done => {
+    moxios.stubRequest('/api/v1/users', {
+      status: 200,
+      response: USERS
+    });
+
+    moxios.wait(() => {
+      expect(component.vm.count).toBe(3)
+      done()
+    })
+  })
+
+  it('expect count to 3 after mounted with promise', () => {
+    fetchUsers().then( () => {
+      expect(component.vm.count).toBe(3)
+      done()
+    })
+  })
+
   // Helper Functions
+
+  // fetch users promise
+  let fetchUsers = () => {
+    return new Promise( (resolve, reject) => {
+      moxios.stubRequest('/api/v1/users', {
+        status: 200,
+        response: USERS
+      });
+
+      moxios.wait(() => {
+        resolve()
+      })
+    })
+  }
 
   let see = (text, selector) => {
     let wrap = selector ? component.find(selector) : component;
