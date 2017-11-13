@@ -9,7 +9,8 @@
     "hot": "npm run bower;cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
     "production": "npm run bower;cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "lint": "./node_modules/.bin/eslint --ext .js,.vue resources/assets/js"
+    "lint": "./node_modules/.bin/eslint --ext .js,.vue resources/assets/js",
+    "test": "mocha-webpack --webpack-config=node_modules/laravel-mix/setup/webpack.config.js --require tests/Javascript/setup.js tests/Javascript/**/*.spec.js"
   },
   "devDependencies": {
     "acacha-forms": "^1.0.0",
@@ -28,16 +29,23 @@
     "eslint-plugin-html": "^2.0.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
+    "expect": "^21.2.1",
     "font-awesome": "^4.7.0",
     "icheck": "^1.0.2",
     "ionicons": "^3.0.0",
     "jquery": "^3.1.1",
+    "jsdom": "^11.3.0",
+    "jsdom-global": "^3.0.2",
     "laravel-mix": "^1.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "lodash": "^4.17.4",
+    "mocha": "^4.0.1",
+    "mocha-webpack": "^1.0.1",
+    "moxios": "^0.4.0",
     "toastr": "^2.1.2",
     "vue": "^2.1.10",
+    "vue-test-utils": "^1.0.0-beta.4",
     "vuetable-2": "^1.6.6"
   },
   "dependencies": {

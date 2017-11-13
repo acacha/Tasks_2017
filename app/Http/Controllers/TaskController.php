@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Task;
 use Illuminate\Http\Request;
 
+/**
+ * Class TaskController.
+ *
+ * @package App\Http\Controllers
+ */
 class TaskController extends Controller
 {
     /**
@@ -15,7 +20,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return view('tasks',['tasks' => json_encode($tasks)]);
+        return view('tasks_php',['tasks' => json_encode($tasks)]);
     }
 
     /**

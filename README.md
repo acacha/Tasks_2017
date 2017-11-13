@@ -2,13 +2,14 @@
 
 MP7:
 
-- CRUD de tasques per línia de comandes:
+- CRUD de tasques per línia de comandes (vegeu més abaix notes sobre les comandes):
   - Comanda task:create: 
      - Dos opcions amb nom de tasca o sense nom i executar un assistens pregunti pel nom
   - Idem que l'anterior però Task:delete
   - Comanda task:list: mostrar la llista de tasques
   - Opcional task:edit i task:show
   - Crear els tests necessàris per les comandes. Utilitzar Mocks per tal de poder respondre a preguntes
+- TDD: https://laracasts.com/series/testing-vue
 
 MP8: Crud per interfície JSON API
 - Només treballem amb Javascript/Vue (no hi ha controlador només vista)
@@ -20,19 +21,37 @@ MP8: Crud per interfície JSON API
     - WidgetComponent per utilitza widget adminlte
     - TaskComponent: mostra les tasques dind del widget
   - Comunicació entre widgets i events.
+- Widgets específics: select: multiselect
+- TDD: tots els endpoitns de l'API tenen el seu corresponent test
 
 MP9:
+- URL: /tasks_php
 - CRUD per interfície web
-  - Totes les operacions amb test
+  - Totes les operacions han de tenir el test específic
+  - Una vista per create i una per edit.
+- Protegir les tasques utilitzant autenticació per web (sessió) i autenticació per API (Token)
+- Afegir suport per a Social Login
+- Afegir suport per authorizació: roles i permissos, gates Laravel. Paquet laravel-permission  
 
-TODO Comparar 3 interfícies i aprofitar codi:
+
+# TODO. Refactoritazació 
+
+Comparar 3 interfícies:
 
 - WEB
 - JSON API
 - CLI
+
+i aprofitar codi (aproximació DRY no WET):
+
+
+## Qüestions a tenir en compte:
+
+- Modificar fitxer viwe Laravel sidebar.php per modificar el menu i tenir dos opcions de menú que apuntin
+a l'exercici de MP9 i al de MP7
   
 
-## TODO
+## TODO /Notes professor
 
 MP8: Ajax | HTTP CLIENT AXIOS | Working wiht APIs: JSON
 
@@ -65,7 +84,7 @@ TLTR:
   - API $emit (entre esdeveniment) i $on (handler). 
   - Object global Window.Event = new Vue -> Objecte compartir entre tots els components
 
-- Llista de todos dins d'un widget AdminLTE: https://adminlte.io/themes/AdminLTE/pages/widgets.html
+- Llista de todos/tasques dins d'un widget AdminLTE: https://adminlte.io/themes/AdminLTE/pages/widgets.html
 - Aprofitar per explicar slots i named slots de Vue.js per fer Content Distribution: https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
   - Els slots permeten posar components dins altre components i també customitzar parts d'un widget com Footer, Content , Header
 - Ja tinc un paquet per anar posant els components AdminLTE fets: https://www.npmjs.com/package/adminlte-vue
@@ -113,6 +132,70 @@ Preguntar pel nom de la tasca
 ```
 php artisan make:task taskname
 ```
+
+# Instal·lació vue test utils
+
+Install npm libraries:
+
+```
+npm install --save-dev vue-test-utils mocha mocha-webpack jsdom jsdom-global expect
+```
+
+Create folder for Tests and file setup.js
+
+```
+tests/Javascript/setup.js
+```
+
+Example JSON:
+
+https://github.com/acacha/relationships/blob/master/tests/Javascript/setup.js
+
+File content:
+
+```
+require('jsdom-global')()
+```
+
+Add mpm script test on package.json:
+
+```
+"test" : mocha-webpack --webpack-config=node_modules/laravel-mix/setup/webpack.config.js --require tests/Javascript/setup.js tests/Javascript/**/*.spec.js
+```
+
+Hooking into Laravel mix: Observe --webpack-config=node_modules/laravel-mix/setup/webpack.config.js
+
+Folder for Javascript Tests:
+
+```
+tests/Javascript
+```
+
+Execute tests:
+
+```
+npm run test
+```
+
+PHPStorm configuration
+
+- New run configuration mocha
+- Change mocha executable to mocha-webpack!!!
+
+Example test:
+
+- https://github.com/acacha/relationships/blob/master/tests/Javascript/adminlte-input-gender.spec.js
+
+Exemple sense Laravel Mix:
+- https://github.com/laracasts/testingvue/blob/master/episode-1/package.json
+
+**Resources**
+- https://vue-test-utils.vuejs.org/en/guides/testing-SFCs-with-mocha-webpack.html
+- https://laracasts.com/series/testing-vue/episodes/6
+- https://github.com/vuejs/vue-test-utils
+- https://vue-test-utils.vuejs.org/en/guides/getting-started.html
+- https://github.com/acacha/relationships
+  - https://github.com/acacha/relationships/tree/master/tests/Javascript
 
 ## Recursos
 
