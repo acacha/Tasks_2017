@@ -24,8 +24,9 @@ Route::group(['middleware' => 'auth'], function () {
     #adminlte_routes
 
     // PURE PHP INTERFACE
-    Route::get('tasks_php','TaskController@index');
-    Route::post('tasks_php','TaskController@store');
+    Route::get('tasks_php'              ,'TaskController@index');
+    Route::get('tasks_php/{task}'       ,'TaskController@show');
+    Route::post('tasks_php'             ,'TaskController@store');
 
     //PURE JAVASCRIPT INTERFACE + AJAX/AXIOS REQUESTS TO REST JSON API
     Route::view('/tasks','tasks');

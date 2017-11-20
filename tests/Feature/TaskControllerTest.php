@@ -51,7 +51,6 @@ class TaskControllerTest extends TestCase
 
         foreach ($tasks as $task) {
             $response->assertSee($task->name);
-//            $response->assertSee($task->description);
         }
     }
 
@@ -65,15 +64,15 @@ class TaskControllerTest extends TestCase
         $task = factory(Task::class)->create();
         $user = factory(User::class)->create();
         $this->actingAs($user);
+        View::share('user', $user);
 
-        $response = $this->get('/events/' . $task->id);
+        $response = $this->get('/tasks_php/' . $task->id);
 
         $response->assertSuccessful();
         $response->assertViewIs('show_task');
         $response->assertViewHas('task');
 
         $response->assertSeeText($task->name);
-        $response->assertSeeText($task->description);
     }
 
     /**
@@ -104,18 +103,18 @@ class TaskControllerTest extends TestCase
         $task = factory(Task::class)->create();
 
         $newTask = factory(Task::class)->make();
-        $response = $this->put('/events/' . $task->id,[
+        $response = $this->put('/tasks_php/' . $task->id,[
             'name' => $newTask->name,
             'description' => $newTask->description,
         ]);
 
-        $this->assertDatabaseHas('events',[
+        $this->assertDatabaseHas('tasks_php',[
             'id' =>  $task->id,
             'name' => $newTask->name,
             'description' => $newTask->description,
         ]);
 
-        $this->assertDatabaseMissing('events',[
+        $this->assertDatabaseMissing('tasks_php',[
             'id' =>  $task->id,
             'name' => $task->name,
             'description' => $task->description,

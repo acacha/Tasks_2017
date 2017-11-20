@@ -32,9 +32,9 @@ Route::group(['prefix' => 'v1','middleware' => 'auth:api'], function () {
     Route::delete('/tasks/{task}',              'ApiTaskController@destroy');
 
     //USERS
-    Route::get('/users',                     'ApiUserController@index');
-    Route::get('/users/{user}',              'ApiUserController@show');
-    Route::post('/users',                    'ApiUserController@store');
-    Route::put('/users/{user}',              'ApiUserController@update');
-    Route::delete('/users/{user}',           'ApiUserController@destroy');
+    Route::get('/users',                        'ApiUserController@index');
+    Route::get('/users/{user}',                 'ApiUserController@show');
+    Route::post('/users',                       'ApiUserController@store');
+    Route::put('/users/{user}',                 'ApiUserController@update');
+    Route::delete('/users/{user}',              'ApiUserController@destroy');
 });

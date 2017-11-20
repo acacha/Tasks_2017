@@ -20,7 +20,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return view('tasks_php',['tasks' => json_encode($tasks)]);
+        return view('tasks_php',['tasks' => $tasks]);
     }
 
     /**
@@ -49,12 +49,12 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
+     * @param Task $task
+     * @return Task
      */
     public function show(Task $task)
     {
-        //
+        return view('show_task',['task' => $task]);
     }
 
     /**
