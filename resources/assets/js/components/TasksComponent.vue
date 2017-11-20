@@ -24,16 +24,16 @@
                 <div class="form-group">
                     <label for="user_id">User</label>
                     <!--<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">-->
-                    <users name="user_id"></users>
+                    <users id="user_id" name="user_id"></users>
                 </div>
-                <div class="form-group">
+                <div class="form-group has-feedback" :class="{ 'has-error': form.errors.has('name') }">
                     <label for="name">Task name</label>
                     <input class="form-control" type="text" v-model="form.name" id="name" name="name" @keyup.enter="addTask">
                 </div>
             </div>
             <p slot="footer">
-                <button :disabled="creating" id="add" @click="addTask" class="btn btn-primary">
-                   <i class="fa fa-refresh fa-spin fa-lg" v-if="creating"></i>
+                <button :disabled="form.submitting" id="add" @click="addTask" class="btn btn-primary">
+                   <i class="fa fa-refresh fa-spin fa-lg" v-if="form.submitting"></i>
                     Afegir
                 </button>
             </p>
@@ -90,7 +90,6 @@
           editedTask: null,
           filter: 'all',
           tasks: [],
-          creating: false,
           taskBeingDeleted: null,
           form: new Form({ user_id : '', name: ''})
         }
@@ -110,19 +109,12 @@
           this.filter = filter
         },
         addTask() {
-          this.creating = false
-
-          // FORM OBJECT PATTERN
-
-//          form.submitting = true
           let url = API_URL
-          axios.post(url, form ).then( (response) =>  {
-            this.tasks.push({ name : form.name, completed : false})
-            form.name=''
+          this.form.post(url).then( (response) =>  {
+            this.tasks.push({ name : this.form.name , user_id: this.form.user_id , completed : false})
+            this.form.name=''
           }).catch((error) => {
             flash(error.message)
-          }).then(() => {
-            this.creating = false;
           })
         },
         isCompleted(task) {
