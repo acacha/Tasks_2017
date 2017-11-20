@@ -36,9 +36,9 @@ class ApiTaskControllerTest extends TestCase
         factory(Task::class,3)->create();
 
         $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
-        $response = $this->json('GET', '/api/tasks');
+        $response = $this->json('GET', '/api/v1/tasks');
 
         $response->assertSuccessful();
 
@@ -52,6 +52,7 @@ class ApiTaskControllerTest extends TestCase
 
     /**
      * Can show a task.
+     *
      * @test
      */
     public function can_show_a_task()
@@ -59,9 +60,9 @@ class ApiTaskControllerTest extends TestCase
         $task = factory(Task::class)->create();
 
         $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
-        $response = $this->json('GET', '/api/tasks/' . $task->id);
+        $response = $this->json('GET', '/api/v1/tasks/' . $task->id);
 
         $response->assertSuccessful();
 
@@ -79,7 +80,7 @@ class ApiTaskControllerTest extends TestCase
         $faker = Factory::create();
 
         // EXECUTE
-        $response = $this->json('POST', '/api/tasks', [
+        $response = $this->json('POST', '/api/v1/tasks', [
             'name' => $name = $faker->word
         ]);
 
@@ -93,10 +94,10 @@ class ApiTaskControllerTest extends TestCase
     public function cannot_add_task_if_no_name_provided()
     {
         $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
         // EXECUTE
-        $response = $this->json('POST', '/api/tasks');
+        $response = $this->json('POST', '/api/v1/tasks');
 
         // ASSERT
         $response->assertStatus(422);
@@ -111,11 +112,12 @@ class ApiTaskControllerTest extends TestCase
         $faker = Factory::create();
         $user = factory(User::class)->create();
 
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
         // EXECUTE
-        $response = $this->json('POST', '/api/tasks', [
-            'name' => $name = $faker->word
+        $response = $this->json('POST', '/api/v1/tasks', [
+            'name' => $name = $faker->word,
+            'user_id' => $user->id
         ]);
 
         // ASSERT
@@ -140,9 +142,9 @@ class ApiTaskControllerTest extends TestCase
         $task = factory(Task::class)->create();
         $user = factory(User::class)->create();
 
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
-        $response = $this->json('DELETE','/api/tasks/' . $task->id);
+        $response = $this->json('DELETE','/api/v1/tasks/' . $task->id);
 
         $response->assertSuccessful();
 
@@ -163,9 +165,9 @@ class ApiTaskControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
-        $response = $this->json('DELETE','/api/tasks/1');
+        $response = $this->json('DELETE','/api/v1/tasks/1');
 
         $response->assertStatus(404);
     }
@@ -179,10 +181,10 @@ class ApiTaskControllerTest extends TestCase
         $task = factory(Task::class)->create();
 
         $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
         // EXECUTE
-        $response = $this->json('PUT', '/api/tasks/' . $task->id, [
+        $response = $this->json('PUT', '/api/v1/tasks/' . $task->id, [
             'name' => $newName = 'NOU NOM'
         ]);
 

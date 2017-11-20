@@ -40,12 +40,11 @@ class ApiTaskController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'user_id' => 'required'
         ]);
 
-        $task = Task::create([
-            'name' => $request->name
-        ]);
+        $task = Task::create($request->only(['name','user_id']));
 
         return $task;
     }

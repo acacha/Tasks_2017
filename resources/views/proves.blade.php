@@ -4,6 +4,8 @@
     Proves
 @endsection
 
+
+
 @section('main-content')
     Prova vuetable:
     <vuetable></vuetable>

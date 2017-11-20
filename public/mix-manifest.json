@@ -1,5 +1,10 @@
 {
-    "/bundle.js": "/bundle.js",
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/bootstrap.css": "/css/bootstrap.css",
+    "/css/adminlte-app.css": "/css/adminlte-app.css",
+    "/css/toastr.css": "/css/toastr.css",
+    "/js/app-landing.js": "/js/app-landing.js",
     "/css/all.css": "/css/all.css",
     "/css/all-landing.css": "/css/all-landing.css",
     "/img/app-bg.png": "/img/app-bg.png",
@@ -49,5 +54,9 @@
     "/css/skins/skin-yellow.css": "/css/skins/skin-yellow.css",
     "/css/skins/skin-yellow.min.css": "/css/skins/skin-yellow.min.css",
     "/css/blue.png": "/css/blue.png",
-    "/css/blue@2x.png": "/css/blue@2x.png"
+    "/css/blue@2x.png": "/css/blue@2x.png",
+    "/0.f6ddb41d4703eafc6270.hot-update.js": "/0.f6ddb41d4703eafc6270.hot-update.js",
+    "/0.a922785c02cff04b4b51.hot-update.js": "/0.a922785c02cff04b4b51.hot-update.js",
+    "/0.73cb806fe260e73849b3.hot-update.js": "/0.73cb806fe260e73849b3.hot-update.js",
+    "/0.0cda4561b7fc5b51c22e.hot-update.js": "/0.0cda4561b7fc5b51c22e.hot-update.js"
 }

@@ -30,21 +30,6 @@ Route::group(['middleware' => 'auth'], function () {
     //PURE JAVASCRIPT INTERFACE + AJAX/AXIOS REQUESTS TO REST JSON API
     Route::view('/tasks','tasks');
 
-    //API JSON
-    // API: TODO move to routes/api.php file
-    Route::get('api/tasks',                     'ApiTaskController@index');
-    Route::get('api/tasks/{task}',              'ApiTaskController@show');
-    Route::post('api/tasks',                    'ApiTaskController@store');
-    Route::put('api/tasks/{task}',              'ApiTaskController@update');
-    Route::delete('api/tasks/{task}',           'ApiTaskController@destroy');
-
-    // API: TODO move to routes/api.php file
-    Route::get('api/v1/users',                     'ApiUserController@index');
-    Route::get('api/v1/users/{task}',              'ApiUserController@show');
-    Route::post('api/v1/users',                    'ApiUserController@store');
-    Route::put('api/v1/users/{task}',              'ApiUserController@update');
-    Route::delete('api/v1/users/{task}',           'ApiUserController@destroy');
-
     Route::view('/proves','proves');
 });
 

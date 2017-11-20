@@ -23,6 +23,7 @@ class ApiUserController extends Controller
 
     /**
      * Show a user.
+     *
      * @param User $user
      * @return User
      */
@@ -40,11 +41,17 @@ class ApiUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name'     => 'required|max:255',
+            'username' => 'sometimes|required|max:255|unique:users',
+            'email'    => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6'
         ]);
 
         $user = User::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
         ]);
 
         return $user;

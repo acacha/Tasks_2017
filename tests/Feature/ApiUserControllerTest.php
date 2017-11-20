@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\User;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 /**
@@ -35,7 +36,7 @@ class ApiUserControllerTest extends TestCase
         factory(User::class,3)->create();
 
         $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
         $response = $this->json('GET', '/api/v1/users');
 
@@ -58,7 +59,7 @@ class ApiUserControllerTest extends TestCase
         $user = factory(User::class)->create();
 
         $loggedUser = factory(User::class)->create();
-        $this->actingAs($loggedUser);
+        $this->actingAs($loggedUser,'api');
 
         $response = $this->json('GET', '/api/v1/users/' . $user->id);
 
@@ -92,7 +93,7 @@ class ApiUserControllerTest extends TestCase
     public function cannot_add_user_if_no_name_provided()
     {
         $loggedUser = factory(User::class)->create();
-        $this->actingAs($loggedUser);
+        $this->actingAs($loggedUser, 'api');
 
         // EXECUTE
         $response = $this->json('POST', '/api/v1/users');
@@ -102,32 +103,44 @@ class ApiUserControllerTest extends TestCase
     }
 
     /**
+     * Can add an user.
+     *
      * @test
      */
-    public function can_add_a_user()
+    public function can_add_an_user()
     {
         // PREPARE
         $faker = Factory::create();
         $user = factory(User::class)->create();
 
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
         // EXECUTE
         $response = $this->json('POST', '/api/v1/users', [
-            'name' => $name = $faker->word
+            'name' => $name = $faker->word,
+            'email' => $email = $faker->email,
+            'password' => $password = $faker->password
         ]);
 
         // ASSERT
         $response->assertSuccessful();
 
+        try {
+            $user = User::findOrFail(json_decode($response->getContent())->id);
+            $this->assertTrue(Hash::check($password, $user->password));
+        } catch (\Exception $e) {
+            $this->assertTrue(false);
+        }
+
         $this->assertDatabaseHas('users', [
-           'name' => $name
+           'name' => $name,
+           'email' => $email
         ]);
 
-//        $response->dump();
 
         $response->assertJson([
-            'name' => $name
+            'name' => $name,
+            'email' => $email
         ]);
     }
 
@@ -139,7 +152,7 @@ class ApiUserControllerTest extends TestCase
         $user = factory(User::class)->create();
         $user = factory(User::class)->create();
 
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
         $response = $this->json('DELETE','/api/v1/users/' . $user->id);
 
@@ -156,50 +169,50 @@ class ApiUserControllerTest extends TestCase
     }
 
     /**
+     * Cannot delete unexisting user.
+     *
      * @test
      */
     public function cannot_delete_unexisting_user()
     {
         $user = factory(User::class)->create();
 
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
-        $response = $this->json('DELETE','/api/v1/users/1');
+        $response = $this->json('DELETE','/api/v1/users/5989');
 
         $response->assertStatus(404);
     }
 
     /**
+     * Can edit user.
      * @test
      */
     public function can_edit_user()
     {
-        // PREPARE
         $user1 = factory(User::class)->create();
 
         $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $this->actingAs($user,'api');
 
-        // EXECUTE
         $response = $this->json('PUT', '/api/v1/users/' . $user1->id, [
             'name' => $newName = 'NOU NOM'
         ]);
 
-        // ASSERT
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('users', [
-            'id' => $user->id,
+            'id' => $user1->id,
             'name' => $newName
         ]);
 
         $this->assertDatabaseMissing('users', [
-            'id' => $user->id,
+            'id' => $user1->id,
             'name' => $user->name,
         ]);
 
         $response->assertJson([
-            'id' => $user->id,
+            'id' => $user1->id,
             'name' => $newName
         ]);
     }
