@@ -1,42 +1,50 @@
 <template>
-    <div v-cloak>
-        <ul>
-            <li v-for="task in filteredTasks" :class="{ completed: isCompleted(task) }"
-                @dblclick="updateTask(task)">
+    <div>
+        <widget :loading="loading">
+            <p slot="title">Tasques</p>
+            <div v-cloak>
+                <ul>
+                    <li v-for="task in filteredTasks" :class="{ completed: isCompleted(task) }"
+                        @dblclick="updateTask(task)">
 
 
-                <input type="text" v-if="task == editedTask">
-                <div v-else>
-                    {{task.name}}
-                    <i class="fa fa-pencil" aria-hidden="true" @click="updateTask(task)"></i>
-                    <i class="fa fa-refresh fa-spin fa-lg" v-if=" task.id === taskBeingDeleted"></i>
-                    <i class="fa fa-times" aria-hidden="true" @click="deleteTask(task)"></i>
+                        <input type="text" v-if="task == editedTask">
+                        <div v-else>
+                            {{task.name}}
+                            <i class="fa fa-pencil" aria-hidden="true" @click="updateTask(task)"></i>
+                            <i class="fa fa-refresh fa-spin fa-lg" v-if=" task.id === taskBeingDeleted"></i>
+                            <i class="fa fa-times" aria-hidden="true" @click="deleteTask(task)"></i>
+                        </div>
+
+                    </li>
+                </ul>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">User</label>
+                    <!--<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">-->
+                    <users></users>
+                </div>
+                <div class="form-group">
+                    <label for="newTask">Task name</label>
+                    <input class="form-control" type="text" v-model="newTask" id="newTask" @keyup.enter="addTask">
                 </div>
 
-            </li>
-        </ul>
-        <div class="form-group">
-            <label for="exampleInputEmail1">User</label>
-            <!--<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">-->
-            <users></users>
-        </div>
-        <div class="form-group">
-            <label for="newTask">Task name</label>
-            <input class="form-control" type="text" v-model="newTask" id="newTask" @keyup.enter="addTask">
-        </div>
+                <button :disabled="creating" id="add" @click="addTask">
+                    <i class="fa fa-refresh fa-spin fa-lg" v-if="creating"></i>
+                    Afegir
+                </button>
 
-        <button :disabled="creating" id="add" @click="addTask">
-            <i class="fa fa-refresh fa-spin fa-lg" v-if="creating"></i>
-            Afegir
-        </button>
+                <h2>Filtres</h2>
 
-        <h2>Filtres</h2>
+                <ul>
+                    <li @click="show('all')" :class="{ active: this.filter === 'all' }">All</li>
+                    <li @click="show('completed')" :class="{ active: this.filter === 'completed' }">Completed</li>
+                    <li @click="show('pending')" :class="{ active: this.filter === 'pending' }">Pending</li>
+                </ul>
+            </div>
+            <p slot="Footer">Footer</p>
+        </widget>
 
-        <ul>
-            <li @click="show('all')" :class="{ active: this.filter === 'all' }">All</li>
-            <li @click="show('completed')" :class="{ active: this.filter === 'completed' }">Completed</li>
-            <li @click="show('pending')" :class="{ active: this.filter === 'pending' }">Pending</li>
-        </ul>
+        <message title="Message" message="" color="info"></message>
     </div>
 </template>
 
@@ -81,6 +89,7 @@
       components: { Users },
       data() {
         return {
+          loading: false,
           editedTask: null,
           filter: 'all',
           newTask: '',
