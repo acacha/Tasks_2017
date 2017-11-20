@@ -32,5 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('/tasks','tasks');
 
     Route::view('/proves','proves');
+
+    Route::view('/tokens','tokens');
 });
 

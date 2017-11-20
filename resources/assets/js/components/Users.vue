@@ -1,34 +1,37 @@
 <template>
     <div>
-        Users {{count}}):
-        <!--<ul>-->
-            <!--<li v-for="user in users"> {{ user.name }}</li>-->
-        <!--</ul>-->
-
-        <select>
-            <option v-for="user in users" :value="user.id"> {{ user.name }} - {{ user.email }}</option>
-        </select>
+      <multiselect v-model="user" :options="users" :custom-label="customLabel"></multiselect>
     </div>
 </template>
 
-<style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
-</style>
 
 <script>
 
   import axios from 'axios'
+  import Multiselect from 'vue-multiselect'
 
   export default {
+    components: {Multiselect},
     name: 'users',
     data() {
       return {
+        user: null,
         users: []
       }
     },
     computed: {
       count() {
         return this.users.length
+      }
+    },
+    methods: {
+      customLabel( { name, email } ) {
+        return `${name} — ${email}`
+      },
+      customLabel1( user ) {
+        return `${user.name} — ${user.email}`
       }
     },
     mounted() {

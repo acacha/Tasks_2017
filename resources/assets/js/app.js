@@ -21,6 +21,21 @@ Vue.component('widget', require('./components/WidgetComponent.vue'));
 Vue.component('tasks-view', require('./components/TasksViewComponent.vue'));
 Vue.component('users', require('./components/Users.vue'));
 
+Vue.component(
+  'passport-clients',
+  require('./components/passport/Clients.vue')
+);
+
+Vue.component(
+  'passport-authorized-clients',
+  require('./components/passport/AuthorizedClients.vue')
+);
+
+Vue.component(
+  'passport-personal-access-tokens',
+  require('./components/passport/PersonalAccessTokens.vue')
+);
+
 
 import Vuetable from 'vuetable-2/src/components/Vuetable'
 Vue.use(Vuetable)

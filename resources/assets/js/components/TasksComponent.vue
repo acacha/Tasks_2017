@@ -15,7 +15,16 @@
 
             </li>
         </ul>
-        Nova Tasca a afegir: <input type="text" v-model="newTask" id="newTask" @keyup.enter="addTask">
+        <div class="form-group">
+            <label for="exampleInputEmail1">User</label>
+            <!--<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">-->
+            <users></users>
+        </div>
+        <div class="form-group">
+            <label for="newTask">Task name</label>
+            <input class="form-control" type="text" v-model="newTask" id="newTask" @keyup.enter="addTask">
+        </div>
+
         <button :disabled="creating" id="add" @click="addTask">
             <i class="fa fa-refresh fa-spin fa-lg" v-if="creating"></i>
             Afegir
@@ -45,6 +54,8 @@
 
 <script>
 
+  import Users from './Users'
+
   // visibility filters
   var filters = {
     all: function (tasks) {
@@ -67,6 +78,7 @@
   import { wait } from './utils.js'
 
   export default {
+      components: { Users },
       data() {
         return {
           editedTask: null,

@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-stage-2": "^6.24.1"
+    "babel-preset-stage-2": "^6.24.1",
+    "vue-multiselect": "^2.0.6"
   }
 }
