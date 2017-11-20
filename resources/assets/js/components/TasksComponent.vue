@@ -144,23 +144,16 @@
         }
       },
       mounted() {
-        let url = '/api/tasks'
-        this.$emit('loading',true)
+        let url = '/api/v1/tasks'
+        this.loading = true
         axios.get(url).then((response) =>  {
           this.tasks = response.data;
         }).catch((error) => {
           console.log(error.message)
           flash(error.message)
         }).then(() => {
-          this.$emit('loading',false)
+          this.loading = false
         })
-
-
-        // API HTTP amb JSON <- Web service
-        // URL GET http://NOM_SERVIDOR/api/task
-        // URL POST http://NOM_SERVIDOR/api/task
-        // URL DELETE http://NOM_SERVIDOR/api/task/{task}
-        // URL PUT/PATCH http://NOM_SERVIDOR/api/task/{task}
       }
     }
 </script>
