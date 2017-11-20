@@ -28,11 +28,6 @@
                     <input class="form-control" type="text" v-model="newTask" id="newTask" @keyup.enter="addTask">
                 </div>
 
-                <button :disabled="creating" id="add" @click="addTask">
-                    <i class="fa fa-refresh fa-spin fa-lg" v-if="creating"></i>
-                    Afegir
-                </button>
-
                 <h2>Filtres</h2>
 
                 <ul>
@@ -41,7 +36,12 @@
                     <li @click="show('pending')" :class="{ active: this.filter === 'pending' }">Pending</li>
                 </ul>
             </div>
-            <p slot="Footer">Footer</p>
+            <p slot="footer">
+                <button :disabled="creating" id="add" @click="addTask" class="btn btn-primary">
+                   <i class="fa fa-refresh fa-spin fa-lg" v-if="creating"></i>
+                    Afegir
+                </button>
+            </p>
         </widget>
 
         <message title="Message" message="" color="info"></message>
