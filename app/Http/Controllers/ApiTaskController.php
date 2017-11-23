@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DestroyTask;
 use App\Http\Requests\ListTask;
+use App\Http\Requests\ShowTask;
 use App\Http\Requests\StoreTask;
 use App\Http\Requests\UpdateTask;
 use App\Task;
@@ -31,7 +32,7 @@ class ApiTaskController extends Controller
      * @param ShowTask $task
      * @return Task
      */
-    public function show(ShowTask $task)
+    public function show(ShowTask $request,Task $task)
     {
         return $task;
     }

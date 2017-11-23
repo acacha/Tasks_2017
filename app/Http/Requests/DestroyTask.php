@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class DestroyTask.
@@ -18,7 +19,7 @@ class DestroyTask extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->hasPermissionTo('destroy-task');
     }
 
     /**

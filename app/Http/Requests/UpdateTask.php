@@ -3,6 +3,13 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+
+/**
+ * Class UpdateTask
+ *
+ * @package App\Http\Requests
+ */
 
 class UpdateTask extends FormRequest
 {
@@ -13,7 +20,7 @@ class UpdateTask extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->hasPermissionTo('update-task');
     }
 
     /**
