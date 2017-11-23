@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        factory(Task::class,50)->create();
-
         initialize_task_permissions();
 
         create_user();
@@ -24,6 +22,6 @@ class DatabaseSeeder extends Seeder
 
         Artisan::call('passport:install');
 
-        //Canviarà el secret
+        factory(Task::class,50)->create();
     }
 }

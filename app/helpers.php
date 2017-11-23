@@ -30,7 +30,7 @@ if (! function_exists('create_user')) {
         factory(User::class)->create([
             'name' => env('TASKS_USER_NAME','Sergi Tur Badenas'),
             'email' => env('TASKS_USER_EMAIL','sergiturbadenas@gmail.com'),
-            'password' => env('TASKS_USER_PASSWORD'),
+            'password' => bcrypt(env('TASKS_USER_PASSWORD')),
         ]);
     }
 }
