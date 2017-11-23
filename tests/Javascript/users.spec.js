@@ -3,7 +3,7 @@ import expect from 'expect'
 import Users from '../../resources/assets/js/components/Users.vue'
 import moxios from 'moxios';
 
-describe('Usexers', () => {
+describe('Users', () => {
   let component
 
   const USERS = [

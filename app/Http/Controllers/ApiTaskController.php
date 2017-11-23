@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DestroyTask;
+use App\Http\Requests\ListTask;
+use App\Http\Requests\StoreTask;
+use App\Http\Requests\UpdateTask;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -16,17 +20,18 @@ class ApiTaskController extends Controller
      *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function index()
+    //CRUD CREATE|STORE RETRIEVE|LIST|SHOW U UPDATE|UPDATE D|DESTROY
+    public function index(ListTask $request)
     {
         return Task::all();
     }
 
     /**
      * Show a task.
-     * @param Task $task
+     * @param ShowTask $task
      * @return Task
      */
-    public function show(Task $task)
+    public function show(ShowTask $task)
     {
         return $task;
     }
@@ -34,16 +39,11 @@ class ApiTaskController extends Controller
     /**
      * Store task.
      *
-     * @param Request $request
+     * @param StoreTask $request
      * @return mixed
      */
-    public function store(Request $request)
+    public function store(StoreTask $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'user_id' => 'required'
-        ]);
-
         $task = Task::create($request->only(['name','user_id']));
 
         return $task;
@@ -52,11 +52,11 @@ class ApiTaskController extends Controller
     /**
      * Delete task.
      *
-     * @param Request $request
+     * @param DestroyTask $request
      * @param Task $task
      * @return Task
      */
-    public function destroy(Request $request, Task $task)
+    public function destroy(DestroyTask $request, Task $task)
     {
         $task->delete();
 
@@ -66,11 +66,11 @@ class ApiTaskController extends Controller
     /**
      * Update task.
      *
-     * @param Request $request
+     * @param UpdateTask $request
      * @param Task $task
      * @return Task
      */
-    public function update(Request $request, Task $task)
+    public function update(UpdateTask $request, Task $task)
     {
         $request->validate([
             'name' => 'required'
