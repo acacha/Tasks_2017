@@ -10,8 +10,6 @@ use Tests\TestCase;
 
 /**
  * Class ApiUserControllerTest.
- *
- * @package Tests\Feature
  */
 class ApiUserControllerTest extends TestCase
 {
@@ -33,10 +31,10 @@ class ApiUserControllerTest extends TestCase
      */
     public function can_list_users()
     {
-        factory(User::class,3)->create();
+        factory(User::class, 3)->create();
 
         $user = factory(User::class)->create();
-        $this->actingAs($user,'api');
+        $this->actingAs($user, 'api');
 
         $response = $this->json('GET', '/api/v1/users');
 
@@ -46,12 +44,13 @@ class ApiUserControllerTest extends TestCase
           'id',
           'name',
           'created_at',
-          'updated_at'
+          'updated_at',
         ]]);
     }
 
     /**
      * Can show a user.
+     *
      * @test
      */
     public function can_show_a_user()
@@ -59,15 +58,15 @@ class ApiUserControllerTest extends TestCase
         $user = factory(User::class)->create();
 
         $loggedUser = factory(User::class)->create();
-        $this->actingAs($loggedUser,'api');
+        $this->actingAs($loggedUser, 'api');
 
-        $response = $this->json('GET', '/api/v1/users/' . $user->id);
+        $response = $this->json('GET', '/api/v1/users/'.$user->id);
 
         $response->assertSuccessful();
 
         $response->assertJson([
-            'id' => $user->id,
-            'name' => $user->name
+            'id'   => $user->id,
+            'name' => $user->name,
         ]);
     }
 
@@ -80,7 +79,7 @@ class ApiUserControllerTest extends TestCase
 
         // EXECUTE
         $response = $this->json('POST', '/api/v1/users', [
-            'name' => $name = $faker->word
+            'name' => $name = $faker->word,
         ]);
 
         // ASSERT
@@ -113,13 +112,13 @@ class ApiUserControllerTest extends TestCase
         $faker = Factory::create();
         $user = factory(User::class)->create();
 
-        $this->actingAs($user,'api');
+        $this->actingAs($user, 'api');
 
         // EXECUTE
         $response = $this->json('POST', '/api/v1/users', [
-            'name' => $name = $faker->word,
-            'email' => $email = $faker->email,
-            'password' => $password = $faker->password
+            'name'     => $name = $faker->word,
+            'email'    => $email = $faker->email,
+            'password' => $password = $faker->password,
         ]);
 
         // ASSERT
@@ -133,14 +132,13 @@ class ApiUserControllerTest extends TestCase
         }
 
         $this->assertDatabaseHas('users', [
-           'name' => $name,
-           'email' => $email
+           'name'  => $name,
+           'email' => $email,
         ]);
 
-
         $response->assertJson([
-            'name' => $name,
-            'email' => $email
+            'name'  => $name,
+            'email' => $email,
         ]);
     }
 
@@ -152,19 +150,19 @@ class ApiUserControllerTest extends TestCase
         $user = factory(User::class)->create();
         $user = factory(User::class)->create();
 
-        $this->actingAs($user,'api');
+        $this->actingAs($user, 'api');
 
-        $response = $this->json('DELETE','/api/v1/users/' . $user->id);
+        $response = $this->json('DELETE', '/api/v1/users/'.$user->id);
 
         $response->assertSuccessful();
 
-        $this->assertDatabaseMissing('users',[
-           'id' =>  $user->id
+        $this->assertDatabaseMissing('users', [
+           'id' => $user->id,
         ]);
 
         $response->assertJson([
-            'id' => $user->id,
-            'name' => $user->name
+            'id'   => $user->id,
+            'name' => $user->name,
         ]);
     }
 
@@ -177,15 +175,16 @@ class ApiUserControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->actingAs($user,'api');
+        $this->actingAs($user, 'api');
 
-        $response = $this->json('DELETE','/api/v1/users/5989');
+        $response = $this->json('DELETE', '/api/v1/users/5989');
 
         $response->assertStatus(404);
     }
 
     /**
      * Can edit user.
+     *
      * @test
      */
     public function can_edit_user()
@@ -193,28 +192,27 @@ class ApiUserControllerTest extends TestCase
         $user1 = factory(User::class)->create();
 
         $user = factory(User::class)->create();
-        $this->actingAs($user,'api');
+        $this->actingAs($user, 'api');
 
-        $response = $this->json('PUT', '/api/v1/users/' . $user1->id, [
-            'name' => $newName = 'NOU NOM'
+        $response = $this->json('PUT', '/api/v1/users/'.$user1->id, [
+            'name' => $newName = 'NOU NOM',
         ]);
 
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('users', [
-            'id' => $user1->id,
-            'name' => $newName
+            'id'   => $user1->id,
+            'name' => $newName,
         ]);
 
         $this->assertDatabaseMissing('users', [
-            'id' => $user1->id,
+            'id'   => $user1->id,
             'name' => $user->name,
         ]);
 
         $response->assertJson([
-            'id' => $user1->id,
-            'name' => $newName
+            'id'   => $user1->id,
+            'name' => $newName,
         ]);
     }
-
 }

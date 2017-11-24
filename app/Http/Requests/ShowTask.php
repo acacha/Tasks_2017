@@ -7,9 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ShowTask.
- * @package App\Http\Requests
  */
-
 class ShowTask extends FormRequest
 {
     /**

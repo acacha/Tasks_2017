@@ -6,8 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 /**
- * Class ApiUserController
- * @package App\Http\Controllers
+ * Class ApiUserController.
  */
 class ApiUserController extends Controller
 {
@@ -25,6 +24,7 @@ class ApiUserController extends Controller
      * Show a user.
      *
      * @param User $user
+     *
      * @return User
      */
     public function show(User $user)
@@ -36,6 +36,7 @@ class ApiUserController extends Controller
      * Store user.
      *
      * @param Request $request
+     *
      * @return mixed
      */
     public function store(Request $request)
@@ -44,13 +45,13 @@ class ApiUserController extends Controller
             'name'     => 'required|max:255',
             'username' => 'sometimes|required|max:255|unique:users',
             'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'name'     => $request->name,
             'username' => $request->username,
-            'email' => $request->email,
+            'email'    => $request->email,
             'password' => bcrypt($request->password),
         ]);
 
@@ -61,7 +62,8 @@ class ApiUserController extends Controller
      * Delete user.
      *
      * @param Request $request
-     * @param User $user
+     * @param User    $user
+     *
      * @return User
      */
     public function destroy(Request $request, User $user)
@@ -75,13 +77,14 @@ class ApiUserController extends Controller
      * Update user.
      *
      * @param Request $request
-     * @param User $user
+     * @param User    $user
+     *
      * @return User
      */
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         $user->name = $request->name;
@@ -89,5 +92,4 @@ class ApiUserController extends Controller
 
         return $user;
     }
-
 }

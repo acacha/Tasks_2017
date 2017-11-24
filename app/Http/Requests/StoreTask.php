@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * Class StoreTask.
- *
- * @package App\Http\Requests
  */
 class StoreTask extends FormRequest
 {
@@ -30,8 +28,8 @@ class StoreTask extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'user_id' => 'required'
+            'name'    => 'required',
+            'user_id' => 'required',
         ];
     }
 }

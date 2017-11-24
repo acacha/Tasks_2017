@@ -10,8 +10,6 @@ use Tests\TestCase;
 
 /**
  * Class ApiTaskControllerTest.
- *
- * @package Tests\Feature
  */
 class ApiTaskControllerTest extends TestCase
 {
@@ -34,7 +32,8 @@ class ApiTaskControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $user->assignRole('task-manager');
-        $this->actingAs($user,'api');
+        $this->actingAs($user, 'api');
+
         return $user;
     }
 
@@ -45,7 +44,7 @@ class ApiTaskControllerTest extends TestCase
      */
     public function can_list_tasks()
     {
-        factory(Task::class,3)->create();
+        factory(Task::class, 3)->create();
 
         $this->loginAndAuthorize();
 
@@ -57,7 +56,7 @@ class ApiTaskControllerTest extends TestCase
           'id',
           'name',
           'created_at',
-          'updated_at'
+          'updated_at',
         ]]);
     }
 
@@ -72,13 +71,13 @@ class ApiTaskControllerTest extends TestCase
 
         $this->loginAndAuthorize();
 
-        $response = $this->json('GET', '/api/v1/tasks/' . $task->id);
+        $response = $this->json('GET', '/api/v1/tasks/'.$task->id);
 
         $response->assertSuccessful();
 
         $response->assertJson([
-            'id' => $task->id,
-            'name' => $task->name
+            'id'   => $task->id,
+            'name' => $task->name,
         ]);
     }
 
@@ -91,7 +90,7 @@ class ApiTaskControllerTest extends TestCase
 
         // EXECUTE
         $response = $this->json('POST', '/api/v1/tasks', [
-            'name' => $name = $faker->word
+            'name' => $name = $faker->word,
         ]);
 
         // ASSERT
@@ -123,21 +122,21 @@ class ApiTaskControllerTest extends TestCase
 
         // EXECUTE
         $response = $this->json('POST', '/api/v1/tasks', [
-            'name' => $name = $faker->word,
-            'user_id' => $user->id
+            'name'    => $name = $faker->word,
+            'user_id' => $user->id,
         ]);
 
         // ASSERT
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('tasks', [
-           'name' => $name
+           'name' => $name,
         ]);
 
 //        $response->dump();
 
         $response->assertJson([
-            'name' => $name
+            'name' => $name,
         ]);
     }
 
@@ -149,17 +148,17 @@ class ApiTaskControllerTest extends TestCase
         $task = factory(Task::class)->create();
         $this->loginAndAuthorize();
 
-        $response = $this->json('DELETE','/api/v1/tasks/' . $task->id);
+        $response = $this->json('DELETE', '/api/v1/tasks/'.$task->id);
 
         $response->assertSuccessful();
 
-        $this->assertDatabaseMissing('tasks',[
-           'id' =>  $task->id
+        $this->assertDatabaseMissing('tasks', [
+           'id' => $task->id,
         ]);
 
         $response->assertJson([
-            'id' => $task->id,
-            'name' => $task->name
+            'id'   => $task->id,
+            'name' => $task->name,
         ]);
     }
 
@@ -170,7 +169,7 @@ class ApiTaskControllerTest extends TestCase
     {
         $this->loginAndAuthorize();
 
-        $response = $this->json('DELETE','/api/v1/tasks/1');
+        $response = $this->json('DELETE', '/api/v1/tasks/1');
 
         $response->assertStatus(404);
     }
@@ -183,26 +182,25 @@ class ApiTaskControllerTest extends TestCase
         $task = factory(Task::class)->create();
         $this->loginAndAuthorize();
 
-        $response = $this->json('PUT', '/api/v1/tasks/' . $task->id, [
-            'name' => $newName = 'NOU NOM'
+        $response = $this->json('PUT', '/api/v1/tasks/'.$task->id, [
+            'name' => $newName = 'NOU NOM',
         ]);
 
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('tasks', [
-            'id' => $task->id,
-            'name' => $newName
+            'id'   => $task->id,
+            'name' => $newName,
         ]);
 
         $this->assertDatabaseMissing('tasks', [
-            'id' => $task->id,
+            'id'   => $task->id,
             'name' => $task->name,
         ]);
 
         $response->assertJson([
-            'id' => $task->id,
-            'name' => $newName
+            'id'   => $task->id,
+            'name' => $newName,
         ]);
     }
-
 }

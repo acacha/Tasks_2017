@@ -41,5 +41,4 @@ class CreateTaskOld extends Command
 //        dd ($name);
         $this->info('Task has been added to database succesfully.');
     }
-
 }

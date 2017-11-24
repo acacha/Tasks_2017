@@ -4,15 +4,12 @@ namespace Tests\Feature;
 
 use App\Task;
 use App\User;
-
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\View;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Class CreateTaskCommandTest.
- *
- * @package Tests\Feature
  */
 class TaskControllerTest extends TestCase
 {
@@ -34,7 +31,7 @@ class TaskControllerTest extends TestCase
      */
     public function can_list_tasks()
     {
-        factory(Task::class,3)->create();
+        factory(Task::class, 3)->create();
 
         $user = factory(User::class)->create();
         $this->actingAs($user);
@@ -47,7 +44,7 @@ class TaskControllerTest extends TestCase
         $response->assertSuccessful();
         $response->assertViewIs('tasks_php');
         $tasks = Task::all();
-        $response->assertViewHas('tasks',$tasks);
+        $response->assertViewHas('tasks', $tasks);
 
         foreach ($tasks as $task) {
             $response->assertSee($task->name);
@@ -66,7 +63,7 @@ class TaskControllerTest extends TestCase
         $this->actingAs($user);
         View::share('user', $user);
 
-        $response = $this->get('/tasks_php/' . $task->id);
+        $response = $this->get('/tasks_php/'.$task->id);
 
         $response->assertSuccessful();
         $response->assertViewIs('show_task');
@@ -84,46 +81,42 @@ class TaskControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $this->actingAs($user);
-        $response = $this->post('/tasks', [ 'name' => 'Comprar llet']);
+        $response = $this->post('/tasks', ['name' => 'Comprar llet']);
 
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('tasks', [
-            'name' => 'Comprar llet'
+            'name' => 'Comprar llet',
         ]);
 
 //        $response->assertRedirect('tasks/create');
     }
 
     /**
-     * Update a task
+     * Update a task.
      */
     public function update_a_task()
     {
         $task = factory(Task::class)->create();
 
         $newTask = factory(Task::class)->make();
-        $response = $this->put('/tasks_php/' . $task->id,[
-            'name' => $newTask->name,
+        $response = $this->put('/tasks_php/'.$task->id, [
+            'name'        => $newTask->name,
             'description' => $newTask->description,
         ]);
 
-        $this->assertDatabaseHas('tasks_php',[
-            'id' =>  $task->id,
-            'name' => $newTask->name,
+        $this->assertDatabaseHas('tasks_php', [
+            'id'          => $task->id,
+            'name'        => $newTask->name,
             'description' => $newTask->description,
         ]);
 
-        $this->assertDatabaseMissing('tasks_php',[
-            'id' =>  $task->id,
-            'name' => $task->name,
+        $this->assertDatabaseMissing('tasks_php', [
+            'id'          => $task->id,
+            'name'        => $task->name,
             'description' => $task->description,
         ]);
 
         $response->assertRedirect('tasks/edit');
-
-
     }
-
-
 }
