@@ -1,3 +1,7 @@
+# Tasks
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/acacha/Tasks/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/acacha/Tasks/?branch=master)
+
 # Tasques
 
 MP7:
