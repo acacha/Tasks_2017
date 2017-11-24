@@ -8,11 +8,9 @@ use App\Http\Requests\ShowTask;
 use App\Http\Requests\StoreTask;
 use App\Http\Requests\UpdateTask;
 use App\Task;
-use Illuminate\Http\Request;
 
 /**
- * Class ApiTaskController
- * @package App\Http\Controllers
+ * Class ApiTaskController.
  */
 class ApiTaskController extends Controller
 {
@@ -29,10 +27,12 @@ class ApiTaskController extends Controller
 
     /**
      * Show a task.
+     *
      * @param ShowTask $task
+     *
      * @return Task
      */
-    public function show(ShowTask $request,Task $task)
+    public function show(ShowTask $request, Task $task)
     {
         return $task;
     }
@@ -41,11 +41,12 @@ class ApiTaskController extends Controller
      * Store task.
      *
      * @param StoreTask $request
+     *
      * @return mixed
      */
     public function store(StoreTask $request)
     {
-        $task = Task::create($request->only(['name','user_id']));
+        $task = Task::create($request->only(['name', 'user_id']));
 
         return $task;
     }
@@ -54,7 +55,8 @@ class ApiTaskController extends Controller
      * Delete task.
      *
      * @param DestroyTask $request
-     * @param Task $task
+     * @param Task        $task
+     *
      * @return Task
      */
     public function destroy(DestroyTask $request, Task $task)
@@ -68,13 +70,14 @@ class ApiTaskController extends Controller
      * Update task.
      *
      * @param UpdateTask $request
-     * @param Task $task
+     * @param Task       $task
+     *
      * @return Task
      */
     public function update(UpdateTask $request, Task $task)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         $task->name = $request->name;
@@ -82,5 +85,4 @@ class ApiTaskController extends Controller
 
         return $task;
     }
-
 }

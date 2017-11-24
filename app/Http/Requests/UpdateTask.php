@@ -6,11 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class UpdateTask
- *
- * @package App\Http\Requests
+ * Class UpdateTask.
  */
-
 class UpdateTask extends FormRequest
 {
     /**

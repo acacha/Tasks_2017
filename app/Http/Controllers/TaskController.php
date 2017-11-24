@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 
 /**
  * Class TaskController.
- *
- * @package App\Http\Controllers
  */
 class TaskController extends Controller
 {
@@ -20,7 +18,8 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return view('tasks_php',['tasks' => $tasks]);
+
+        return view('tasks_php', ['tasks' => $tasks]);
     }
 
     /**
@@ -36,13 +35,14 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         Task::create([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
     }
 
@@ -50,17 +50,19 @@ class TaskController extends Controller
      * Display the specified resource.
      *
      * @param Task $task
+     *
      * @return Task
      */
     public function show(Task $task)
     {
-        return view('show_task',['task' => $task]);
+        return view('show_task', ['task' => $task]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param \App\Task $task
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Task $task)
@@ -71,8 +73,9 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Task                $task
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Task $task)
@@ -83,7 +86,8 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Task  $task
+     * @param \App\Task $task
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Task $task)

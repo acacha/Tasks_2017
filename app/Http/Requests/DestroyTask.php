@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * Class DestroyTask.
- *
- * @package App\Http\Requests
  */
 class DestroyTask extends FormRequest
 {
