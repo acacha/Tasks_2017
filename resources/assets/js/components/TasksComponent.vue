@@ -21,13 +21,19 @@
                     <button @click="show('completed')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'completed' }">Completed</button>
                     <button @click="show('pending')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'pending' }">Pending</button>
                 </div>
-                <div class="form-group">
+                <div class="form-group has-feedback" :class="{ 'has-error': form.errors.has('user_id') }">
                     <label for="user_id">User</label>
+                    <transition name="fade">
+                        <span v-text="form.errors.get('user_id')" v-if="form.errors.has('user_id')" class="help-block"></span>
+                    </transition>
                     <!--<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">-->
                     <users id="user_id" name="user_id"></users>
                 </div>
                 <div class="form-group has-feedback" :class="{ 'has-error': form.errors.has('name') }">
                     <label for="name">Task name</label>
+                    <transition name="fade">
+                        <span v-text="form.errors.get('name')" v-if="form.errors.has('name')" class="help-block"></span>
+                    </transition>
                     <input class="form-control" type="text" v-model="form.name" id="name" name="name" @keyup.enter="addTask">
                 </div>
             </div>
@@ -53,7 +59,15 @@
     li.active {
         background-color: blue;
     }
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 3s ease;
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
 </style>
+
+
 
 <script>
 
