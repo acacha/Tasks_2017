@@ -27,18 +27,18 @@
                         <span v-text="form.errors.get('user_id')" v-if="form.errors.has('user_id')" class="help-block"></span>
                     </transition>
                     <!--<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">-->
-                    <users id="user_id" name="user_id"></users>
+                    <users @select="userSelected" id="user_id" name="user_id" v-model="form.user_id" :value="form.user_id"></users>
                 </div>
                 <div class="form-group has-feedback" :class="{ 'has-error': form.errors.has('name') }">
                     <label for="name">Task name</label>
                     <transition name="fade">
                         <span v-text="form.errors.get('name')" v-if="form.errors.has('name')" class="help-block"></span>
                     </transition>
-                    <input class="form-control" type="text" v-model="form.name" id="name" name="name" @keyup.enter="addTask">
+                    <input @input="form.errors.clear('name')" class="form-control" type="text" v-model="form.name" id="name" name="name" @keyup.enter="addTask">
                 </div>
             </div>
             <p slot="footer">
-                <button :disabled="form.submitting" id="add" @click="addTask" class="btn btn-primary">
+                <button :disabled="form.submitting || form.errors.any()" id="add" @click="addTask" class="btn btn-primary">
                    <i class="fa fa-refresh fa-spin fa-lg" v-if="form.submitting"></i>
                     Afegir
                 </button>
@@ -105,7 +105,7 @@
           filter: 'all',
           tasks: [],
           taskBeingDeleted: null,
-          form: new Form({ user_id : '', name: ''})
+          form: new Form({ user_id : 1, name: 'canvia nom tasca siusplau'})
         }
       },
       computed: {
@@ -119,6 +119,9 @@
         }
       },
       methods: {
+        userSelected(user) {
+          this.form.user_id = user.id
+        },
         show(filter) {
           this.filter = filter
         },
