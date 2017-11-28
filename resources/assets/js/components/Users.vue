@@ -49,15 +49,17 @@
     },
     mounted() {
       console.log(this.value)
-      let prova = this.value
-      this.user = this.users.find( user => {
-        return user.id === prova
-      })
+      
       axios.get('/api/v1/users').then( response => {
         this.users = response.data
+        this.user = this.users.find( user => {
+          return user.id === this.value
+        })
       }).catch( error => {
         console.log(error)
       })
+
+
     }
   }
 </script>
