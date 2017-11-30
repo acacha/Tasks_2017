@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DestroyTask;
+use App\Http\Requests\ListTask;
+use App\Http\Requests\ShowTask;
+use App\Http\Requests\StoreTask;
+use App\Http\Requests\UpdateTask;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -15,11 +20,11 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ListTask $request)
     {
         $tasks = Task::all();
 
-        return view('tasks_php', ['tasks' => $tasks]);
+        return view('tasks.list_tasks', ['tasks' => $tasks]);
     }
 
     /**
@@ -29,7 +34,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create_task') ;
     }
 
     /**
@@ -39,10 +44,11 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTask $request)
     {
         Task::create([
             'name' => $request->name,
+            'user_id' => $request->user_id,
         ]);
     }
 
@@ -53,9 +59,9 @@ class TaskController extends Controller
      *
      * @return Task
      */
-    public function show(Task $task)
+    public function show(ShowTask $request,Task $task)
     {
-        return view('show_task', ['task' => $task]);
+        return view('tasks.show_task', ['task' => $task]);
     }
 
     /**
@@ -67,20 +73,18 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('tasks.edit_task', ['task' => $task]) ;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Task                $task
-     *
-     * @return \Illuminate\Http\Response
+     * @param UpdateTask $request
+     * @param Task $task
      */
-    public function update(Request $request, Task $task)
+    public function update(UpdateTask $request, Task $task)
     {
-        //
+        return $task;
     }
 
     /**
@@ -90,7 +94,7 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(DestroyTask $task)
     {
         //
     }

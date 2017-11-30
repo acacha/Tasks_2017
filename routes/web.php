@@ -24,9 +24,13 @@ Route::group(['middleware' => 'auth'], function () {
     //adminlte_routes
 
     // PURE PHP INTERFACE
-    Route::get('tasks_php', 'TaskController@index')->middleware('can:list-users');
-    Route::get('tasks_php/{task}', 'TaskController@show');
-    Route::post('tasks_php', 'TaskController@store');
+    Route::get('tasks_php',             'TaskController@index');
+    Route::get('tasks_php/create',      'TaskController@create');
+    Route::get('tasks_php/edit',        'TaskController@edit');
+    Route::get('tasks_php/{task}',      'TaskController@show');
+    Route::post('tasks_php',            'TaskController@store');
+    Route::put('tasks_php/{task}',      'TaskController@update');
+    Route::delete('tasks_php/{task}',   'TaskController@destroy');
 
     //PURE JAVASCRIPT INTERFACE + AJAX/AXIOS REQUESTS TO REST JSON API
     Route::view('/tasks', 'tasks');

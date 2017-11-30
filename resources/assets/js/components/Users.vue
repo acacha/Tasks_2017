@@ -1,6 +1,6 @@
 <template>
     <div>
-      <multiselect @select="select" :id="id" :name="name" v-model="user" :options="users" :custom-label="customLabel"></multiselect>
+      <multiselect track-by="id" @select="select" :id="id" :name="name" v-model="user" :options="users" :custom-label="customLabel"></multiselect>
     </div>
 </template>
 

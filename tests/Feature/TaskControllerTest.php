@@ -21,55 +21,83 @@ class TaskControllerTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+        initialize_task_permissions();
         $this->withoutExceptionHandling();
     }
 
     /**
-     * Can list tasks.
+     * Login as task manager
+     */
+    protected function loginAsTaskManager()
+    {
+        $user = factory(User::class)->create();
+        $user->assignRole('task-manager');
+        $this->actingAs($user);
+        View::share('user', $user);
+    }
+    /**
+     * List tasks.
      *
      * @test
      */
-    public function can_list_tasks()
+    public function list_tasks()
     {
         factory(Task::class, 3)->create();
 
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
-        View::share('user', $user);
+        $this->loginAsTaskManager();
 
         $response = $this->get('/tasks_php');
 
         $response->assertSuccessful();
 
         $response->assertSuccessful();
-        $response->assertViewIs('tasks_php');
-        $tasks = Task::all();
+        $response->assertViewIs('tasks.list_tasks');
+        $tasks = Task::with('user')->get();
         $response->assertViewHas('tasks', $tasks);
 
         foreach ($tasks as $task) {
             $response->assertSee($task->name);
+            $response->assertSee($task->user->name);
         }
     }
 
     /**
-     * Can show a task.
+     * Show a task.
      *
      * @test
      */
-    public function can_show_a_task()
+    public function show_a_task()
     {
         $task = factory(Task::class)->create();
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
-        View::share('user', $user);
+
+        $this->loginAsTaskManager();
 
         $response = $this->get('/tasks_php/'.$task->id);
 
         $response->assertSuccessful();
-        $response->assertViewIs('show_task');
+        $response->assertViewIs('tasks.show_task');
         $response->assertViewHas('task');
 
         $response->assertSeeText($task->name);
+    }
+
+    /**
+     * Show Create form task.
+     *
+     * @test
+     */
+    public function show_create_form_task()
+    {
+        $user = factory(User::class)->create();
+        $user->assignRole('task-manager');
+        $this->actingAs($user);
+        View::share('user', $user);
+
+        $response = $this->get('/tasks_php/create');
+        $response->assertSuccessful();
+        $response->assertViewIs('tasks.create_task');
+
+        $response->assertSeeText('Create Task:');
     }
 
     /**
@@ -79,9 +107,12 @@ class TaskControllerTest extends TestCase
      */
     public function store_a_task()
     {
+        $this->loginAsTaskManager();
         $user = factory(User::class)->create();
-        $this->actingAs($user);
-        $response = $this->post('/tasks', ['name' => 'Comprar llet']);
+        $response = $this->post('/tasks_php', [
+            'name' => 'Comprar llet',
+            'user_id' => $user->id
+        ]);
 
         $response->assertSuccessful();
 
@@ -89,34 +120,67 @@ class TaskControllerTest extends TestCase
             'name' => 'Comprar llet',
         ]);
 
-//        $response->assertRedirect('tasks/create');
+    }
+
+    /**
+     * Show Edit form task.
+     *
+     * @test
+     */
+    public function show_edit_form_task()
+    {
+        $user = factory(User::class)->create();
+        $user->assignRole('task-manager');
+        $this->actingAs($user);
+        View::share('user', $user);
+
+        $response = $this->get('/tasks_php/edit');
+        $response->assertSuccessful();
+        $response->assertViewIs('tasks.edit_task');
+
+        $response->assertSeeText('Edit Task:');
     }
 
     /**
      * Update a task.
+     *
+     * @test
      */
     public function update_a_task()
     {
+        $this->loginAsTaskManager();
         $task = factory(Task::class)->create();
-
         $newTask = factory(Task::class)->make();
+
         $response = $this->put('/tasks_php/'.$task->id, [
             'name'        => $newTask->name,
             'description' => $newTask->description,
         ]);
 
-        $this->assertDatabaseHas('tasks_php', [
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('tasks', [
             'id'          => $task->id,
             'name'        => $newTask->name,
             'description' => $newTask->description,
         ]);
 
-        $this->assertDatabaseMissing('tasks_php', [
+        $this->assertDatabaseMissing('tasks', [
             'id'          => $task->id,
             'name'        => $task->name,
             'description' => $task->description,
         ]);
 
-        $response->assertRedirect('tasks/edit');
+//        $response->assertRedirect('tasks/edit');
+    }
+
+    /**
+     * Destroy a task.
+     *
+     * @test
+     */
+    public function destroy_a_task()
+    {
+
     }
 }
