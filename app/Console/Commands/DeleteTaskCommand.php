@@ -2,8 +2,7 @@
 
 namespace Acacha\Events\Console\Commands;
 
-use Acacha\Events\Models\Event;
-use Acacha\Tasks\Console\Commands\AsksForTasks;
+use Acacha\Tasks\Console\Commands\Traits\AsksForTasks;
 use Illuminate\Console\Command;
 use Mockery\Exception;
 
