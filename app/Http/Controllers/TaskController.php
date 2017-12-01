@@ -8,7 +8,6 @@ use App\Http\Requests\ShowTask;
 use App\Http\Requests\StoreTask;
 use App\Http\Requests\UpdateTask;
 use App\Task;
-use Illuminate\Http\Request;
 
 /**
  * Class TaskController.
@@ -34,7 +33,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create_task') ;
+        return view('tasks.create_task');
     }
 
     /**
@@ -47,7 +46,7 @@ class TaskController extends Controller
     public function store(StoreTask $request)
     {
         Task::create([
-            'name' => $request->name,
+            'name'    => $request->name,
             'user_id' => $request->user_id,
         ]);
     }
@@ -59,7 +58,7 @@ class TaskController extends Controller
      *
      * @return Task
      */
-    public function show(ShowTask $request,Task $task)
+    public function show(ShowTask $request, Task $task)
     {
         return view('tasks.show_task', ['task' => $task]);
     }
@@ -73,14 +72,14 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('tasks.edit_task', ['task' => $task]) ;
+        return view('tasks.edit_task', ['task' => $task]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param UpdateTask $request
-     * @param Task $task
+     * @param Task       $task
      */
     public function update(UpdateTask $request, Task $task)
     {
