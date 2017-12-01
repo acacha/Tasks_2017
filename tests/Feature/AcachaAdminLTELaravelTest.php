@@ -153,6 +153,7 @@ class AcachaAdminLTELaravelTest extends TestCase
      */
     public function testUserApi()
     {
+        Artisan::call('passport:install');
         $this->urlReturns302('/api/user');
     }
 

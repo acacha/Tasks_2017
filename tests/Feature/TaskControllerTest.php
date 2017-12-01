@@ -116,7 +116,7 @@ class TaskControllerTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $response->assertSuccessful();
+        $response->assertStatus(302);
 
         $this->assertDatabaseHas('tasks', [
             'name' => 'Comprar llet',
@@ -161,7 +161,7 @@ class TaskControllerTest extends TestCase
             'description' => $newTask->description,
         ]);
 
-        $response->assertSuccessful();
+        $response->assertStatus(302);
 
         $this->assertDatabaseHas('tasks', [
             'id'          => $task->id,
@@ -175,7 +175,6 @@ class TaskControllerTest extends TestCase
             'description' => $task->description,
         ]);
 
-//        $response->assertRedirect('tasks/edit');
     }
 
     /**
@@ -185,6 +184,17 @@ class TaskControllerTest extends TestCase
      */
     public function destroy_a_task()
     {
-        $this->assertTrue(true);
+        $this->loginAsTaskManager();
+
+        $task = factory(Task::class)->create();
+
+        $response = $this->delete('/tasks_php/' . $task->id);
+
+        $this->assertDatabaseMissing('tasks',[
+            'name' => $task->name,
+            'description' => $task->description,
+        ]);
+
+        $response->assertRedirect('tasks_php');
     }
 }
