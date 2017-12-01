@@ -9,10 +9,8 @@ use Mockery\Exception;
 
 /**
  * Class DeleteEventCommand.
- *
- * @package Acacha\Events\Console\Commands
  */
-class DeleteEventCommand extends Command
+class DeleteTaskCommand extends Command
 {
     use AsksForTasks;
 
@@ -43,11 +41,8 @@ class DeleteEventCommand extends Command
         try {
             $event->delete();
             $this->info('Event has been removed succesfully');
-
-        } catch ( Exception $e) {
+        } catch (Exception $e) {
             $this->error('Error');
         }
-
     }
-
 }

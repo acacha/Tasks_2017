@@ -24,15 +24,15 @@ class CreateTaskCommandTest extends TestCase
     {
         $user = factory(User::class)->create();
         $this->artisan('task:create', [
-            'name' => 'Comprar pa',
-            'user_id' => $user->id
+            'name'    => 'Comprar pa',
+            'user_id' => $user->id,
         ]);
 
         $resultAsText = Artisan::output();
 
         $this->assertDatabaseHas('tasks', [
-           'name' => 'Comprar pa',
-           'user_id' => $user->id
+           'name'    => 'Comprar pa',
+           'user_id' => $user->id,
         ]);
 
         $this->assertContains('Task has been added to database succesfully', $resultAsText);
@@ -62,8 +62,8 @@ class CreateTaskCommandTest extends TestCase
         $this->artisan('task:create');
 
         $this->assertDatabaseHas('tasks', [
-            'name' => 'Comprar llet',
-            'user_id' => $user->id
+            'name'    => 'Comprar llet',
+            'user_id' => $user->id,
         ]);
 
         $resultAsText = Artisan::output();
