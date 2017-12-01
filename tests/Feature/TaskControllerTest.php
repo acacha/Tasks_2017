@@ -26,7 +26,7 @@ class TaskControllerTest extends TestCase
     }
 
     /**
-     * Login as task manager
+     * Login as task manager.
      */
     protected function loginAsTaskManager()
     {
@@ -35,6 +35,7 @@ class TaskControllerTest extends TestCase
         $this->actingAs($user);
         View::share('user', $user);
     }
+
     /**
      * List tasks.
      *
@@ -110,8 +111,8 @@ class TaskControllerTest extends TestCase
         $this->loginAsTaskManager();
         $user = factory(User::class)->create();
         $response = $this->post('/tasks_php', [
-            'name' => 'Comprar llet',
-            'user_id' => $user->id
+            'name'    => 'Comprar llet',
+            'user_id' => $user->id,
         ]);
 
         $response->assertSuccessful();
@@ -119,7 +120,6 @@ class TaskControllerTest extends TestCase
         $this->assertDatabaseHas('tasks', [
             'name' => 'Comprar llet',
         ]);
-
     }
 
     /**
@@ -181,6 +181,5 @@ class TaskControllerTest extends TestCase
      */
     public function destroy_a_task()
     {
-
     }
 }
