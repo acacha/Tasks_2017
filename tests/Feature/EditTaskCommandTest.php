@@ -3,15 +3,13 @@
 namespace Tests\Feature;
 
 use App\Task;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Mockery;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Class EditTaskCommandTest.
- *
- * @package Tests\Feature
  */
 class EditTaskCommandTest extends TestCase
 {
@@ -25,26 +23,25 @@ class EditTaskCommandTest extends TestCase
     public function edit_task()
     {
         $task = factory(Task::class)->create();
-        $this->artisan('task:edit', ['id' => $task->id, 'name' => 'Got to Pool party','user_id' => $task->user_id,'description' => 'with cool girls']);
+        $this->artisan('task:edit', ['id' => $task->id, 'name' => 'Got to Pool party', 'user_id' => $task->user_id, 'description' => 'with cool girls']);
 
         $resultAsText = Artisan::output();
 
         $this->assertDatabaseHas('tasks', [
-           'id' => $task->id,
-           'name' => 'Got to Pool party',
-           'user_id' => $task->user_id,
+           'id'          => $task->id,
+           'name'        => 'Got to Pool party',
+           'user_id'     => $task->user_id,
            'description' => 'with cool girls',
         ]);
 
         $this->assertDatabaseMissing('tasks', [
-            'id' => $task->id,
-            'name' => $task->name,
-            'user_id' =>  $task->user_id,
+            'id'          => $task->id,
+            'name'        => $task->name,
+            'user_id'     => $task->user_id,
             'description' => $task->description,
         ]);
 
         $this->assertContains('Task has been edited succesfully', $resultAsText);
-
     }
 
     /**
@@ -59,7 +56,7 @@ class EditTaskCommandTest extends TestCase
 
         $command->shouldReceive('choice')
             ->once()
-            ->with('Task id?',[ 0 => $task->name])
+            ->with('Task id?', [0 => $task->name])
             ->andReturn($task->name);
         $command->shouldReceive('ask')
             ->once()
@@ -81,22 +78,20 @@ class EditTaskCommandTest extends TestCase
         $this->artisan('task:edit');
 
         $this->assertDatabaseHas('tasks', [
-            'id' => $task->id,
-            'name' => 'Pool party',
-            'user_id' => $task->user_id,
+            'id'          => $task->id,
+            'name'        => 'Pool party',
+            'user_id'     => $task->user_id,
             'description' => 'with cool girls',
         ]);
 
         $this->assertDatabaseMissing('tasks', [
-            'id' => $task->id,
-            'name' => $task->name,
-            'user_id' => $task->user_id,
+            'id'          => $task->id,
+            'name'        => $task->name,
+            'user_id'     => $task->user_id,
             'description' => $task->description,
         ]);
 
         $resultAsText = Artisan::output();
         $this->assertContains('Task has been edited succesfully', $resultAsText);
     }
-
-
 }

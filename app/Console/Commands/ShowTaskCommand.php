@@ -9,8 +9,6 @@ use Mockery\Exception;
 
 /**
  * Class ShowTaskCommand.
- *
- * @package App\Console\Commands
  */
 class ShowTaskCommand extends Command
 {
@@ -41,22 +39,20 @@ class ShowTaskCommand extends Command
         $task = Task::findOrFail($id);
 
         $this->info('Task:');
+
         try {
             $headers = ['Key', 'Value'];
 
             $fields = [
-              ['Name:' , $task->name],
-              ['User id:' , $task->user_id],
-              ['User name:' , $task->user->name],
-              ['Description:' , $task->description],
+              ['Name:', $task->name],
+              ['User id:', $task->user_id],
+              ['User name:', $task->user->name],
+              ['Description:', $task->description],
             ];
 
             $this->table($headers, $fields);
-
-        } catch ( Exception $e) {
+        } catch (Exception $e) {
             $this->error('Error');
         }
-
     }
-
 }
