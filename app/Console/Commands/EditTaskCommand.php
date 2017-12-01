@@ -9,8 +9,6 @@ use Mockery\Exception;
 
 /**
  * Class EditTaskCommand.
- *
- * @package App\Console\Commands
  */
 class EditTaskCommand extends Command
 {
@@ -40,16 +38,16 @@ class EditTaskCommand extends Command
         $id = $this->argument('id') ? $this->argument('id') : $this->askForTasks();
 
         $task = Task::findOrFail($id);
+
         try {
             $task->update([
-                'name' => $this->argument('name') ? $this->argument('name') : $this->ask('Task name?'),
-                'user_id' => $this->argument('user_id') ? $this->argument('user_id') : $this->ask('User id?'),
-                'description' => $this->argument('description') ? $this->argument('description') : $this->ask('Task description?')
+                'name'        => $this->argument('name') ? $this->argument('name') : $this->ask('Task name?'),
+                'user_id'     => $this->argument('user_id') ? $this->argument('user_id') : $this->ask('User id?'),
+                'description' => $this->argument('description') ? $this->argument('description') : $this->ask('Task description?'),
             ]);
-        } catch ( Exception $e) {
+        } catch (Exception $e) {
             $this->error('Error');
         }
         $this->info('Task has been edited succesfully');
     }
-
 }

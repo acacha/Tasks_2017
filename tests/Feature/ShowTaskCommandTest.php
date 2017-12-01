@@ -3,15 +3,13 @@
 namespace Tests\Feature;
 
 use App\Task;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Mockery;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Class ShowTaskCommandTest.
- *
- * @package Tests\Feature
  */
 class ShowTaskCommandTest extends TestCase
 {
@@ -31,18 +29,17 @@ class ShowTaskCommandTest extends TestCase
 
         $this->assertContains('Task:', $resultAsText);
 
-        $this->assertContains("Name: ", $resultAsText);
-        $this->assertContains( $task->name, $resultAsText);
+        $this->assertContains('Name: ', $resultAsText);
+        $this->assertContains($task->name, $resultAsText);
 
-        $this->assertContains("User id: ", $resultAsText);
-        $this->assertContains( (String) $task->user_id, $resultAsText);
+        $this->assertContains('User id: ', $resultAsText);
+        $this->assertContains((string) $task->user_id, $resultAsText);
 
-        $this->assertContains("User name: ", $resultAsText);
-        $this->assertContains( $task->user->name, $resultAsText);
+        $this->assertContains('User name: ', $resultAsText);
+        $this->assertContains($task->user->name, $resultAsText);
 
-        $this->assertContains("Description: ", $resultAsText);
-        $this->assertContains( $task->description, $resultAsText);
-
+        $this->assertContains('Description: ', $resultAsText);
+        $this->assertContains($task->description, $resultAsText);
     }
 
     /**
@@ -57,7 +54,7 @@ class ShowTaskCommandTest extends TestCase
 
         $command->shouldReceive('choice')
             ->once()
-            ->with('Task id?',[ 0 => $task->name])
+            ->with('Task id?', [0 => $task->name])
             ->andReturn($task->name);
 
         $this->app['Illuminate\Contracts\Console\Kernel']->registerCommand($command);
@@ -68,16 +65,16 @@ class ShowTaskCommandTest extends TestCase
 
         $this->assertContains('Task:', $resultAsText);
 
-        $this->assertContains("Name: ", $resultAsText);
-        $this->assertContains( $task->name, $resultAsText);
+        $this->assertContains('Name: ', $resultAsText);
+        $this->assertContains($task->name, $resultAsText);
 
-        $this->assertContains("User id: ", $resultAsText);
-        $this->assertContains( (String) $task->user_id, $resultAsText);
+        $this->assertContains('User id: ', $resultAsText);
+        $this->assertContains((string) $task->user_id, $resultAsText);
 
-        $this->assertContains("User name: ", $resultAsText);
-        $this->assertContains( $task->user->name, $resultAsText);
+        $this->assertContains('User name: ', $resultAsText);
+        $this->assertContains($task->user->name, $resultAsText);
 
-        $this->assertContains("Description: ", $resultAsText);
-        $this->assertContains( $task->description, $resultAsText);
+        $this->assertContains('Description: ', $resultAsText);
+        $this->assertContains($task->description, $resultAsText);
     }
 }

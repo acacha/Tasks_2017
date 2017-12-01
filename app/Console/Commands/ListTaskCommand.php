@@ -9,8 +9,6 @@ use Mockery\Exception;
 
 /**
  * Class ListTaskCommand.
- *
- * @package App\Console\Commands
  */
 class ListTaskCommand extends Command
 {
@@ -46,19 +44,16 @@ class ListTaskCommand extends Command
             $fields = [];
             foreach ($tasks as $task) {
                 $fields[] = [
-                    'Name:' => $task->name,
-                    'User id:' => $task->user_id,
-                    'User name:' => $task->user->name,
-                    'Description:' => $task->description
+                    'Name:'        => $task->name,
+                    'User id:'     => $task->user_id,
+                    'User name:'   => $task->user->name,
+                    'Description:' => $task->description,
                 ];
             }
 
             $this->table($headers, $fields);
-
-        } catch ( Exception $e) {
+        } catch (Exception $e) {
             $this->error('Error');
         }
-
     }
-
 }
