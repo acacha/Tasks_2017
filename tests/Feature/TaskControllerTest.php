@@ -136,8 +136,9 @@ class TaskControllerTest extends TestCase
         $user->assignRole('task-manager');
         $this->actingAs($user);
         View::share('user', $user);
+        $task = factory(Task::class)->create();
 
-        $response = $this->get('/tasks_php/edit');
+        $response = $this->get('/tasks_php/edit/' . $task->id);
         $response->assertSuccessful();
         $response->assertViewIs('tasks.edit_task');
 

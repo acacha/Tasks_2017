@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     // PURE PHP INTERFACE
     Route::get('tasks_php', 'TaskController@index');
     Route::get('tasks_php/create', 'TaskController@create');
-    Route::get('tasks_php/edit', 'TaskController@edit');
+    Route::get('tasks_php/edit/{task}', 'TaskController@edit');
     Route::get('tasks_php/{task}', 'TaskController@show');
     Route::post('tasks_php', 'TaskController@store');
     Route::put('tasks_php/{task}', 'TaskController@update');
