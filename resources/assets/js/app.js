@@ -39,7 +39,7 @@ Vue.component(
 import Vuetable from 'vuetable-2/src/components/Vuetable'
 Vue.use(Vuetable)
 
-Vue.component("vuetable", Vuetable);
+// Vue.component("vuetable", Vuetable);
 // Vue.component("vuetable-pagination", VueTablePaginationInfo);
 // Vue.component("vuetable-pagination-dropdown", VueTablePaginationDropDown);
 // Vue.component("vuetable-pagination-info", VueTablePaginationInfo);
