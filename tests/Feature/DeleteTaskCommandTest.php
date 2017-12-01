@@ -3,15 +3,13 @@
 namespace Tests\Feature;
 
 use App\Task;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Mockery;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Class DeleteTaskCommandTest.
- *
- * @package Tests\Feature
  */
 class DeleteTaskCommandTest extends TestCase
 {
@@ -30,9 +28,9 @@ class DeleteTaskCommandTest extends TestCase
         $resultAsText = Artisan::output();
 
         $this->assertDatabaseMissing('tasks', [
-            'id' => $task->id,
-            'name' => $task->name,
-            'user_id' =>  $task->user_id,
+            'id'      => $task->id,
+            'name'    => $task->name,
+            'user_id' => $task->user_id,
         ]);
 
         $this->assertContains('Task has been removed succesfully', $resultAsText);
@@ -50,7 +48,7 @@ class DeleteTaskCommandTest extends TestCase
 
         $command->shouldReceive('choice')
             ->once()
-            ->with('Task id?',[ 0 => $task->name])
+            ->with('Task id?', [0 => $task->name])
             ->andReturn($task->name);
 
         $this->app['Illuminate\Contracts\Console\Kernel']->registerCommand($command);
@@ -60,9 +58,9 @@ class DeleteTaskCommandTest extends TestCase
         $resultAsText = Artisan::output();
 
         $this->assertDatabaseMissing('tasks', [
-            'id' => $task->id,
-            'name' => $task->name,
-            'user_id' =>  $task->user_id,
+            'id'          => $task->id,
+            'name'        => $task->name,
+            'user_id'     => $task->user_id,
             'description' => $task->description,
         ]);
 

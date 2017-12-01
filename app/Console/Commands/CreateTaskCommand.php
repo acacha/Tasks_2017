@@ -8,8 +8,6 @@ use Mockery\Exception;
 
 /**
  * Class CreateTaskCommand.
- *
- * @package App\Console\Commands
  */
 class CreateTaskCommand extends Command
 {
@@ -36,7 +34,7 @@ class CreateTaskCommand extends Command
     {
         try {
             Task::create([
-                'name' => $this->argument('name') ? $this->argument('name') : $this->ask('Event name?'),
+                'name'    => $this->argument('name') ? $this->argument('name') : $this->ask('Event name?'),
                 'user_id' => $this->argument('user_id') ? $this->argument('user_id') : $this->ask('User id?'),
             ]);
         } catch (Exception $e) {
