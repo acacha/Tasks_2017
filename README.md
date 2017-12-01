@@ -3,6 +3,13 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/acacha/Tasks/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/acacha/Tasks/?branch=master)
 [![StyleCI](https://styleci.io/repos/108010317/shield?branch=master)](https://styleci.io/repos/108010317)
 [![Build Status](https://travis-ci.org/acacha/Tasks.svg?branch=master)](https://travis-ci.org/acacha/Tasks)
+[![Latest Stable Version](https://poser.pugx.org/acacha/tasks/v/stable)](https://packagist.org/packages/acacha/tasks)
+[![Total Downloads](https://poser.pugx.org/acacha/tasks/downloads)](https://packagist.org/packages/acacha/tasks)
+[![License](https://poser.pugx.org/acacha/tasks/license)](https://packagist.org/packages/acacha/tasks)
+[![Monthly Downloads](https://poser.pugx.org/acacha/tasks/d/monthly)](https://packagist.org/packages/acacha/tasks)
+[![Daily Downloads](https://poser.pugx.org/acacha/tasks/d/daily)](https://packagist.org/packages/acacha/tasks)
+[![composer.lock](https://poser.pugx.org/acacha/tasks/composerlock)](https://packagist.org/packages/acacha/tasks)
+
 
 # Tasques
 
