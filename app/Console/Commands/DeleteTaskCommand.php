@@ -1,13 +1,14 @@
 <?php
 
-namespace Acacha\Events\Console\Commands;
+namespace App\Console\Commands;
 
-use Acacha\Tasks\Console\Commands\Traits\AsksForTasks;
+use App\Console\Commands\Traits\AsksForTasks;
+use App\Task;
 use Illuminate\Console\Command;
 use Mockery\Exception;
 
 /**
- * Class DeleteEventCommand.
+ * Class DeleteTaskCommand.
  */
 class DeleteTaskCommand extends Command
 {
@@ -18,14 +19,14 @@ class DeleteTaskCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'event:delete {id? : The event id to edit}';
+    protected $signature = 'task:delete {id? : The task id to delete}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Delete an event';
+    protected $description = 'Delete a task';
 
     /**
      * Execute the console command.
@@ -34,12 +35,12 @@ class DeleteTaskCommand extends Command
      */
     public function handle()
     {
-        $id = $this->argument('id') ? $this->argument('id') : $this->askForEvents();
-        $event = Event::findOrFail($id);
+        $id = $this->argument('id') ? $this->argument('id') : $this->askForTasks();
+        $task = Task::findOrFail($id);
 
         try {
-            $event->delete();
-            $this->info('Event has been removed succesfully');
+            $task->delete();
+            $this->info('Task has been removed succesfully');
         } catch (Exception $e) {
             $this->error('Error');
         }

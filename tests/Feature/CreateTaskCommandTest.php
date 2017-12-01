@@ -25,6 +25,7 @@ class CreateTaskCommandTest extends TestCase
         $user = factory(User::class)->create();
         $this->artisan('task:create', [
             'name'    => 'Comprar pa',
+            'description' => 'Una pasada de tasca',
             'user_id' => $user->id,
         ]);
 
@@ -32,6 +33,7 @@ class CreateTaskCommandTest extends TestCase
 
         $this->assertDatabaseHas('tasks', [
            'name'    => 'Comprar pa',
+           'description' => 'Una pasada de tasca',
            'user_id' => $user->id,
         ]);
 
@@ -40,12 +42,14 @@ class CreateTaskCommandTest extends TestCase
 
     /**
      * Create new event with_wizard.
+     *
+     * @test
      */
     public function create_new_task_with_wizard()
     {
         $user = factory(User::class)->create();
 
-        $command = Mockery::mock('App\Console\Commands\CreateTaskCommand[ask]');
+        $command = Mockery::mock('App\Console\Commands\CreateTaskCommand[ask,choice]');
 
         $command->shouldReceive('ask')
             ->once()
@@ -54,8 +58,13 @@ class CreateTaskCommandTest extends TestCase
 
         $command->shouldReceive('ask')
             ->once()
-            ->with('User id?')
-            ->andReturn($user->id);
+            ->with('Description?')
+            ->andReturn('Una pasada de tasca');
+
+        $command->shouldReceive('choice')
+            ->once()
+            ->with('User?',[ 0 => $user->name])
+            ->andReturn($user->name);
 
         $this->app['Illuminate\Contracts\Console\Kernel']->registerCommand($command);
 
@@ -64,6 +73,7 @@ class CreateTaskCommandTest extends TestCase
         $this->assertDatabaseHas('tasks', [
             'name'    => 'Comprar llet',
             'user_id' => $user->id,
+            'description' => 'Una pasada de tasca',
         ]);
 
         $resultAsText = Artisan::output();

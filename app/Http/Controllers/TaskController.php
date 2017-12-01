@@ -39,16 +39,17 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param StoreTask $request
+     * @return mixed
      */
     public function store(StoreTask $request)
     {
-        Task::create([
-            'name'    => $request->name,
-            'user_id' => $request->user_id,
+        $task = Task::create([
+            'name'          => $request->name,
+            'description'   => $request->description,
+            'user_id'       => $request->user_id,
         ]);
+        return $task;
     }
 
     /**
@@ -79,10 +80,12 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateTask $request
-     * @param Task       $task
+     * @param Task $task
+     * @return Task
      */
     public function update(UpdateTask $request, Task $task)
     {
+        $task->update($request->only(['name','user_id','description']));
         return $task;
     }
 

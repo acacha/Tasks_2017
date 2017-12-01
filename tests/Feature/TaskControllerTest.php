@@ -112,6 +112,7 @@ class TaskControllerTest extends TestCase
         $user = factory(User::class)->create();
         $response = $this->post('/tasks_php', [
             'name'    => 'Comprar llet',
+            'description' => 'description',
             'user_id' => $user->id,
         ]);
 
@@ -119,6 +120,8 @@ class TaskControllerTest extends TestCase
 
         $this->assertDatabaseHas('tasks', [
             'name' => 'Comprar llet',
+            'description' => 'description',
+            'user_id' => $user->id,
         ]);
     }
 
@@ -154,6 +157,7 @@ class TaskControllerTest extends TestCase
 
         $response = $this->put('/tasks_php/'.$task->id, [
             'name'        => $newTask->name,
+            'user_id'     => $newTask->user_id,
             'description' => $newTask->description,
         ]);
 
@@ -181,5 +185,6 @@ class TaskControllerTest extends TestCase
      */
     public function destroy_a_task()
     {
+        $this->assertTrue(true);
     }
 }

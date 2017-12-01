@@ -6,6 +6,7 @@ use App\Task;
 use App\User;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 /**
@@ -22,6 +23,7 @@ class ApiTaskControllerTest extends TestCase
     {
         parent::setUp();
         initialize_task_permissions();
+        Artisan::call('passport:install');
 //        $this->withoutExceptionHandling();
     }
 
@@ -112,6 +114,8 @@ class ApiTaskControllerTest extends TestCase
     }
 
     /**
+     * Can add a task.
+     *
      * @test
      */
     public function can_add_a_task()
@@ -122,8 +126,9 @@ class ApiTaskControllerTest extends TestCase
 
         // EXECUTE
         $response = $this->json('POST', '/api/v1/tasks', [
-            'name'    => $name = $faker->word,
-            'user_id' => $user->id,
+            'name'          => $name = $faker->word,
+            'description'   => $description = $faker->sentence,
+            'user_id'       => $user->id,
         ]);
 
         // ASSERT
@@ -131,12 +136,14 @@ class ApiTaskControllerTest extends TestCase
 
         $this->assertDatabaseHas('tasks', [
            'name' => $name,
+           'description' => $description,
+           'user_id' => $user->id,
         ]);
-
-//        $response->dump();
 
         $response->assertJson([
             'name' => $name,
+            'description' => $description,
+            'user_id' => $user->id,
         ]);
     }
 

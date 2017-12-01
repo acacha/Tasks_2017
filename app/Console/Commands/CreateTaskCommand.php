@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Commands\Traits\AsksForUsers;
 use App\Task;
 use Illuminate\Console\Command;
 use Mockery\Exception;
@@ -11,12 +12,14 @@ use Mockery\Exception;
  */
 class CreateTaskCommand extends Command
 {
+    use AsksForUsers;
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'task:create {name? : The task name} {user_id? : The user id}';
+    protected $signature = 'task:create {name? : The task name} {user_id? : The user id} {description? : The description task}';
 
     /**
      * The console command description.
@@ -35,7 +38,8 @@ class CreateTaskCommand extends Command
         try {
             Task::create([
                 'name'    => $this->argument('name') ? $this->argument('name') : $this->ask('Event name?'),
-                'user_id' => $this->argument('user_id') ? $this->argument('user_id') : $this->ask('User id?'),
+                'description'    => $this->argument('description') ? $this->argument('description') : $this->ask('Description?'),
+                'user_id' => $this->argument('user_id') ? $this->argument('user_id') : $this->askForUsers(),
             ]);
         } catch (Exception $e) {
             $this->error('Error');

@@ -1,6 +1,6 @@
 <?php
 
-namespace Acacha\Tasks\Console\Commands\Traits;
+namespace App\Console\Commands\Traits;
 
 use App\Task;
 
