@@ -73,9 +73,8 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                 <div class="row centered">
                     <div class="col-lg-12">
                         <h1>Acacha <b><a href="https://github.com/acacha/adminlte-laravel">Tasks</a></b></h1>
-                        <h3>A <a href="https://laravel.com/">Laravel</a> {{ trans('adminlte_lang::message.laravelpackage') }}
-                            scaffolding/boilerplate {{ trans('adminlte_lang::message.to') }} <a href="https://almsaeedstudio.com/preview">AdminLTE</a> {{ trans('adminlte_lang::message.templatewith') }}
-                            <a href="http://getbootstrap.com/">Bootstrap</a> 3.0 {{ trans('adminlte_lang::message.and') }} <a href="http://blacktie.co/demo/pratt/">Pratt</a> Landing page</h3>
+                        <h3>Source Code at Github: https://github.com/acacha/Tasks</h3>
+
                         <h3><a href="{{ url('/register') }}" class="btn btn-lg btn-success">{{ trans('adminlte_lang::message.gedstarted') }}</a></h3>
                     </div>
                     <div class="col-lg-2">
