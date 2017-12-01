@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "acacha/Tasks",
+    "description": "Acacha Tasks",
+    "keywords": ["2dam", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
