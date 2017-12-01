@@ -42,6 +42,7 @@ class TaskController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreTask $request
+     *
      * @return mixed
      */
     public function store(StoreTask $request)
@@ -85,15 +86,17 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateTask $request
-     * @param Task $task
+     * @param Task       $task
+     *
      * @return Task
      */
     public function update(UpdateTask $request, Task $task)
     {
-        $task->update($request->only(['name','user_id','description']));
+        $task->update($request->only(['name', 'user_id', 'description']));
 
         Session::flash('status', 'Edited ok!');
-        return Redirect::to('/tasks_php/edit/' . $task->id);
+
+        return Redirect::to('/tasks_php/edit/'.$task->id);
     }
 
     /**
@@ -107,6 +110,7 @@ class TaskController extends Controller
     {
         $task->delete();
         Session::flash('status', 'Task was deleted successful!');
+
         return Redirect::to('/tasks_php');
     }
 }

@@ -24,17 +24,17 @@ class CreateTaskCommandTest extends TestCase
     {
         $user = factory(User::class)->create();
         $this->artisan('task:create', [
-            'name'    => 'Comprar pa',
+            'name'        => 'Comprar pa',
             'description' => 'Una pasada de tasca',
-            'user_id' => $user->id,
+            'user_id'     => $user->id,
         ]);
 
         $resultAsText = Artisan::output();
 
         $this->assertDatabaseHas('tasks', [
-           'name'    => 'Comprar pa',
+           'name'        => 'Comprar pa',
            'description' => 'Una pasada de tasca',
-           'user_id' => $user->id,
+           'user_id'     => $user->id,
         ]);
 
         $this->assertContains('Task has been added to database succesfully', $resultAsText);
@@ -63,7 +63,7 @@ class CreateTaskCommandTest extends TestCase
 
         $command->shouldReceive('choice')
             ->once()
-            ->with('User?',[ 0 => $user->name])
+            ->with('User?', [0 => $user->name])
             ->andReturn($user->name);
 
         $this->app['Illuminate\Contracts\Console\Kernel']->registerCommand($command);
@@ -71,8 +71,8 @@ class CreateTaskCommandTest extends TestCase
         $this->artisan('task:create');
 
         $this->assertDatabaseHas('tasks', [
-            'name'    => 'Comprar llet',
-            'user_id' => $user->id,
+            'name'        => 'Comprar llet',
+            'user_id'     => $user->id,
             'description' => 'Una pasada de tasca',
         ]);
 

@@ -6,8 +6,6 @@ use App\User;
 
 /**
  * Trait AsksForUsers.
- *
- * @package Acacha\Events\Console\Commands
  */
 trait AsksForUsers
 {
@@ -20,7 +18,8 @@ trait AsksForUsers
     {
         $users = User::all();
         $user_names = $users->pluck('name')->toArray();
-        $user_name = $this->choice('User?',$user_names);
+        $user_name = $this->choice('User?', $user_names);
+
         return $users->where('name', $user_name)->first()->id;
     }
 }
