@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Task extends Model
 {
-    protected $fillable = ['name', 'user_id' , 'description'];
+    protected $fillable = ['name', 'user_id', 'description'];
 
     /**
      * Get the user that owns the comment.

@@ -111,17 +111,17 @@ class TaskControllerTest extends TestCase
         $this->loginAsTaskManager();
         $user = factory(User::class)->create();
         $response = $this->post('/tasks_php', [
-            'name'    => 'Comprar llet',
+            'name'        => 'Comprar llet',
             'description' => 'description',
-            'user_id' => $user->id,
+            'user_id'     => $user->id,
         ]);
 
         $response->assertStatus(302);
 
         $this->assertDatabaseHas('tasks', [
-            'name' => 'Comprar llet',
+            'name'        => 'Comprar llet',
             'description' => 'description',
-            'user_id' => $user->id,
+            'user_id'     => $user->id,
         ]);
     }
 
@@ -174,7 +174,6 @@ class TaskControllerTest extends TestCase
             'name'        => $task->name,
             'description' => $task->description,
         ]);
-
     }
 
     /**
@@ -188,10 +187,10 @@ class TaskControllerTest extends TestCase
 
         $task = factory(Task::class)->create();
 
-        $response = $this->delete('/tasks_php/' . $task->id);
+        $response = $this->delete('/tasks_php/'.$task->id);
 
-        $this->assertDatabaseMissing('tasks',[
-            'name' => $task->name,
+        $this->assertDatabaseMissing('tasks', [
+            'name'        => $task->name,
             'description' => $task->description,
         ]);
 

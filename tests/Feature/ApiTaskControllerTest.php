@@ -135,15 +135,15 @@ class ApiTaskControllerTest extends TestCase
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('tasks', [
-           'name' => $name,
+           'name'        => $name,
            'description' => $description,
-           'user_id' => $user->id,
+           'user_id'     => $user->id,
         ]);
 
         $response->assertJson([
-            'name' => $name,
+            'name'        => $name,
             'description' => $description,
-            'user_id' => $user->id,
+            'user_id'     => $user->id,
         ]);
     }
 
