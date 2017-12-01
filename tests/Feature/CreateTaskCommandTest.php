@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Mockery;
@@ -14,34 +15,35 @@ class CreateTaskCommandTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testItCreatesNewTask()
+    /**
+     * Create new task.
+     *
+     * @test
+     */
+    public function create_new_task()
     {
-        //1) Prepare
-
-        //2) Run
-        // Run make:task name
-//        $this->artisan('route:list');
-        $this->artisan('task:create', ['name' => 'Comprar pa']);
-//        $this->artisan('make:task', ['name' => 'Comprar pa', '--no-interaction' => true]);
-
-        //3) Assert
-        // If you need result of console output
-        $resultAsText = Artisan::output();
-
-//        Task::create(['name' => 'Comprar pa']);
-//        dd($resultAsText);
-        $this->assertDatabaseHas('tasks', [
-           'name' => 'Comprar pa',
+        $user = factory(User::class)->create();
+        $this->artisan('task:create', [
+            'name' => 'Comprar pa',
+            'user_id' => $user->id
         ]);
 
-        // Receive "Task has been added to database succesfully."
-//        $this->assertTrue(str_contains($resultAsText,'Task has been added to database succesfully'));
+        $resultAsText = Artisan::output();
+
+        $this->assertDatabaseHas('tasks', [
+           'name' => 'Comprar pa',
+           'user_id' => $user->id
+        ]);
+
         $this->assertContains('Task has been added to database succesfully', $resultAsText);
     }
 
-    public function testItAsksForATaskNameAndThenCreatesNewTask()
+    /**
+     * Create new event with_wizard.
+     */
+    public function create_new_task_with_wizard()
     {
-        // 1) Prepare
+        $user = factory(User::class)->create();
 
         $command = Mockery::mock('App\Console\Commands\CreateTaskCommand[ask]');
 
@@ -50,16 +52,20 @@ class CreateTaskCommandTest extends TestCase
             ->with('Event name?')
             ->andReturn('Comprar llet');
 
+        $command->shouldReceive('ask')
+            ->once()
+            ->with('User id?')
+            ->andReturn($user->id);
+
         $this->app['Illuminate\Contracts\Console\Kernel']->registerCommand($command);
 
-//        2) Execute
         $this->artisan('task:create');
 
         $this->assertDatabaseHas('tasks', [
             'name' => 'Comprar llet',
+            'user_id' => $user->id
         ]);
 
-//        3) Assert
         $resultAsText = Artisan::output();
         $this->assertContains('Task has been added to database succesfully', $resultAsText);
     }

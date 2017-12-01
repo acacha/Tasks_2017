@@ -6,6 +6,11 @@ use App\Task;
 use Illuminate\Console\Command;
 use Mockery\Exception;
 
+/**
+ * Class CreateTaskCommand.
+ *
+ * @package App\Console\Commands
+ */
 class CreateTaskCommand extends Command
 {
     /**
@@ -13,26 +18,16 @@ class CreateTaskCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'task:create {name? : The task name}';
+    protected $signature = 'task:create {name? : The task name} {user_id? : The user id}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Add new task to database';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
+    /*
      * Execute the console command.
      *
      * @return mixed
@@ -42,6 +37,7 @@ class CreateTaskCommand extends Command
         try {
             Task::create([
                 'name' => $this->argument('name') ? $this->argument('name') : $this->ask('Event name?'),
+                'user_id' => $this->argument('user_id') ? $this->argument('user_id') : $this->ask('User id?'),
             ]);
         } catch (Exception $e) {
             $this->error('Error');

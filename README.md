@@ -10,6 +10,13 @@
 [![Daily Downloads](https://poser.pugx.org/acacha/tasks/d/daily)](https://packagist.org/packages/acacha/tasks)
 [![composer.lock](https://poser.pugx.org/acacha/tasks/composerlock)](https://packagist.org/packages/acacha/tasks)
 
+## Notes
+
+### Notes 1 desembre
+- Modificar la Landing page (pàgina inicial welcome) per tal que mostri el projecte que representa (Tasks)
+  - Si no totes les Landing page són iguals
+- MP7: Tasques per CLI amb testos
+- CI: Travis i testos
 
 # Tasques
 
