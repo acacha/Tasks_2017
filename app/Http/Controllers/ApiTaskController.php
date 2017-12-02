@@ -19,7 +19,6 @@ class ApiTaskController extends Controller
      *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    //CRUD CREATE|STORE RETRIEVE|LIST|SHOW U UPDATE|UPDATE D|DESTROY
     public function index(ListTask $request)
     {
         return Task::all();
@@ -76,11 +75,9 @@ class ApiTaskController extends Controller
      */
     public function update(UpdateTask $request, Task $task)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
         $task->name = $request->name;
+        $task->user_id = $request->user_id;
+        $task->description = $request->description;
         $task->save();
 
         return $task;
