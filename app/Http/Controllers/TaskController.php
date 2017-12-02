@@ -37,7 +37,8 @@ class TaskController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('tasks.create_task',['users' => $users]);
+
+        return view('tasks.create_task', ['users' => $users]);
     }
 
     /**
@@ -56,6 +57,7 @@ class TaskController extends Controller
         ]);
 
         Session::flash('status', 'Created ok!');
+
         return Redirect::to('/tasks_php/create');
     }
 
@@ -81,6 +83,7 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         $users = User::all();
+
         return view('tasks.edit_task', ['task' => $task, 'users' => $users]);
     }
 
