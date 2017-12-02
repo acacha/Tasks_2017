@@ -190,28 +190,28 @@ class ApiTaskControllerTest extends TestCase
         $this->loginAndAuthorize();
         $user_id = factory(User::class)->create()->id;
         $response = $this->json('PUT', '/api/v1/tasks/'.$task->id, [
-            'name' => $newName = 'NOU NOM',
-            'user_id' => $user_id
+            'name'    => $newName = 'NOU NOM',
+            'user_id' => $user_id,
         ]);
 
         $response->assertSuccessful();
 
         $this->assertDatabaseHas('tasks', [
-            'id'   => $task->id,
-            'name' => $newName,
+            'id'      => $task->id,
+            'name'    => $newName,
             'user_id' => $user_id,
         ]);
 
         $this->assertDatabaseMissing('tasks', [
-            'id'   => $task->id,
-            'name' => $task->name,
+            'id'      => $task->id,
+            'name'    => $task->name,
             'user_id' => $task->user_id,
         ]);
 
         $response->assertJson([
-            'id'   => $task->id,
-            'name' => $newName,
-            'user_id' => $user_id
+            'id'      => $task->id,
+            'name'    => $newName,
+            'user_id' => $user_id,
         ]);
     }
 }
