@@ -94,9 +94,15 @@ class TaskControllerTest extends TestCase
         $this->actingAs($user);
         View::share('user', $user);
 
+        factory(User::class,5)->create();
+
         $response = $this->get('/tasks_php/create');
         $response->assertSuccessful();
         $response->assertViewIs('tasks.create_task');
+
+
+        $users = User::all();
+        $response->assertViewHas('users', $users);
 
         $response->assertSeeText('Create Task:');
     }
@@ -138,11 +144,21 @@ class TaskControllerTest extends TestCase
         View::share('user', $user);
         $task = factory(Task::class)->create();
 
+        factory(User::class,5)->create();
+
+        $users = User::all();
+
         $response = $this->get('/tasks_php/edit/' . $task->id);
         $response->assertSuccessful();
         $response->assertViewIs('tasks.edit_task');
+        $task = Task::findOrFail($task->id);
+        $response->assertViewHas('task', $task);
+        $response->assertViewHas('users', $users);
 
         $response->assertSeeText('Edit Task:');
+
+        $response->assertSee($task->name);
+        $response->assertSee($task->user->name);
     }
 
     /**

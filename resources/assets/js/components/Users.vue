@@ -13,6 +13,7 @@
   import Multiselect from 'vue-multiselect'
 
   export default {
+    name: 'Users',
     components: {Multiselect},
     name: 'users',
     data() {
@@ -21,21 +22,26 @@
         users: []
       }
     },
-    props: ['id','name','value'],
+    props: [
+      'id',
+      'name'
+    ],
     computed: {
       count() {
         return this.users.length
       }
     },
     watch: {
-      value(newValue) {
-        console.log('newValue: ' + newValue);
-        this.user = this.users.find( user => {
-          return user.id == newValue
-        })
+      id(newId) {
+        this.user = this.userObject(newId)
       }
     },
     methods: {
+      userObject(id){
+        return this.users.find( user => {
+          return user.id == id
+        })
+      },
       select(user) {
         console.log('select')
         this.$emit('select',user)
@@ -48,18 +54,12 @@
       }
     },
     mounted() {
-      console.log(this.value)
-
       axios.get('/api/v1/users').then( response => {
         this.users = response.data
-        this.user = this.users.find( user => {
-          return user.id == this.value
-        })
+        this.user = this.userObject(this.id)
       }).catch( error => {
         console.log(error)
       })
-
-
     }
   }
 </script>

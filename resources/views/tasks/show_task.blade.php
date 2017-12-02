@@ -26,6 +26,7 @@
                 <li>Id: {{ $task->id }}</li>
                 <li>Name: {{ $task->name }}</li>
                 <li>User: {{ $task->user->name }}</li>
+                <li>User id: {{ $task->user->id }}</li>
             </ul>
         </div>
     </div>

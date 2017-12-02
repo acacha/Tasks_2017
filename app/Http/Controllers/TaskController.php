@@ -8,6 +8,7 @@ use App\Http\Requests\ShowTask;
 use App\Http\Requests\StoreTask;
 use App\Http\Requests\UpdateTask;
 use App\Task;
+use App\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -35,7 +36,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create_task');
+        $users = User::all();
+        return view('tasks.create_task',['users' => $users]);
     }
 
     /**
@@ -54,7 +56,6 @@ class TaskController extends Controller
         ]);
 
         Session::flash('status', 'Created ok!');
-
         return Redirect::to('/tasks_php/create');
     }
 
@@ -79,7 +80,8 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('tasks.edit_task', ['task' => $task]);
+        $users = User::all();
+        return view('tasks.edit_task', ['task' => $task, 'users' => $users]);
     }
 
     /**

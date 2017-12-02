@@ -16,6 +16,16 @@
 
     <a href="/tasks_php" class="btn btn-success" role="button" aria-disabled="true"> < Back</a>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Create Task:</h3>
@@ -26,23 +36,28 @@
 
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
                 </div>
                 <div class="form-group">
-                    <users></users>
+                    <label for="name">User</label>
+
+                    <select name="user_id" id="user_id" class="form-control">
+                        @foreach ($users as $user)
+                            @if ( Auth::user()->id == $user->id )
+                                <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
+                            @else
+                                <option value="{{ $user->id }}" >{{ $user->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            <!-- /.box-body -->
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Create</button>
             </div>
         </form>
     </div>
-
-
-
-
 
 @endsection
 

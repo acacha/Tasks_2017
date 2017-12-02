@@ -27,6 +27,7 @@
                         <th style="width: 10px">#</th>
                         <th style="width: 10px">Id</th>
                         <th>Task</th>
+                        <th>User id</th>
                         <th>User</th>
                         <th style="width: 200px">Actions</th>
                     </tr>
@@ -35,7 +36,8 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $task->id}}</td>
                             <td>{{ $task->name }}</td>
-                            <td>{{ $task->user->name }}</td>
+                            <td>{{ $task->user_id }}</td>
+                            <td>{{ $task->user->name or '' }}</td>
                             <td>
                                 <form action="/tasks_php/{{ $task->id }}" method="POST">
                                     <input type="hidden" name="_method" value="DELETE">
