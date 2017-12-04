@@ -38,4 +38,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('/proves', 'proves');
 
     Route::view('/tokens', 'tokens');
+
+    Route::get('/students', 'StudentAssignmentsController@index');
 });
