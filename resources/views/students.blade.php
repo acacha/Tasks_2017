@@ -16,12 +16,14 @@
 				<tbody><tr>
 					<th style="width: 10px">#</th>
 					<th>URL</th>
+					<th>Github</th>
 					<th>Alumne</th>
 				</tr>
 				@foreach ($assignments as $assignment)
 					<tr>
 						<td>1.</td>
 						<td><a href="http://{{ $assignment->url }}">{{ $assignment->url }}</a></td>
+						<th><a href="http://github.com/{{ $assignment->github }}">{{ $assignment->github }}</a></th>
 						<td>
 							{{ $assignment->student_name }}
 						</td>

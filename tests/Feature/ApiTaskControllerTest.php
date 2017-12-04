@@ -52,6 +52,8 @@ class ApiTaskControllerTest extends TestCase
 
         $response = $this->json('GET', '/api/v1/tasks');
 
+        $this->assertCount(3, json_decode($response->getContent()));
+
         $response->assertSuccessful();
 
         $response->assertJsonStructure([[

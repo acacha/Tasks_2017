@@ -26,23 +26,28 @@ class StudentAssignmentsController extends Controller
     {
         $assignments = [
             (object) [
-                'url' => 'tasks.quimgonzalez.2dam.iesebre.com' ,
+                'url' => 'tasks.quimgonzalez.2dam.iesebre.com',
+                'github' => 'quimgc/Tasks',
                 'student_name' => 'Quim Gonzalez'
             ],
             (object) [
-                'url' => 'tasks.ericgarcia.2dam.iesebre.com' ,
+                'url' => 'tasks.ericgarcia.2dam.iesebre.com',
+                'github' => 'eric98/Tasks',
                 'student_name' => 'Eric Garcia'
             ],
             (object) [
-                'url' => 'tasks.alexsorribes.2dam.iesebre.com' ,
+                'url' => 'tasks.alexsorribes.2dam.iesebre.com',
+                'github' => 'sorribes22/Tasks',
                 'student_name' => 'Alex Sorribes'
             ],
             (object) [
-                'url' => 'tasks.gerardrey.2dam.iesebre.com' ,
+                'url' => 'tasks.gerardrey.2dam.iesebre.com',
+                'github' => 'GreyGonz/Tasks',
                 'student_name' => 'Gerard Rey'
             ],
             (object) [
-                'url' => 'tasks.nataniel.2dam.iesebre.com' ,
+                'url' => 'tasks.nataniel.2dam.iesebre.com',
+                'github' => 'NatanielPont/Tasks',
                 'student_name' => 'Nataniel Pont'
             ]
         ];
