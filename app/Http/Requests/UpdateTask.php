@@ -17,7 +17,7 @@ class UpdateTask extends FormRequest
      */
     public function authorize()
     {
-        if (Auth::user()->id == $this->task->user_id ) return true:
+        if (Auth::user()->id == $this->task->user_id ) return true;
         return Auth::user()->hasPermissionTo('update-task');
     }
 
