@@ -65,12 +65,23 @@ Cal pujar al Github el codi de la carpeta Vue/Tasks. Porta un .gitignore per def
 
 No cal servidor PHP (tot i que si caldrà backend Tasques funcioni)
 
+Crear el distribuible:
 
-TODO
+```bash
+$ npm run build
+```
+
+Crea carpeta dist amb l'aplicació preparada per ser executada al navegador
+
+OCO: no obrir amb files::// sinó que cal un servidor HTTP com http-server.
+
+La carpeta dis està ignorada per defecte al Github, de fet el que farem es crear un project propi per aquesta carpeta a Github
+per tar de diferènciar el codi original del test.
 
 Formes entregar:
-- Github Pages
+- Github Pages: TODO
 - Surge
+- Es pot co·locar al servidor propi publicant un site static amb laravel Forge: TODO
 
 LINTING
 =======
