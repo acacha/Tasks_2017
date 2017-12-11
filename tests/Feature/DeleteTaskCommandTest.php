@@ -43,7 +43,7 @@ class DeleteTaskCommandTest extends TestCase
      */
     public function delete_task_with_wizard()
     {
-        $command = Mockery::mock('App\Console\Commands\DeleteTaskCommand[ask,choice]');
+        $command = Mockery::mock('App\Console\Commands\DeleteTaskCommand[choice]');
         $task = factory(Task::class)->create();
 
         $command->shouldReceive('choice')
