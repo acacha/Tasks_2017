@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" id="vuehello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -17,22 +17,6 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi delectus distinctio eligendi error, et eum ex harum id ipsum itaque libero maxime minus neque omnis quaerat similique tempore vitae.</p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi delectus distinctio eligendi error, et eum ex harum id ipsum itaque libero maxime minus neque omnis quaerat similique tempore vitae.</p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi delectus distinctio eligendi error, et eum ex harum id ipsum itaque libero maxime minus neque omnis quaerat similique tempore vitae.</p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi delectus distinctio eligendi error, et eum ex harum id ipsum itaque libero maxime minus neque omnis quaerat similique tempore vitae.</p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi delectus distinctio eligendi error, et eum ex harum id ipsum itaque libero maxime minus neque omnis quaerat similique tempore vitae.</p><p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi delectus distinctio eligendi error, et eum ex harum id ipsum itaque libero maxime minus neque omnis quaerat similique tempore vitae.</p><p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi delectus distinctio eligendi error, et eum ex harum id ipsum itaque libero maxime minus neque omnis quaerat similique tempore vitae.</p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi delectus distinctio eligendi error, et eum ex harum id ipsum itaque libero maxime minus neque omnis quaerat similique tempore vitae.</p>
-
-
   </div>
 </template>
 
@@ -62,5 +46,14 @@ li {
 }
 a {
   color: #42b983;
+}
+
+#vuehello {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
