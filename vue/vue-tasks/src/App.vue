@@ -181,7 +181,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
-          <li class="treeview">
+          <li class="treeview active">
             <a href="#">
               <i class="fa fa-dashboard"></i> <span>Components</span>
               <span class="pull-right-container">
@@ -190,7 +190,7 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="#/hello"><i class="fa fa-circle-o"></i>Hello component</a></li>
-              <li><a href="#/prova"><i class="fa fa-circle-o"></i>Prova component</a></li>
+              <li><a href="#/example"><i class="fa fa-circle-o"></i>Example component</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -292,7 +292,7 @@
             </span>
             </a>
           </li>
-          <li class="treeview active">
+          <li class="treeview">
             <a href="#">
               <i class="fa fa-folder"></i> <span>Examples</span>
               <span class="pull-right-container">
