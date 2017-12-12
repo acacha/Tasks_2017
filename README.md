@@ -12,6 +12,22 @@
 
 ## Notes
 
+### MP7 13 de desembre
+
+- Reorganitzar projectes per no utilitzar studio: utilitza composer repository paths
+- Repassar la configuració de Laravel mix per veure si agafa codi javascript carpeta resources
+- Carpeta resources/assets/js sigui resources/assets/js/tasks i que tinguem en un mòdul el codi Javascript
+- Explicar que fet d'està forma no cal pujar el codi a npm cada cop per provar-lo en local
+- Només farem tag i publicarem mòdul vendor-tasks (acacha-tasks en el cas professor) quan ens agradi el que tenim.
+- Repassem publicació codi
+
+### MP7 15 de desembre
+- Github pages
+  - Publicar projecte nou vue tasks
+- Explicar altres eines com surge
+- Reveal.js? i Github pages?
+- Github-pages branca de mòdul de tasques amb Landing page del producte?  
+
 ### Notes 1 desembre
 - Modificar la Landing page (pàgina inicial welcome) per tal que mostri el projecte que representa (Tasks)
   - Si no totes les Landing page són iguals
