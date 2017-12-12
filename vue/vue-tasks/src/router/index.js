@@ -13,6 +13,10 @@ export default new Router({
       component: HelloWorld
     },
     {
+      path: '/hello',
+      redirect: '/'
+    },
+    {
       path: '/prova',
       name: 'Prova',
       component: Prova
