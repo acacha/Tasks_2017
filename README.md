@@ -21,7 +21,57 @@
 - Només farem tag i publicarem mòdul vendor-tasks (acacha-tasks en el cas professor) quan ens agradi el que tenim.
 - Repassem publicació codi
 
-### MP7 15 de desembre
+### MP9 14 desembre
+
+# Social Login
+
+- Utilitza OAuth: http://acacha.org/mediawiki/OAuth
+- Delegació de permisos: valet key dels cotxes
+
+Dos formes utilitzar:
+- Com a clients: les nostres aplicacions utilitzen servidors OAuth de tercers com Github o Facebook
+- Com a servidors: les nostres aplicacions ofereixen el servei a tercers (que poden ser aplicacions nostres propies)
+
+
+## Client Social Login
+
+Amb Laravel fàcil d'implementar gràcies a:
+- Laravel Socialite: https://github.com/laravel/socialite | https://laravel.com/docs/5.5/socialite
+
+Personalment he creat un paquet per automatitzar/facilitar la instal·lació a Adminlte:
+
+- https://github.com/acacha/laravel-social
+
+A Tasques i CS només cal que feu:
+
+```
+adminlte-laravel social 
+php artisan acacha:social
+```
+
+I seguiu les passes de l'assistent.
+
+Modifiqueu/sobrescriviu la vista parcial Laravel:
+
+vendor/adminlte/auth/partials/social_login
+
+I deixeu només les opcions de Google, Facebook, Github i Twitter. Github és prioritari.
+
+## Servidor Social Login
+
+- Laravel passport afegeix servidor Oauth a les aplicacions
+- Acabem doncs tenint una aplicació fent dos Rols de OAuth o fins i tots els tres
+  - http://acacha.org/mediawiki/OAuth#OAuth_roles
+  - Authorization server: Laravel Passport
+  - CLIENT PHP (ja sigui pur PUR o amb Javascript Vue però a Laravel): La nostra app és també la app client i el resource server
+  - BACKEND PHP: Api json
+  - CLIENT Javascript: per exemple aplicació vue-cli passà a ser l'aplicació client
+  
+Dos opcions:
+- Client PHP: només alumnes no dual: creeu una nova opció/boto a CS que permeti logar-se utilitzant Tasques
+- Client Javascript: l'aplicació de tasques Javascript ha de tenir un Login que utilitzi el Laravel Passport de tasques
+
+### MP7 13 i 15 de desembre
 - Github pages
   - Publicar projecte nou vue tasks
 - Explicar altres eines com surge
