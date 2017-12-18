@@ -81,7 +81,7 @@ class ApiTaskControllerTest extends TestCase
 
         $response->assertJson([
             'id'   => $task->id,
-            'name' => $task->name,
+            'name' => $task->name
         ]);
     }
 

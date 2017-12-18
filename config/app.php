@@ -173,6 +173,14 @@ return [
         //llum_providers
 
         /*
+         * Acacha Llum Service Providers...
+         *
+         * See: https://github.com/acacha/llum
+         */
+        Acacha\LaravelSocial\Providers\LaravelSocialServiceProvider::class,
+        #llum_providers
+
+        /*
          * Package Service Providers...
          */
 
@@ -241,6 +249,13 @@ return [
          */
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
         //llum_aliases
+
+        /*
+         * Acacha Llum Aliases...
+         *
+         * See: https://github.com/acacha/llum
+         */
+        #llum_aliases
 
     ],
 
