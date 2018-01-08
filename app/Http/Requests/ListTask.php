@@ -17,6 +17,7 @@ class ListTask extends FormRequest
      */
     public function authorize()
     {
+        return true;
         return Auth::user()->hasPermissionTo('list-tasks');
     }
 

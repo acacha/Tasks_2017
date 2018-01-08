@@ -42,7 +42,7 @@ class PHPTasksTest extends DuskTestCase
 
     /**
      * List tasks.
-     *
+     * @group prova
      * @test
      * @return void
      */
@@ -52,8 +52,6 @@ class PHPTasksTest extends DuskTestCase
             $tasks = factory(Task::class, 3)->create();
             $browser->maximize();
 //            $browser->resize(1920, 1080);
-            $user = factory(User::class)->create();
-            $user->assignRole('task-manager');
             $this->loginAndAuthorize($browser);
 
             $browser->visit('/tasks_php');
