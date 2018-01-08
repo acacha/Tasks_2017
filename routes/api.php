@@ -18,12 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
-    //    Route::resource('task', 'TasksController');
-
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     //adminlte_api_routes
 
     //API JSON
+
     //TASKS
     Route::get('/tasks', 'ApiTaskController@index');
     Route::get('/tasks/{task}', 'ApiTaskController@show');
@@ -33,7 +32,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
 
     //USERS
     Route::get('/users', 'ApiUserController@index');
-
     Route::get('/users/{user}', 'ApiUserController@show');
     Route::post('/users', 'ApiUserController@store');
     Route::put('/users/{user}', 'ApiUserController@update');
