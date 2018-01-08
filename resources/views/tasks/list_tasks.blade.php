@@ -32,7 +32,7 @@
                         <th style="width: 200px">Actions</th>
                     </tr>
                     @foreach ($tasks as $task)
-                        <tr>
+                        <tr id="task-{{ $task->id}}" class="tr-task">
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $task->id}}</td>
                             <td>{{ $task->name }}</td>
@@ -43,9 +43,9 @@
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="btn-group">
-                                        <a href="/tasks_php/{{ $task->id}}" class="btn btn-info" role="button" aria-disabled="true">Show</a>
-                                        <a href="/tasks_php/edit/{{ $task->id}}" class="btn btn-warning" role="button" aria-disabled="true">Edit</a>
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <a id="show-task-{{ $task->id}}" href="/tasks_php/{{ $task->id}}" class="btn btn-info" role="button" aria-disabled="true">Show</a>
+                                        <a id="edit-task-{{ $task->id}}" href="/tasks_php/edit/{{ $task->id}}" class="btn btn-warning" role="button" aria-disabled="true">Edit</a>
+                                        <button id="delete-task-{{ $task->id}}" type="submit" class="btn btn-danger">Delete</button>
                                     </div>
                                 </form>
                             </td>
