@@ -190,8 +190,8 @@
             </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="hello"><i class="fa fa-circle-o"></i>Hello component</a></li>
-              <li><a href="example"><i class="fa fa-circle-o"></i>Example component</a></li>
+              <li><a href="#/hello"><i class="fa fa-circle-o"></i>Hello component</a></li>
+              <li><a href="#/example"><i class="fa fa-circle-o"></i>Example component</a></li>
             </ul>
           </li>
           <li class="treeview">

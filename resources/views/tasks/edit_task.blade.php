@@ -41,12 +41,12 @@
 
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter name" value="{{ $task->name }}" name="name">
+                    <input type="text" class="form-control" dusk="name" id="name" placeholder="Enter name" value="{{ $task->name }}" name="name">
                 </div>
                 <div class="form-group">
                     <label for="name">User</label>
 
-                    <select name="user_id" id="user_id" class="form-control">
+                    <select name="user_id" id="user_id" class="form-control" dusk="user_id">
                         @foreach ($users as $user)
                             @if ( $task->user_id == $user->id )
                                 <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
