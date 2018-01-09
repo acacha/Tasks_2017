@@ -15,6 +15,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('tasks-container', require('./components/tasks/TasksContainerComponent.vue'));
+Vue.component('tasks-crud-list', require('./components/tasks/TasksCrudListComponent.vue'));
+
 Vue.component('tasks', require('./components/TasksComponent.vue'));
 Vue.component('message', require('./components/MessageComponent.vue'));
 Vue.component('widget', require('./components/WidgetComponent.vue'));
