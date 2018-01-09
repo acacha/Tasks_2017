@@ -17,6 +17,24 @@ class TasksTest extends DuskTestCase
     use DatabaseMigrations;
 
     /**
+     * EventContainer
+     * EventsContainer
+     *
+
+     * Separation of concerns:
+     <eventsContainer>
+       <crud-list :events="events" @create="create" @edit="edit" @delete="delete">
+     </eventsContainer>
+     *
+     * https://medium.com/front-end-hacking/passing-methods-as-props-in-vue-js-d65805bccee
+
+
+     <events-container v-bind="{events, create, edit, delete}>
+
+     *
+     Vuex EventsModule for actions related with events
+
+     *
      * CONTAINERS:
      * EventsContainer
      *   DISPLAY
@@ -36,6 +54,38 @@ class TasksTest extends DuskTestCase
      *    Edit:
      *     Single field actions
      *    Delete
+     *
+     *    VUEX ACTIONS
+     *    Using async await and a specific file for API:
+     *    https://www.reddit.com/r/vuejs/comments/6n8a6d/vuex_re_usable_crud_actions/
+     *
+     *
+     *
+    import createApi from '../some/path';
+
+    const crud = createApi('/some/api/endpoint');
+
+    ...
+    actions: {
+        async getAll({ commit }) {
+            const data = await crud.getAll();
+            commit('SOME_MUTATION', data);
+        },
+        async get({ commit }, id) {
+            const data = await crud.get(id);
+            commit('SOME_MUTATION_1', data);
+        },
+        async update({ commit }, id) {
+            const data = await crud.update(id);
+            commit('SOME_MUTATION_2', data);
+        },
+        async delete({ commit }, id) {
+            const data = await crud.delete(id);
+            commit('SOME_MUTATION_3', data);
+        },
+    }
+     *
+     *
      */
 
     /**

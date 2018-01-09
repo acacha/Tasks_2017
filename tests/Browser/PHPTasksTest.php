@@ -249,7 +249,6 @@ class PHPTasksTest extends DuskTestCase
     /**
      * Delete task.
      *
-     * @group current
      * @test
      * @return void
      */
