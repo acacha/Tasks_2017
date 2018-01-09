@@ -17,6 +17,18 @@ class TasksTest extends DuskTestCase
     use DatabaseMigrations;
 
     /**
+     * TODO:
+     *  - Define dusk Page and component for Vue tasks: abstract selectors on tests-> Avoid using Dusk selectors on HTML
+     *  - Use acacha-forms and Vuex store -> Components fets a nadal
+     *  - Utilitzar la interfície per a todos: https://adminlte.io/themes/AdminLTE/index.html
+     *    - Permet drag and Drop, Sort i pagination
+     *  - Mirar el que ja hi ha implementat a events????
+     *  - Vue component design patterns: Components smart i components Dump (Presentational i Container Components)
+     *    - List
+     *    - ListContainer
+     *    - https://medium.com/@learnreact/container-components-c0e67432e005
+     *    - https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
+     *
      * - Dusk selectors: https://laravel.com/docs/5.5/dusk#dusk-selectors
      * - Pot semblar que cal embrutar el HTML -> ok! Però es pot utilitzar : https://laravel.com/docs/5.5/dusk#shorthand-selectors
      * - Sortable: com provar drag and drop. A més comprovar persistència (forçant reload de la pàgina)
