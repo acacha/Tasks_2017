@@ -15,7 +15,6 @@
                 </ul>
             </div>
         </div>
-        <!-- /.box-header -->
         <div class="box-body">
             <ul class="todo-list ui-sortable">
                 <li v-for="(task, index) in tasks">
@@ -23,7 +22,7 @@
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
-                    <input type="checkbox" value="">
+                    <input @click="" type="checkbox" value="">
                     <span class="text">{{ task.name }}</span>
                     <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
                     <div class="tools">

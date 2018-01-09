@@ -21,12 +21,16 @@
       }
     },
     mounted() {
-      console.log(crud)
       crud.getAll().then( response => {
         this.tasks = response.data
       }).catch( error => {
         console.log(error)
       })
+//      axios.get('/api/v1/tasks').then( response => {
+//        this.tasks = response.data
+//      }).catch( error => {
+//        console.log(error)
+//      })
     }
   }
 </script>
