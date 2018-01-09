@@ -26,6 +26,8 @@ class TasksTest extends DuskTestCase
      *  - Vue component design patterns: Components smart i components Dump (Presentational i Container Components)
      *    - List
      *    - ListContainer
+     *    - Dubte: ok pel concepte list com la R de retrieve: pero la resta de CRUD
+     *      - Per exemple create action: com desacoplar el codi ajax de crear de la interfície???
      *    - https://medium.com/@learnreact/container-components-c0e67432e005
      *    - https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
      *
