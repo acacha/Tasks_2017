@@ -10,6 +10,48 @@
 [![Daily Downloads](https://poser.pugx.org/acacha/tasks/d/daily)](https://packagist.org/packages/acacha/tasks)
 [![composer.lock](https://poser.pugx.org/acacha/tasks/composerlock)](https://packagist.org/packages/acacha/tasks)
 
+## Working with files and File uploads
+
+Sistema de fitxers de Laravel:
+- https://laravel.com/docs/5.5/filesystem
+- Local i extern com Amazon S3
+
+Testing:
+- https://laravel.com/docs/5.5/dusk#attaching-files
+
+Opcions implementació:
+- Perfil usuari: assignar avatar
+- Permetre associar un fitxer adjunt a un tasca. Opcional: com afegir a un email:
+  - https://laravel.com/docs/5.5/mail#attachments
+  - https://laravel.com/docs/5.5/dusk#attaching-files
+
+
+## Email
+
+- https://laravel.com/docs/5.5/mail
+- Sistema de drivers: explicar polimorfisme interfícies i relació amb model de driver
+- Explicar format Markdown
+- Local development (https://laravel.com/docs/5.5/mail#mail-and-local-development)
+- Mailtrap
+
+Interfície per enviar email:
+ 
+https://adminlte.io/themes/AdminLTE/index.html
+
+Com afegir a tasques: afegir una acció sigui enviar tasca per email:
+- S'envia com a subject el nom de la tasca
+- El cos de l'email és la descripció de la tasca
+- El email s'envia al correu de l'usuari que té la tasca assignada
+
+Formes enviar email:
+- Boto a la llista de tasques i al show d'una tasca. Obre interfície email (https://adminlte.io/themes/AdminLTE/index.html
+) amb els valors ja prens però que permeti modificar i enviem email
+- Tasca Scheduled: cron/Laravel que envia tasques automàticament
+- Events: disparar esdeveniment al crear/modificar/eliminar tasca per tal de notificar per correu l'acció
+
+Escriure testos per email utilitzant Mocking:
+- https://laravel.com/docs/5.5/mocking
+
 ## Notes
 
 ### MP7 13 de desembre
