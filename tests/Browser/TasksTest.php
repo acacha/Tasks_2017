@@ -17,6 +17,28 @@ class TasksTest extends DuskTestCase
     use DatabaseMigrations;
 
     /**
+     * CONTAINERS:
+     * EventsContainer
+     *   DISPLAY
+     *    RETRIEVE:
+     *     EventsList
+     *     EventsTable
+     *    SHOW -> Event Container
+     *     Table
+     *     Box
+     *     Card/media card
+     *    CREATE/EDIT/DELETE ACTIONS
+     *      Initiators:
+     *       - Buttons
+     *       - Keyboard shortcuts
+     *       - Mouse actions: like double click
+     *      Actions
+     *    Edit:
+     *     Single field actions
+     *    Delete
+     */
+
+    /**
      * TODO:
      *  - Define dusk Page and component for Vue tasks: abstract selectors on tests-> Avoid using Dusk selectors on HTML
      *  - Use acacha-forms and Vuex store -> Components fets a nadal
@@ -30,6 +52,9 @@ class TasksTest extends DuskTestCase
      *      - Per exemple create action: com desacoplar el codi ajax de crear de la interfície???
      *    - https://medium.com/@learnreact/container-components-c0e67432e005
      *    - https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
+     *    - http://www.thegreatcodeadventure.com/the-react-plus-redux-container-pattern/
+     *    - Full crud example?:
+     *    - https://medium.com/@rajaraodv/a-guide-for-building-a-react-redux-crud-app-7fe0b8943d0f
      *
      * - Dusk selectors: https://laravel.com/docs/5.5/dusk#dusk-selectors
      * - Pot semblar que cal embrutar el HTML -> ok! Però es pot utilitzar : https://laravel.com/docs/5.5/dusk#shorthand-selectors
@@ -125,8 +150,11 @@ class TasksTest extends DuskTestCase
 
     public function edit_task()
     {
-        // Click on checkbox
-        // Assert task is strikethrough (tachado)
+        // Doble click on task name
+        // Esc to abort edit
+        // Click on edit button/icon
+
+        //doble click to description
     }
 
     public function delete_task()
@@ -138,8 +166,9 @@ class TasksTest extends DuskTestCase
 
     public function complete_task()
     {
-        // Click on checkbox
+        // Click on checkbox or another commuter
         // Assert task is strikethrough (tachado)
+        // activate filter pending and test task is not seen
     }
 
     public function sort_task()
