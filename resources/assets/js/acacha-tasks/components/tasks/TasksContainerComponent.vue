@@ -1,5 +1,5 @@
 <template>
-    <tasks-crud-list :tasks="tasks"></tasks-crud-list>
+    <tasks-crud-list :tasks="tasks" @create="create"></tasks-crud-list>
 </template>
 
 <style>
