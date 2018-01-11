@@ -1,74 +1,77 @@
 <template>
   <body class="hold-transition login-page">
-     <adminlte-login-box></adminlte-login-box>
-     <div class="login-box">
-            <div class="login-logo">
-                <a href="#"><b>Admin</b>LTE</a>
-            </div>
-            <div class="login-box-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+  <div class="login-box">
+      <div class="login-logo">
+          <a href="#"><b>Admin</b>LTE</a>
+      </div>
+      <div class="login-box-body">
+          <p class="login-box-msg">Sign in to start your session</p>
 
-                <form action="#" method="post">
-                    <div class="form-group has-feedback">
-                        <input type="email" class="form-control" placeholder="Email">
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="password" class="form-control" placeholder="Password">
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-8">
-                            <div class="checkbox icheck">
-                                <label>
-                                    <input type="checkbox"> Remember Me
-                                </label>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-xs-4">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                </form>
+          <form @submit.prevent="submit" method="post">
+              <div class="form-group has-feedback">
+                  <input type="email" class="form-control" placeholder="Email" v-model="email">
+              </div>
+              <div class="form-group has-feedback">
+                  <input type="password" class="form-control" placeholder="Password" v-model="password">
 
-                <div class="social-auth-links text-center">
-                    <p>- OR -</p>
-                    <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-                        Facebook</a>
-                    <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-                        Google+</a>
-                </div>
-                <!-- /.social-auth-links -->
-
-                <a href="#">I forgot my password</a><br>
-                <a href="#" class="text-center">Register a new membership</a>
-
-            </div>
-        </div>
+              </div>
+              <div class="row">
+                  <div class="col-xs-4">
+                      <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
   </body>
 </template>
 
 <style>
-html,body {
-    height: 100%;
-}
+    html {
+        height: 100%;
+    }
+    body {
+        min-height: 100%;
+    }
 </style>
 
 <script>
-  import AdminLTELoginBoxComponent from 'adminlte-vue'
-
+  import axios from 'axios'
   export default {
-    name: 'Example',
-    components: { AdminLTELoginBoxComponent },
+    name: 'Login',
     data () {
       return {
-        data: 'PROVA!!'
+        email: '',
+        password: ''
       }
     },
-    mounted () {
-      console.log('Mounted ok')
+    methods: {
+      submit () {
+        axios.post('http://localhost:8080/oauth/token', {
+          'grant_type': 'password',
+          'client_id': 2,
+          'client_secret': 'uo1smtRcl6xLAmBNBLi6MeALEOb0dozwG3MsbDJp',
+          'username': this.email,
+          'password': this.password
+        }).then(response => {
+          console.log('HEY!!!!!!!')
+          console.log(response)
+          console.log(response.data)
+        }).catch(error => {
+          console.log('ERROR:' + error)
+          console.log('SHIT!!!!!!!!!!!!!')
+        })
+//        $response = $http->post('http://your-app.com/oauth/token', [
+//          'form_params' => [
+//          'grant_type' => 'password',
+//          'client_id' => 'client-id',
+//          'client_secret' => 'client-secret',
+//          'username' => 'taylor@laravel.com',
+//          'password' => 'my-password',
+//          'scope' => '',
+//      ],
+//      ]);
+      }
     }
   }
 </script>

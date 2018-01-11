@@ -2,6 +2,22 @@
 
 > A Vue.js project
 
+# CORS ERROR
+
+Failed to load http://localhost:8081/oauth/token: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8080' is therefore not allowed access.
+
+https://github.com/barryvdh/laravel-cors
+
+```
+$ composer require barryvdh/laravel-cors
+```
+
+I afegir el middleware https://github.com/barryvdh/laravel-cors#global-usage
+
+# 401 Errors
+
+Mireu el cos de l'error. Si dona error invalid_client és que no em donat correctament les credencials del client.
+
 ## Build Setup
 
 ``` bash

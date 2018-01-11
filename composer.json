@@ -9,6 +9,7 @@
         "acacha/admin-lte-template-laravel": "^5.0",
         "acacha/forge-publish": "^0.1.10",
         "acacha/laravel-social": "^0.1.9",
+        "barryvdh/laravel-cors": "^0.11.0",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/passport": "^4.0",
