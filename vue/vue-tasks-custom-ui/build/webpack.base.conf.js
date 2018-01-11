@@ -35,12 +35,8 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
-    },
-    modules: [
-      path.resolve(__dirname, '../../javascript'),
-      path.resolve(__dirname, '../node_modules')
-    ]
+      '@': resolve('src'),
+    }
   },
   module: {
     rules: [
@@ -53,7 +49,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
