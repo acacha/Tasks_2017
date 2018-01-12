@@ -141,7 +141,7 @@
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <router-link to="/login" class="btn btn-default btn-flat">Sign out</router-link>
+                    <button @click="logout" class="btn btn-default btn-flat">Sign out</button>
                   </div>
                 </li>
               </ul>
@@ -585,10 +585,35 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    logout () {
+      this.$store.clearTokenAction()
+      if (window.localStorage) {
+        window.localStorage.setItem('token', null)
+      }
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
 
 <style>
-
+  .wrapper {
+    width: 100%;
+    min-height: 100%;
+    height: auto !important;
+    position: absolute;
+  }
+  .content-wrapper{
+    bottom: 50px;
+    position: fixed;
+    width: 100%;
+    top: 50px;
+  }
+  .main-footer{
+    bottom: 0px;
+    position: fixed;
+    width: 100%;
+  }
 </style>

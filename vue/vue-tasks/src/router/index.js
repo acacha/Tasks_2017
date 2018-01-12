@@ -81,18 +81,15 @@ let router = new Router({
 // STORE: estat compartit --> VUEX (FLUX)
 
 router.beforeEach((to, from, next) => {
-  next()
-  console.log('Store:')
-  console.log(router.app.$store)
-  // if (to.matched.some(record => record.meta.requiresAuth) && (!.state.token || router.app.$store.state.token === 'null')) {
-  //   window.console.log('Not authenticated')
-  //   next({
-  //     path: '/login',
-  //     query: { redirect: to.fullPath }
-  //   })
-  // } else {
-  //   next()
-  // }
+  if (to.matched.some(record => record.meta.requiresAuth) && (!router.app.$store.state.token || router.app.$store.state.token === 'null')) {
+    window.console.log('Not authenticated')
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath }
+    })
+  } else {
+    next()
+  }
 })
 
 export default router
