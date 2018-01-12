@@ -49,10 +49,7 @@
     },
     methods: {
       submit () {
-        axios.post('http://localhost:8081/oauth/token', {
-          'grant_type': 'password',
-          'client_id': 2,
-          'client_secret': 'uo1smtRcl6xLAmBNBLi6MeALEOb0dozwG3MsbDJp',
+        axios.post('http://localhost:8081/api/v1/proxy/oauth/token', {
           'username': this.email,
           'password': this.password
         }).then(response => {

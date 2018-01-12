@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="prova">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">Title</h3>
@@ -24,7 +24,12 @@
 </template>
 
 <style>
-
+    .prova {
+        width: 100%;
+        min-height: 100%;
+        height: auto !important;
+        position: absolute;
+    }
 </style>
 
 <script>

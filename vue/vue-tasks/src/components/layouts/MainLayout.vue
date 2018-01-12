@@ -372,7 +372,11 @@
 
       <!-- Main content -->
       <section class="content">
-        <router-view/>
+        <transition>
+          <keep-alive>
+            <router-view :key="$route.path"></router-view>
+          </keep-alive>
+        </transition>
       </section>
       <!-- /.content -->
     </div>
@@ -605,16 +609,5 @@ export default {
     min-height: 100%;
     height: auto !important;
     position: absolute;
-  }
-  .content-wrapper{
-    bottom: 50px;
-    position: fixed;
-    width: 100%;
-    top: 50px;
-  }
-  .main-footer{
-    bottom: 0px;
-    position: fixed;
-    width: 100%;
   }
 </style>

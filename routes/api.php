@@ -17,6 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['prefix' => 'v1'], function () {
+    Route::post('/proxy/oauth/token', 'PasswordGrantProxyController@issueToken');
+});
+
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     //adminlte_api_routes
