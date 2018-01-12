@@ -37,6 +37,7 @@
     },
     mounted () {
       console.log('Mounted ok')
+      console.log(this.$store.state)
     }
   }
 </script>

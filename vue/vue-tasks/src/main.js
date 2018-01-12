@@ -10,6 +10,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/store'
+import VueResource from 'vue-resource'
+
+Vue.use(VueResource)
 
 Vue.config.productionTip = false
 
@@ -21,11 +24,15 @@ if (window.localStorage) {
   }
 }
 
+// Global: instance properties. https://vuejs.org/v2/cookbook/adding-instance-properties.html
+
+Vue.prototype.$store = store
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  store: store,
+  // store -> Not working see prototype below
   template: '<App/>',
   components: { App }
 })

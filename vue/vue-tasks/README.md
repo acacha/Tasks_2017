@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+# Password Grant Proxy
+
+https://web.archive.org/web/20141208132104/http://alexbilbie.com/2014/11/oauth-and-javascript/
+
 # CORS ERROR
 
 Failed to load http://localhost:8081/oauth/token: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8080' is therefore not allowed access.

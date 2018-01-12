@@ -47,13 +47,26 @@
     },
     methods: {
       submit () {
-        axios.post('http://localhost:8080/oauth/token', {
+        this.$http.post('http://localhost:8081/oauth/token', {
           'grant_type': 'password',
           'client_id': 2,
           'client_secret': 'uo1smtRcl6xLAmBNBLi6MeALEOb0dozwG3MsbDJp',
           'username': this.email,
           'password': this.password
         }).then(response => {
+          console.log(response.body)
+        }, error => {
+          console.log('ERROR!!!!!!!!!!')
+          console.log(error)
+        })
+        axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+        axios.post('http://localhost:8081/oauth/token', {
+          'grant_type': 'password',
+          'client_id': 2,
+          'client_secret': 'uo1smtRcl6xLAmBNBLi6MeALEOb0dozwG3MsbDJp',
+          'username': this.email,
+          'password': this.password
+        }, { withCredentials: true }).then(response => {
           console.log('HEY!!!!!!!')
           console.log(response)
           console.log(response.data)
@@ -61,6 +74,8 @@
           console.log('ERROR:' + error)
           console.log('SHIT!!!!!!!!!!!!!')
         })
+
+//        axios.get('http://localhost:8081/api/v1/tasks').then(response => { console.log(response) }).catch(error => { console.log(error) })
 //        $response = $http->post('http://your-app.com/oauth/token', [
 //          'form_params' => [
 //          'grant_type' => 'password',
