@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Example from '@/components/Example'
 import Login from '@/components/Login'
+import Tasks from '@/components/Tasks'
 import MainLayout from '@/components/layouts/MainLayout'
 
 Vue.use(Router)
@@ -36,6 +37,15 @@ let router = new Router({
           meta: {
             description: 'Peazo de exemple',
             requiresAuth: false
+          }
+        },
+        {
+          path: 'tasks',
+          name: 'Tasks',
+          component: Tasks,
+          meta: {
+            description: 'Tasques',
+            requiresAuth: true
           }
         }
       ]

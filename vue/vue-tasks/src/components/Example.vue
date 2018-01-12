@@ -34,10 +34,6 @@
       return {
         data: 'Start creating your amazing application!'
       }
-    },
-    mounted () {
-      console.log('Mounted ok')
-      console.log(this.$store.state)
     }
   }
 </script>

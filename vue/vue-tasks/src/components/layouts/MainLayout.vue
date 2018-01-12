@@ -190,8 +190,9 @@
             </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#/hello"><i class="fa fa-circle-o"></i>Hello component</a></li>
-              <li><a href="#/example"><i class="fa fa-circle-o"></i>Example component</a></li>
+              <li><router-link to="/hello"><i class="fa fa-circle-o"></i>Hello component</router-link></li>
+              <li><router-link to="/example"><i class="fa fa-circle-o"></i>Example component</router-link></li>
+              <li><router-link to="/tasks"><i class="fa fa-circle-o"></i>Tasks</router-link></li>
             </ul>
           </li>
           <li class="treeview">
