@@ -2,7 +2,7 @@
   <body>
   <div class="container">
     <main>
-      <section class="content-header" >CONTENT HEADER</section>
+      <section class="content-header">CONTENT HEADER</section>
       <section><router-view/></section>
     </main>
 
@@ -11,38 +11,43 @@
 
     <footer>FOOTER</footer>
     <header>
-      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg> HEADER
+      <svg @click="toogleSideBar" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+      HEADER
     </header>
   </div>
-
   </body>
-
+  <!--https://codepen.io/oknoblich/pen/klnjw-->
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  export default {
+    name: 'app',
+    data () {
+      return {
+        menuOpen: false
+      }
+    },
+    methods: {
+      toogleSideBar () {
+        this.menuOpen = !this.menuOpen
+      }
+    }
+  }
 </script>
 
 <style>
 
-  html,body, .container {
-    margin:0;
+  html, body, .container {
+    margin: 0;
     height: 100%;
   }
 
   body {
     font-family: 'Source Sans Pro','Helvetica Neue','Helvetica','Arial','sans-serif';
-    font-weight: 500;
+    font-weight: 400;
     font-size: 14px;
+    line-height: 1.42857143;
     color: #333;
-  }
-
-  .container {
-    display: grid;
-    grid-template-columns: 100px 1fr 100px;
-    grid-template-rows: 150px 1fr 100px;
   }
 
   .icon {
@@ -52,48 +57,72 @@ export default {
     fill: currentColor;
   }
 
-  main,header,footer,aside,section {
-    display: grid;
-    border: solid black 1px;
-    padding: 1.5em;
+  header,
+  footer,
+  aside,
+  main,
+  .content-header {
+    padding: 1.2rem;
   }
 
-  main {
-    background-color: blue;
-    grid-row: 2;
-    grid-column: 2;
+  .container {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: 50px 1fr 50px;
   }
 
   header {
-    background-color: darkred;
+    color: white;
+    background-color: #3c8dbc;
     grid-row: 1;
-    grid-column-start:1;
-    grid-column-end:4;
+    grid-column-start: 1;
+    grid-column-end: 4;
   }
-
-  .content-header {
-    background-color: yellow;
-  }
-
   footer {
-    background-color: beige;
+    background-color: white;
     grid-row: 3;
-    grid-column-start:1;
-    grid-column-end:4;
+    grid-column-start: 1;
+    grid-column-end: 4;
   }
+  main {
+    background-color: #ecf0f5;
+    grid-row: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+  aside {
+    color: white;
+    background-color: #222d32;
+  }
+  .content-header { background-color: #d2d6de; }
 
-  section {
-    background-color: aquamarine;
-  }
+  /*OFF CANVAS*/
+  /*.left_sidebar {*/
+  /*position: fixed; !* or choose `absolute` depending on desired behavior*!*/
+  /*top: 0;*/
+  /*bottom: 0;*/
+  /*width: 200px;*/
+  /*left: -200px;*/
+  /*transition: left .3s ease-in-out;*/
+  /*grid-row: 2;*/
+  /*grid-column-start: 1;*/
+  /*grid-column-end: 1;*/
+  /*}*/
+
+  /*.left_sidebar.isOpen {*/
+  /*transform: translate3d(200px,0,0);*/
+  /*}*/
 
   .left_sidebar {
     grid-row: 2;
-    grid-column: 1;
+    grid-column-start: 1;
+    grid-column-end: 2;
   }
 
   .rigth_sidebar {
     grid-row: 2;
-    grid-column: 3;
+    grid-column-start: 3;
+    grid-column-end: 4;
   }
 
   /* Responsive */
@@ -103,4 +132,5 @@ export default {
       display: block;
     }
   }
+
 </style>
