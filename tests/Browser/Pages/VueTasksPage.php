@@ -44,11 +44,18 @@ class VueTasksPage extends BasePage
     public function elements()
     {
         return [
-            '@tasks'     => '#tasks-component',
-            '@reload'    => '#reload',
-            '@completed' => '#completed-tasks',
-            '@pending' => '#pending-tasks',
-            '@all' => '#all-tasks',
+            '@tasks'                => '#tasks-component',
+            '@reload'               => '#reload',
+            '@completed'            => '#completed-tasks',
+            '@pending'              => '#pending-tasks',
+            '@all'                  => '#all-tasks',
+            '@store-task'           => '#store-task',       // Add task button or link or...
+            '@update-task'          => '#update-task',      // Update task button or link or... Update update task in database
+            '@destroy-task'         => '#destroy-task',     // Destroy task button or link or... Destroy delete
+            '@cancel-delete-task'   => '#cancel-delete-task',  // Cancel delete task button or link or... Destroy delete
+            '@toogle-complete-task' => '#complete-task',    // Toogle complete task button or link or...
+
+            // TODO : sort and pagination
         ];
     }
 
@@ -169,6 +176,129 @@ class VueTasksPage extends BasePage
     public function reload(Browser $browser)
     {
         $browser->press('@reload');
+    }
+
+    /**
+     * Store task.
+     *
+     * @param Browser $browser
+     * @param $task
+     */
+    public function store_task(Browser $browser, $task)
+    {
+        $this->type('name',$task->name);
+        $this->store($browser);
+    }
+
+    /**
+     * Update task.
+     *
+     * @param Browser $browser
+     * @param $newTask
+     */
+    public function update_task(Browser $browser, $newTask)
+    {
+        //Init edit
+        $this->edit($browser);
+        $this->type('new-name',$newTask->name);
+        //Confirm edit
+        $this->update($browser);
+    }
+
+    /**
+     * Cancel update task.
+     *
+     * @param Browser $browser
+     * @param $newTask
+     */
+    public function cancel_update_task(Browser $browser, $newTask)
+    {
+        //Init edit
+        $this->edit($browser);
+        $this->type('new-name',$newTask->name);
+        //Cancel edit
+        $this->cancel_update($browser); // TODO
+    }
+
+    /**
+     * Press create button.
+     */
+    public function store(Browser $browser)
+    {
+        $browser->press('@store-task');
+    }
+
+    /**
+     * Press edit button.
+     */
+    public function edit(Browser $browser, $task)
+    {
+        $browser->press('#edit-task-' .  $task->id);
+    }
+
+    /**
+     * Press update button.
+     */
+    public function update(Browser $browser)
+    {
+        $browser->press('@update-task');
+    }
+
+    /**
+     * Destroy task.
+     *
+     * @param Browser $browser
+     * @param $task
+     */
+    public function destroy_task(Browser $browser, $task)
+    {
+        //Init delete
+        $this->delete($browser, $task);
+        //Confirm delete
+        $this->destroy($browser); // No need of task-> only one visible confirm exists
+    }
+
+    /**
+     * Cancel Destroy task.
+     *
+     * @param Browser $browser
+     * @param $task
+     */
+    public function cancel_destroy_task(Browser $browser, $task)
+    {
+        //Init delete
+        $this->delete($browser, $task);
+        //Cancel delete
+        $this->cancel_destroy($browser); // TODO
+    }
+
+    public function toogle_complete() // TODO
+    {
+
+    }
+
+    /**
+     * Press delete button.
+     */
+    public function delete(Browser $browser, $task)
+    {
+        $browser->press('@delete-task-' . $task->id);
+    }
+
+    /**
+     * Press destroy button.
+     */
+    public function destroy(Browser $browser)
+    {
+        $browser->press('@destroy-task');
+    }
+
+    /**
+     * Press cancel delete button.
+     */
+    public function cancel_delete(Browser $browser)
+    {
+        $browser->press('@cancel-delete-task');
     }
 
 }
