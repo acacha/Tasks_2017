@@ -19,17 +19,50 @@
   - Recomanació: No tocar el controlador ja existen sinó afegir un per a la paginació
     - Facilitar refactorització (caldria sinó canviar testos) i codi Javascript:
        - Els objectes que retorna API json a axios haurien de ser response.data.data (observeu data dos cops) 
-- optional helper: 
+- Optional helper: 
   - https://laravel.com/docs/5.5/helpers#method-optional
   - https://medium.com/@codebyjeff/laravel-5-5-optional-class-withdefault-and-attribute-defaults-a2e901dbad62
   - Null object pattern: o assegurar-se que un objecte no et torni mai null
   
+# Testos Laravel Dusk
+
+- Dusk Selectors: https://laravel.com/docs/5.5/dusk#dusk-selectors
+- Concepte de Page per fer testos més llegibles/expressius i també encapsular/reaprofitar codi
+  - https://laravel.com/docs/5.5/dusk#pages
+- El exercici de MP8 vue tasks s'ha d'entregar amb testos que utilitzin:
+  - Waits
+  - Comprovació d'estats com loading/spinner
+  - Pàgines Dusk i Dusk selectors
+  - Comprovació de valors en components Vue: https://laravel.com/docs/5.5/dusk#making-vue-assertions
+  - Utilitzeu/copieu els del professor i adapteu al vostre cos  
+  
+Testos:
+
+```
+phpunit tests/Browser/VueTasksTest.php
+```
 ## Oauth
 
 - Store: oco sessió classe anterior havia un error a main.js. Solució correcta
 
 ```
 Vue.prototype.$store = store
+```
+
+- Middleware/Navigation Guard de protecció. Fitxer router/index.js
+
+```
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && (!router.app.$store.state.token || router.app.$store.state.token === 'null')) {
+    window.console.log('Not authenticated')
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath }
+    })
+  } else {
+    next()
+  }
+})
 ```
 
 - Ja teniu una possible solució a vue/vue-tasks
