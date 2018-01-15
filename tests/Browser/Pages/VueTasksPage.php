@@ -47,18 +47,13 @@ class VueTasksPage extends BasePage
             '@tasks' => '#tasks-component',
         ];
     }
-
-    public function todo()
-    {
-
-    }
-
+    
     /**
      * See title.
      *
      * @param Browser $browser
      */
-    public function see_title(Browser $browser)
+    public function seeTitle(Browser $browser)
     {
         $browser->assertTitleContains(self::TITLE);
     }
@@ -68,7 +63,7 @@ class VueTasksPage extends BasePage
      *
      * @param Browser $browser
      */
-    public function see_box(Browser $browser, $title)
+    public function seeBox(Browser $browser, $title)
     {
         $browser->assertVisible('.box');
         $browser->assertSeein('.box .box-title',$title);
@@ -81,11 +76,21 @@ class VueTasksPage extends BasePage
      * @param Browser $browser
      * @param $tasks
      */
-    public function see_tasks(Browser $browser, $tasks)
+    public function seeTasks(Browser $browser, $tasks)
     {
         foreach ($tasks as $task) {
             $browser->assertSee($task->name);
         }
+    }
+
+    /**
+     * Dont see alert.
+     *
+     * @param Browser $browser
+     */
+    public function dontSeeAlert(Browser $browser)
+    {
+        $browser->assertMissing('.alert');
     }
 
 }
