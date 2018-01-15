@@ -47,6 +47,8 @@ class VueTasksPage extends BasePage
             '@tasks'     => '#tasks-component',
             '@reload'    => '#reload',
             '@completed' => '#completed-tasks',
+            '@pending' => '#pending-tasks',
+            '@all' => '#all-tasks',
         ];
     }
 
@@ -81,7 +83,7 @@ class VueTasksPage extends BasePage
     public function seeTasks(Browser $browser, $tasks)
     {
         foreach ($tasks as $task) {
-            $this->seeTask($browser);
+            $this->seeTask($browser, $task);
         }
         $browser->assertSee(count($tasks) . ' tasks left');
     }
@@ -95,9 +97,8 @@ class VueTasksPage extends BasePage
     public function dontSeeTasks(Browser $browser, $tasks)
     {
         foreach ($tasks as $task) {
-            $this->dontSeeTask($browser);
+            $this->dontSeeTask($browser, $task);
         }
-        $browser->assertSee(count($tasks) . ' tasks left');
     }
 
     /**
@@ -119,6 +120,26 @@ class VueTasksPage extends BasePage
     public function applyCompletedFilter(Browser $browser)
     {
         $browser->press('@completed');
+    }
+
+    /**
+     * Apply pending filter.
+     *
+     * @param Browser $browser
+     */
+    public function applyPendingFilter(Browser $browser)
+    {
+        $browser->press('@pending');
+    }
+
+    /**
+     * Apply all filter.
+     *
+     * @param Browser $browser
+     */
+    public function applyAllFilter(Browser $browser)
+    {
+        $browser->press('@all');
     }
 
     /**

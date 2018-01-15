@@ -83,7 +83,6 @@ class VueTasksTest extends DuskTestCase
     /**
      * Reload.
      *
-     * @group current
      * @test
      */
     public function reload()
@@ -110,7 +109,12 @@ class VueTasksTest extends DuskTestCase
         });
     }
 
-
+    /**
+     * See completed tasks.
+     *
+     * @test
+     *
+     */
     public function see_completed_tasks()
     {
         $this->browse(function (Browser $browser) {
@@ -124,6 +128,29 @@ class VueTasksTest extends DuskTestCase
                 ->applyCompletedFilter()
                 ->seeTasks($completed_tasks)
                 ->dontSeeTasks($tasks);
+        });
+    }
+
+    /**
+     * See pending tasks.
+     *
+     * @test
+     * @group current
+     *
+     */
+    public function see_pending_tasks()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->login($browser);
+            $tasks = factory(Task::class,5)->create();
+            $completed_tasks = factory(Task::class, 3)->states('completed')->create();
+
+            $browser->maximize();
+            $browser->visit(new VueTasksPage())
+                ->seeTitle('Tasques new')
+                ->applyPendingFilter()
+                ->seeTasks($tasks)
+                ->dontSeeTasks($completed_tasks);
         });
     }
 }

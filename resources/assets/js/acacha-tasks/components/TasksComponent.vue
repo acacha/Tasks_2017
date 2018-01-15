@@ -3,24 +3,15 @@
         <widget :loading="loading">
             <p slot="title">Tasques new</p>
             <div v-cloak>
-                <ul>
-                    <li v-for="task in filteredTasks" :class="{ completed: isCompleted(task) }"
-                        @dblclick="updateTask(task)">
-                        <input type="text" v-if="task == editedTask">
-                        <div v-else>
-                            {{task.name}}
-                            <i class="fa fa-pencil" aria-hidden="true" @click="updateTask(task)"></i>
-                            <i class="fa fa-refresh fa-spin fa-lg" v-if=" task.id === taskBeingDeleted"></i>
-                            <i class="fa fa-times" aria-hidden="true" @click="deleteTask(task)"></i>
-                        </div>
-
-                    </li>
-                </ul>
-                <div class="btn-group">
-                    <button id="all-tasks" @click="show('all')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'all' }">All</button>
-                    <button id="completed-tasks" @click="show('completed')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'completed' }">Completed</button>
-                    <button id="pending-tasks" @click="show('pending')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'pending' }">Pending</button>
-                </div>
+                <button :disabled="form.submitting || form.errors.any()" id="add" @click="addTask" class="btn btn-primary">
+                    <i class="fa fa-refresh fa-spin fa-lg" v-if="form.submitting"></i>
+                    Afegir
+                </button>
+                <button @click="reload" id="reload" class="btn btn-primary">
+                    <i class="fa fa-refresh fa-lg"></i>
+                    Reload
+                </button>
+                <crud-list :tasks="filteredTasks"></crud-list>
                 <div class="form-group has-feedback" :class="{ 'has-error': form.errors.has('user_id') }">
                     <label for="user_id">User</label>
                     <transition name="fade">
@@ -37,17 +28,14 @@
                     <input @input="form.errors.clear('name')" class="form-control" type="text" v-model="form.name" id="name" name="name" @keyup.enter="addTask">
                 </div>
             </div>
-            <p slot="footer">
+            <div slot="footer">
                 {{ counter }} tasks left
-                <button :disabled="form.submitting || form.errors.any()" id="add" @click="addTask" class="btn btn-primary">
-                   <i class="fa fa-refresh fa-spin fa-lg" v-if="form.submitting"></i>
-                    Afegir
-                </button>
-                <button @click="reload" id="reload" class="btn btn-primary">
-                    <i class="fa fa-refresh fa-lg"></i>
-                    Reload
-                </button>
-            </p>
+                <div class="btn-group">
+                    <button id="all-tasks" @click="show('all')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'all' }">All</button>
+                    <button id="completed-tasks" @click="show('completed')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'completed' }">Completed</button>
+                    <button id="pending-tasks" @click="show('pending')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'pending' }">Pending</button>
+                </div>
+            </div>
         </widget>
 
         <message title="Message" message="" color="info"></message>
@@ -100,8 +88,9 @@
 
 //  import { wait } from './utils.js'
   import axios from 'axios'
+  import TasksCrudListComponentWithoutBox from './tasks/TasksCrudListComponentWithoutBox.vue'
   export default {
-    components: { Users },
+    components: { Users, 'crud-list': TasksCrudListComponentWithoutBox },
     data () {
       return {
         loading: false,

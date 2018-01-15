@@ -24,6 +24,10 @@
   - https://medium.com/@codebyjeff/laravel-5-5-optional-class-withdefault-and-attribute-defaults-a2e901dbad62
   - Null object pattern: o assegurar-se que un objecte no et torni mai null
   
+# Factory States
+
+Per exemple per crear tasques amb estat completed
+  
 # Testos Laravel Dusk
 
 - Dusk Selectors: https://laravel.com/docs/5.5/dusk#dusk-selectors
