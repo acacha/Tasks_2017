@@ -42,6 +42,7 @@ class PHPTasksTest extends DuskTestCase
 
     /**
      * List tasks.
+     *
      * @group prova
      * @test
      * @return void

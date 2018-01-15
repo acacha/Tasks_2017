@@ -1,7 +1,7 @@
 <template>
     <div>
         <widget :loading="loading">
-            <p slot="title">Tasques new</p>
+            <p slot="title">Tasques</p>
             <div v-cloak>
                 <ul>
                     <li v-for="task in filteredTasks" :class="{ completed: isCompleted(task) }"
@@ -79,7 +79,7 @@
     all: function (tasks) {
       return tasks
     },
-    pending: function (tasks) {
+    pending : function (tasks) {
       return tasks.filter(function (task) {
         return !task.completed
       })
@@ -93,75 +93,76 @@
 
   const API_URL = '/api/v1/tasks'
 
-//  import { wait } from './utils.js'
-  import axios from 'axios'
+  import { wait } from './utils.js'
+
   export default {
-    components: { Users },
-    data () {
-      return {
-        loading: false,
-        editedTask: null,
-        filter: 'all',
-        tasks: [],
-        taskBeingDeleted: null,
-        form: new Form({ user_id: 1, name: 'canvia nom tasca siusplau' })
-      }
-    },
-    computed: {
-      filteredTasks () {
-        return filters[this.filter](this.tasks)
-      }
-    },
-//    watch: {
-//      tasks () {
-//        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.tasks))
-//      }
-//    },
-    methods: {
-      userSelected (user) {
-        this.form.user_id = user.id
+      components: { Users },
+      data() {
+        return {
+          loading: false,
+          editedTask: null,
+          filter: 'all',
+          tasks: [],
+          taskBeingDeleted: null,
+          form: new Form({ user_id : 1, name: 'canvia nom tasca siusplau'})
+        }
       },
-      show (filter) {
-        this.filter = filter
+      computed: {
+        filteredTasks() {
+          return filters[this.filter](this.tasks)
+        }
       },
-      addTask () {
+      watch: {
+        tasks: function() {
+//          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.tasks))
+        }
+      },
+      methods: {
+        userSelected(user) {
+          this.form.user_id = user.id
+        },
+        show(filter) {
+          this.filter = filter
+        },
+        addTask() {
+          let url = API_URL
+          this.form.post(url).then( (response) =>  {
+            this.tasks.push({ name : this.form.name , user_id: this.form.user_id , completed : false})
+            this.form.name=''
+          }).catch((error) => {
+            flash(error.message)
+          })
+        },
+        isCompleted(task) {
+          return task.completed
+        },
+        deleteTask(task) {
+
+          let url = '/api/v1/tasks/' + task.id
+          this.taskBeingDeleted = task.id
+          axios.delete(url).then( (response) => {
+            this.tasks.splice( this.tasks.indexOf(task) , 1 )
+          }).catch( (error) => {
+            flash(error.message)
+          }).then(
+            this.taskBeingDeleted = null
+          )
+        },
+        updateTask(task){
+          this.editedTask = task
+        }
+      },
+      mounted() {
         let url = API_URL
-        this.form.post(url).then(response => {
-          this.tasks.push({ name: this.form.name, user_id: this.form.user_id, completed: false })
-          this.form.name = ''
+        this.loading = true
+        axios.get(url).then((response) =>  {
+          this.tasks = response.data;
         }).catch((error) => {
-          flash(error.message) // eslint-disable-line
+          console.log(error.message)
+          flash(error.message)
+        }).then(() => {
+          this.loading = false
         })
-      },
-      isCompleted (task) {
-        return task.completed
-      },
-      deleteTask (task) {
-        let url = '/api/v1/tasks/' + task.id
-        this.taskBeingDeleted = task.id
-        axios.delete(url).then(response => {
-          this.tasks.splice(this.tasks.indexOf(task), 1)
-        }).catch(error => {
-          flash(error.message) // eslint-disable-line
-        }).then(
-          this.taskBeingDeleted = null
-        )
-      },
-      updateTask (task) {
-        this.editedTask = task
       }
-    },
-    mounted () {
-      let url = API_URL
-      this.loading = true
-      axios.get(url).then((response) => {
-        this.tasks = response.data
-      }).catch((error) => {
-        console.log(error.message)
-        flash(error.message) // eslint-disable-line
-      }).then(() => {
-        this.loading = false
-      })
     }
-  }
 </script>

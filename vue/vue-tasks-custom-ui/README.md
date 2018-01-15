@@ -20,6 +20,12 @@ Layout com CSS també es pot fer amb Flexbox però millor CSS Grid:
 - Video Laracast: https://laracasts.com/series/learn-flexbox-through-examples/episodes/3?autoplay=true
 - Exemple amb Flexobx: https://laracasts.com/series/modern-css-workflow/episodes/4
 
+# 1D Layout positioning with Flexbox
+
+Exemple de com compaginar Flexbox i CSS Grid
+- https://hackernoon.com/the-ultimate-css-battle-grid-vs-flexbox-d40da0449faf
+
+
 # CSS grid vs flexbox
 
 - https://hackernoon.com/the-ultimate-css-battle-grid-vs-flexbox-d40da0449faf

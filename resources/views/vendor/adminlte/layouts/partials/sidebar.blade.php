@@ -35,6 +35,7 @@
             <li class="header">Tasques</li>
             <!-- Optionally, you can add icons to the links -->
             <li><a href="/tasks_php"><i class='fa fa-link'></i> <span>Tasques PHP</span></a></li>
+            <li><a href="/tasks_old"><i class='fa fa-link'></i> <span>Tasques Vue Old</span></a></li>
             <li><a href="/tasks"><i class='fa fa-link'></i> <span>Tasques Vue</span></a></li>
             <li><a href="/tasks2"><i class='fa fa-link'></i> <span>Tasques Vue 2</span></a></li>
             <li class="header">Settings</li>
