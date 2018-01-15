@@ -50,8 +50,11 @@ class TaskController extends Controller
      */
     public function store(StoreTask $request)
     {
+        $completed = false;
+        if ($request->completed) $completed = true;
         $task = Task::create([
             'name'          => $request->name,
+            'completed'     => $completed,
             'description'   => $request->description,
             'user_id'       => $request->user_id,
         ]);

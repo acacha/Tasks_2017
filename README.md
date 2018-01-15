@@ -10,6 +10,89 @@
 [![Daily Downloads](https://poser.pugx.org/acacha/tasks/d/daily)](https://packagist.org/packages/acacha/tasks)
 [![composer.lock](https://poser.pugx.org/acacha/tasks/composerlock)](https://packagist.org/packages/acacha/tasks)
 
+# Notes dia 15 de Gener
+
+- Laravel API Resources: https://laravel.com/docs/5.5/eloquent-resources
+- Alternativa a llibreries com 
+- Laracast: https://laracasts.com/series/whats-new-in-laravel-5-5/episodes/20
+- Pagination: podem fer que les dades de paginació les faci el servidor: un altre tema és el component gràfic que suporti pàginació
+  - Recomanació: No tocar el controlador ja existen sinó afegir un per a la paginació
+    - Facilitar refactorització (caldria sinó canviar testos) i codi Javascript:
+       - Els objectes que retorna API json a axios haurien de ser response.data.data (observeu data dos cops) 
+- optional helper: 
+  - https://laravel.com/docs/5.5/helpers#method-optional
+  - https://medium.com/@codebyjeff/laravel-5-5-optional-class-withdefault-and-attribute-defaults-a2e901dbad62
+  - Null object pattern: o assegurar-se que un objecte no et torni mai null
+  
+## Oauth
+
+- Store: oco sessió classe anterior havia un error a main.js. Solució correcta
+
+```
+Vue.prototype.$store = store
+```
+
+- Ja teniu una possible solució a vue/vue-tasks
+- Cal tenir CORS configurat al backend:  https://github.com/barryvdh/laravel-cors
+- Observeu codi de main.js: 
+
+```
+if (window.localStorage) {
+  let token = window.localStorage.getItem('token') || 'null'
+
+  if (token) {
+    store.setTokenAction(token)
+    axios.defaults.headers.common['authorization'] = `Bearer ${token}`
+  }
+}
+```
+
+El token es guarda al LocalStorage (si el tenim) i a més utilitzem un interceptor (idea similar a Middleware i Navigation Guards) 
+que afegeix el token a totes les peticions axios.
+
+I observeu el component Login que es l'encarregat d'obtenir el token a partir de l'usuari i la paraual de pas:
+
+Solució Proxy (només user i password) sinó cal posar també client_id i client_secret
+
+```
+submit () {
+        axios.post('http://localhost:8081/api/v1/proxy/oauth/token', {
+          'username': this.email,
+          'password': this.password
+        }).then(response => {
+          const token = response.data.access_token
+          if (token) {
+            if (window.localStorage) {
+              window.localStorage.setItem('token', token)
+            }
+            store.setTokenAction(token)
+          }
+          this.$router.push(response.data.redirect ? response.data.redirect : '/')
+        }).catch(error => {
+          console.log('ERROR:' + error)
+          console.log(error)
+        })
+      }
+``` 
+
+PROXY i Seguretat:
+
+- LA petició al servidor explotació es recomana amb HTTPS per evitar atacs MiTM
+- Proxy per Oauth password grant:
+  - El servidor té un api endpoint que només accepta usuari i paraula de pas
+  - El client_id i el client_secret no els té el client Javascript
+    - Els incorpora el servidor a la petició proxy
+  - IMPORTANT: El servidor de proves de PHP (php -S o php artisan o llum serve) és single-threaded
+    - No permet doncs executar peticions Guzzle HTTP sobre si mateix: cal crear dos servidors en ports diferents
+    - En explotació amb Apache o Nginx no hi ha cap problema  
+    
+# Vuex
+
+TODO: passar l'store manual que hem creat a un store amb Vuex
+
+- Vuex instal·lació
+- Vuex actions i mutations    
+
 ## Working with files and File uploads
 
 Sistema de fitxers de Laravel:

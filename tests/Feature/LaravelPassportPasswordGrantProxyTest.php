@@ -28,7 +28,7 @@ class LaravelPassportPasswordGrantProxyTest extends TestCase
     /**
      * Can proxy password grant.
      *
-     * @test
+     *
      */
     public function can_proxy_password_grant()
     {

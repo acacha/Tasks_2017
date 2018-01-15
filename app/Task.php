@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Task extends Model
 {
-    protected $fillable = ['name', 'user_id', 'description'];
+    protected $fillable = ['name', 'user_id', 'description','completed'];
 
     /**
      * Get the user that owns the comment.
@@ -33,6 +33,7 @@ class Task extends Model
             'name' => $this->name,
             'completed' => (boolean) $this->completed,
             'description' => $this->description,
+            'user_id' => $this->user->id,
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
         ];

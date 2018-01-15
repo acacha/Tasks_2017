@@ -45,7 +45,13 @@ class ApiTaskController extends Controller
      */
     public function store(StoreTask $request)
     {
-        $task = Task::create($request->only(['name', 'user_id', 'description']));
+        $completed= false;
+        if ($request->completed) $completed= true;
+        $data = array_merge(
+            $request->only(['name', 'user_id', 'description']),
+            ['completed' => $completed]
+        );
+        $task = Task::create($data);
 
         return $task;
     }

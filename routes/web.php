@@ -33,8 +33,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('/tasks_old', 'tasks_old');
     Route::view('/tasks2', 'tasks2');
 
-    Route::view('/proves', 'proves');
+    Route::view('/tokens', 'tokens');
 
+    Route::get('/students', 'StudentAssignmentsController@index');
+
+    //PROVES
+    Route::view('/proves', 'proves');
     Route::get('tasca',function() {
        return new \App\Http\Resources\TaskResource(App\Task::find(1));
     });
@@ -43,7 +47,9 @@ Route::group(['middleware' => 'auth'], function () {
         return App\Task::find(1);
     });
 
-    Route::view('/tokens', 'tokens');
+    Route::get('tascas',function() {
+        return \App\Http\Resources\TaskResource::collection(App\Task::all());
+    });
 
-    Route::get('/students', 'StudentAssignmentsController@index');
+
 });
