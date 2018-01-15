@@ -27,24 +27,24 @@
 <script>
 
   export default {
-      data() {
-        return {
-          internalLoading: this.loading
-        }
-      },
-      watch: {
-        loading(newValue) {
-          console.log('loading has changed')
-          this.internalLoading = newValue
-        }
-      },
-      props: {
-        loading: {
-          required: false
-        }
-      },
-      mounted() {
-        console.log('Component widget montat')
+    data () {
+      return {
+        internalLoading: this.loading
       }
+    },
+    watch: {
+      loading (newValue) {
+        console.log('loading has changed')
+        this.internalLoading = newValue
+      }
+    },
+    props: {
+      loading: {
+        required: false
+      }
+    },
+    mounted () {
+      console.log('Component widget montat')
     }
+  }
 </script>

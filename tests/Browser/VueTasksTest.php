@@ -79,4 +79,51 @@ class VueTasksTest extends DuskTestCase
                     ->seeTasks($tasks);
         });
     }
+
+    /**
+     * Reload.
+     *
+     * @group current
+     * @test
+     */
+    public function reload()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->login($browser);
+            $tasks = factory(Task::class,5)->create();
+            $browser->maximize();
+            $browser->visit(new VueTasksPage())
+                ->seeTitle('Tasques new')
+                ->dontSeeAlert('Tasques new')
+                ->seeBox('Tasques new')
+                ->assertVue('tasks', $tasks->toArray(), '@tasks')
+                ->seeTasks($tasks);
+
+            $task = factory(Task::class)->create();
+
+            $browser->reload()
+//                ->assertVisible('div.overlay>.fa-refresh')
+                ->assertVue('loading', true, '@tasks')
+                ->waitUntilMissing('div.overlay>.fa-refresh')
+                ->assertVue('loading', false, '@tasks')
+                ->seeTask($task);
+        });
+    }
+
+
+    public function see_completed_tasks()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->login($browser);
+            $tasks = factory(Task::class,5)->create();
+            $completed_tasks = factory(Task::class, 3)->states('completed')->create();
+
+            $browser->maximize();
+            $browser->visit(new VueTasksPage())
+                ->seeTitle('Tasques new')
+                ->applyCompletedFilter()
+                ->seeTasks($completed_tasks)
+                ->dontSeeTasks($tasks);
+        });
+    }
 }

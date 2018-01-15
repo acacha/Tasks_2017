@@ -5,8 +5,13 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Task::class, function (Faker $faker) {
     return [
-        'name'        => $faker->word,
+        'name'        => $faker->unique()->word,
+        'completed'   => false,
         'user_id'     => factory(User::class)->create()->id,
         'description' => $faker->sentence,
     ];
 });
+
+$factory->state(App\User::class, 'completed', [
+    'completed' => true
+]);

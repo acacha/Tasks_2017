@@ -44,10 +44,12 @@ class VueTasksPage extends BasePage
     public function elements()
     {
         return [
-            '@tasks' => '#tasks-component',
+            '@tasks'     => '#tasks-component',
+            '@reload'    => '#reload',
+            '@completed' => '#completed-tasks',
         ];
     }
-    
+
     /**
      * See title.
      *
@@ -79,8 +81,55 @@ class VueTasksPage extends BasePage
     public function seeTasks(Browser $browser, $tasks)
     {
         foreach ($tasks as $task) {
-            $browser->assertSee($task->name);
+            $this->seeTask($browser);
         }
+        $browser->assertSee(count($tasks) . ' tasks left');
+    }
+
+    /**
+     * See tasks on page.
+     *
+     * @param Browser $browser
+     * @param $tasks
+     */
+    public function dontSeeTasks(Browser $browser, $tasks)
+    {
+        foreach ($tasks as $task) {
+            $this->dontSeeTask($browser);
+        }
+        $browser->assertSee(count($tasks) . ' tasks left');
+    }
+
+    /**
+     * Don't see task.
+     *
+     * @param Browser $browser
+     * @param $task
+     */
+    public function dontSeeTask(Browser $browser, $task)
+    {
+        $browser->assertDontSee($task->name);
+    }
+
+    /**
+     * Apply completed filter.
+     *
+     * @param Browser $browser
+     */
+    public function applyCompletedFilter(Browser $browser)
+    {
+        $browser->press('@completed');
+    }
+
+    /**
+     * See task.
+     *
+     * @param Browser $browser
+     * @param $task
+     */
+    public function seeTask(Browser $browser, $task)
+    {
+        $browser->assertSee($task->name);
     }
 
     /**
@@ -91,6 +140,14 @@ class VueTasksPage extends BasePage
     public function dontSeeAlert(Browser $browser)
     {
         $browser->assertMissing('.alert');
+    }
+
+    /**
+     * Press reload button.
+     */
+    public function reload(Browser $browser)
+    {
+        $browser->press('@reload');
     }
 
 }

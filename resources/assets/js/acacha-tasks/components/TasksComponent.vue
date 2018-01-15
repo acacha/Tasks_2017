@@ -17,9 +17,9 @@
                     </li>
                 </ul>
                 <div class="btn-group">
-                    <button @click="show('all')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'all' }">All</button>
-                    <button @click="show('completed')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'completed' }">Completed</button>
-                    <button @click="show('pending')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'pending' }">Pending</button>
+                    <button id="all-tasks" @click="show('all')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'all' }">All</button>
+                    <button id="completed-tasks" @click="show('completed')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'completed' }">Completed</button>
+                    <button id="pending-tasks" @click="show('pending')" type="button" class="btn btn-default" :class="{ 'btn-primary': this.filter === 'pending' }">Pending</button>
                 </div>
                 <div class="form-group has-feedback" :class="{ 'has-error': form.errors.has('user_id') }">
                     <label for="user_id">User</label>
@@ -38,9 +38,14 @@
                 </div>
             </div>
             <p slot="footer">
+                {{ counter }} tasks left
                 <button :disabled="form.submitting || form.errors.any()" id="add" @click="addTask" class="btn btn-primary">
                    <i class="fa fa-refresh fa-spin fa-lg" v-if="form.submitting"></i>
                     Afegir
+                </button>
+                <button @click="reload" id="reload" class="btn btn-primary">
+                    <i class="fa fa-refresh fa-lg"></i>
+                    Reload
                 </button>
             </p>
         </widget>
@@ -110,6 +115,9 @@
     computed: {
       filteredTasks () {
         return filters[this.filter](this.tasks)
+      },
+      counter () {
+        return filters[this.filter](this.tasks).length
       }
     },
 //    watch: {
@@ -118,6 +126,9 @@
 //      }
 //    },
     methods: {
+      reload () {
+        this.fetchTasks()
+      },
       userSelected (user) {
         this.form.user_id = user.id
       },
@@ -149,19 +160,22 @@
       },
       updateTask (task) {
         this.editedTask = task
+      },
+      fetchTasks () {
+        let url = API_URL
+        this.loading = true
+        axios.get(url).then((response) => {
+          this.tasks = response.data
+        }).catch((error) => {
+          console.log(error.message)
+          flash(error.message) // eslint-disable-line
+        }).then(() => {
+          this.loading = false
+        })
       }
     },
     mounted () {
-      let url = API_URL
-      this.loading = true
-      axios.get(url).then((response) => {
-        this.tasks = response.data
-      }).catch((error) => {
-        console.log(error.message)
-        flash(error.message) // eslint-disable-line
-      }).then(() => {
-        this.loading = false
-      })
+      this.fetchTasks()
     }
   }
 </script>

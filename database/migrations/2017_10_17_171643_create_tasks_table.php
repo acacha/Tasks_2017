@@ -19,11 +19,11 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->boolean('completed');
             $table->text('description')->nullable();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
 
-            // FOREIGN KEYS TODO
         });
     }
 
