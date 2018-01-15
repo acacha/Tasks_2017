@@ -36,11 +36,26 @@
   - Comprovació de valors en components Vue: https://laravel.com/docs/5.5/dusk#making-vue-assertions
   - Utilitzeu/copieu els del professor i adapteu al vostre cos  
   
-Testos:
+Testos (vegeu script run_dusk.sh a l'arrel del projecte). Recordeu entorn és singular:
+
+```
+php artisan migrate:fresh --seed -v --env=dusk.local
+php artisan serve --port=8090 --env=dusk.local &
+php artisan dusk tests/Browser/PHPTasksTest.php
+```
+
+Testos per grups:
+
+```
+php artisan dusk tests/Browser/PHPTasksTest.php --group=current
+```
+
+NO funciona:
 
 ```
 phpunit tests/Browser/VueTasksTest.php
 ```
+
 ## Oauth
 
 - Store: oco sessió classe anterior havia un error a main.js. Solució correcta
