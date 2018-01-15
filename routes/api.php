@@ -34,6 +34,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
     Route::put('/tasks/{task}', 'ApiTaskController@update');
     Route::delete('/tasks/{task}', 'ApiTaskController@destroy');
 
+    //TASKS
+    Route::get('/paginated_tasks', 'ApiPaginatedTaskController@index');
+
     //USERS
     Route::get('/users', 'ApiUserController@index');
     Route::get('/users/{user}', 'ApiUserController@show');
