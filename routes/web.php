@@ -11,6 +11,10 @@
 |
 */
 
+use App\Mail\Hello;
+use App\User;
+use Illuminate\Support\Facades\Mail;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -56,5 +60,9 @@ Route::group(['middleware' => 'auth'], function () {
         return \App\Http\Resources\TaskResource::collection(App\Task::all());
     });
 
-
+    Route::get('/test_send_email',function() {
+        $user = User::find(1);
+        $hello = new Hello();
+        Mail::to($user)->send($hello);
+    });
 });
