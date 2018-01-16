@@ -12,8 +12,8 @@
 
 # Notes dia 15 de Gener
 
-- Laravel API Resources: https://laravel.com/docs/5.5/eloquent-resources
-- Alternativa a llibreries com 
+- Laravel API Resources: https://laravel.com/docs/5.5/eloquent-resources // Transformers    
+- Alternativa a llibreries com Fractal
 - Laracast: https://laracasts.com/series/whats-new-in-laravel-5-5/episodes/20
 - Pagination: podem fer que les dades de paginació les faci el servidor: un altre tema és el component gràfic que suporti pàginació
   - Recomanació: No tocar el controlador ja existen sinó afegir un per a la paginació
@@ -23,6 +23,9 @@
   - https://laravel.com/docs/5.5/helpers#method-optional
   - https://medium.com/@codebyjeff/laravel-5-5-optional-class-withdefault-and-attribute-defaults-a2e901dbad62
   - Null object pattern: o assegurar-se que un objecte no et torni mai null
+  
+  
+  optional($task)->name
   
 # Factory States
 
@@ -38,7 +41,7 @@ Per exemple per crear tasques amb estat completed
   - Comprovació d'estats com loading/spinner
   - Pàgines Dusk i Dusk selectors
   - Comprovació de valors en components Vue: https://laravel.com/docs/5.5/dusk#making-vue-assertions
-  - Utilitzeu/copieu els del professor i adapteu al vostre cos  
+  - Utilitzeu/copieu els del professor i adapteu al vostre cas  
   
 Testos (vegeu script run_dusk.sh a l'arrel del projecte). Recordeu entorn és singular:
 

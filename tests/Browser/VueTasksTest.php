@@ -92,9 +92,6 @@ class VueTasksTest extends DuskTestCase
             $tasks = factory(Task::class,5)->create();
             $browser->maximize();
             $browser->visit(new VueTasksPage())
-                ->seeTitle('Tasques new')
-                ->dontSeeAlert('Tasques new')
-                ->seeBox('Tasques new')
                 ->assertVue('tasks', $tasks->toArray(), '@tasks')
                 ->seeTasks($tasks);
 

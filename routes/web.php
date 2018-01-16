@@ -39,8 +39,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     //PROVES
     Route::view('/proves', 'proves');
+
     Route::get('tasca',function() {
-       return new \App\Http\Resources\TaskResource(App\Task::find(1));
+
+       //        Wrapper -> Design pattern --> Decoradores
+       // Wrap
+       $task = App\Task::find(1); // Open To Extension Closed to modification
+       return new \App\Http\Resources\TaskResource($task);
     });
 
     Route::get('tasca1',function() {

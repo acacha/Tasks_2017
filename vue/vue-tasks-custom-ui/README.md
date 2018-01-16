@@ -61,9 +61,35 @@ Media object /Media card:
 
 https://laracasts.com/series/learn-flexbox-through-examples/episodes/4?autoplay=true
 
+# Widgets/Panels(Bootstrap)/Box
+
+https://codepen.io/johncokos/pen/hCbHF
+
+Un alternativa més semàntica de HTML:
+
+```html
+<section>
+  <header>Widget Header</header>
+  <div>
+    Widget Body
+  </div>
+  <footer>
+    <span>Footer</span>
+    <a href='#'>Click Me!</a>
+  </footer>
+</section>
+```
+
 # STYLING FORMS:
 
+Primer cal conèixer bé el format HTML:
+- https://developer.mozilla.org/es/docs/Learn/HTML/Forms/How_to_structure_an_HTML_form
+- Labels: poden ser anidats o amb for
+- Millores HTML5 https://www.html5rocks.com/en/tutorials/forms/html5forms/
+
 https://laracasts.com/series/learn-flexbox-through-examples/episodes/8?autoplay=true
+- https://www.sitepoint.com/make-forms-fun-with-flexbox/
+-https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/How_to_build_custom_form_widgets
 
 # Landing Page
 

@@ -56,7 +56,7 @@ class ApiPaginatedTaskControllerTest extends TestCase
 
         $response->assertSuccessful();
 
-//        $response->dump();
+        $response->dump();
 
         $response->assertJsonStructure([
             'data' => [[

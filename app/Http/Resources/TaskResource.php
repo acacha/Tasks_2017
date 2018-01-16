@@ -25,7 +25,6 @@ class TaskResource extends Resource
             'name' => $this->name,
             'completed' => (Boolean) $this->completed, // Convert string to Boolean with casting
             'description' => $this->description,
-            'user_id' => $this->user_id,
             'created_at' => $this->created_at->toDateTimeString(), // Carbon date to string
             'updated_at' => $this->updated_at, // Carbon date
         ];
