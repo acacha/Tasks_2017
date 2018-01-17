@@ -28,25 +28,16 @@ class LaravelPassportPasswordGrantProxyTest extends TestCase
     /**
      * Can proxy password grant.
      *
-     *
+     * @test
      */
     public function can_proxy_password_grant()
     {
-        // URL proxy/oauth/token
-
-        // 1 Prepare
-        $user = factory(User::class)->create();
-        // 2 execute:
-
-        // EXECUTE
-        $response = $this->json('POST', '/api/v1/proxy/oauth/token', [
+        $user = factory(User::class)->create(
+            ['password' => 'secret']);
+        $response = $this->json('POST', 'http://localhost:8060/api/v1/proxy/oauth/token', [
             'username' => $user->email,
-            'password' => $user->password,
+            'password' => 'secret',
         ]);
-
-        // ASSERT
         $response->assertSuccessful();
-
-        $response->dump();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PasswordGrantProxyControllerRequest;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class PasswordGrantProxyController.
@@ -19,11 +20,17 @@ class PasswordGrantProxyController extends Controller
     {
         $http = new Client;
 
-        $response = $http->post(url('/oauth/token'), [
+        $client = DB::table('oauth_clients')->where('id', 2)->first();
+
+//        dump($request->username);
+//        dump($request->password);
+//        dump($client->redirect);
+
+        $response = $http->post(url('http://localhost:8081/oauth/token'), [
             'form_params' => [
                 'grant_type' => 'password',
-                'client_id' => 2,
-                'client_secret' => 'uo1smtRcl6xLAmBNBLi6MeALEOb0dozwG3MsbDJp',
+                'client_id' => $client->id,
+                'client_secret' => $client->secret,
                 'username' => $request->username,
                 'password' => $request->password,
                 'scope' => '',

@@ -49,7 +49,7 @@
     },
     methods: {
       submit () {
-        axios.post('http://localhost:8081/api/v1/proxy/oauth/token', {
+        axios.post('http://localhost:8060/api/v1/proxy/oauth/token', {
           'username': this.email,
           'password': this.password
         }).then(response => {
@@ -59,6 +59,7 @@
               window.localStorage.setItem('token', token)
             }
             store.setTokenAction(token)
+            axios.defaults.headers.common['authorization'] = `Bearer ${token}`
           }
           this.$router.push(response.data.redirect ? response.data.redirect : '/')
         }).catch(error => {
