@@ -18,6 +18,9 @@ if (window.localStorage) {
 // Global: instance properties. https://vuejs.org/v2/cookbook/adding-instance-properties.html
 Vue.prototype.$store = store
 
+console.log(process.env.USERNAME)
+console.log(process.env.PASSWORD)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -1,12 +1,34 @@
 # tasks
 
-> A Vue.js project
+# .env file a Javascript/Webpack (dotenv)
+
+Seguiu les passes de:
+
+https://www.npmjs.com/package/dotenv-webpack
+
+Per poder treballar amb un fitxer .env igual que a Laravel. Afegiu el fitxer a .GITIGNORE!!!!!!!
+
+# Tests amb nigthwatch
+
+TODO
+
+## Login
+
+Utilitzar .env per emmagatzemar les credencials o altres dades confidencials.
+
+El login el podem fer per javascript directa si sabem el token (no cal ni fer petició oauth ni login!)
+
+Podem utilitzar un 
+https://laravel.com/docs/5.5/passport#personal-access-tokens que afegirem als seeds amb un valor constant
+per facilitar el desenvolupament
 
 # Password Grant Proxy
 
 https://web.archive.org/web/20141208132104/http://alexbilbie.com/2014/11/oauth-and-javascript/
 
 # CORS ERROR
+
+IMPORTANT: Qualsevol error que no té pq tenir que veure amb CORS pot donar error de CORS. Sobretot per exemple fer dds o dumps al depurar provoca no funcioni CORS.
 
 Failed to load http://localhost:8081/oauth/token: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8080' is therefore not allowed access.
 
