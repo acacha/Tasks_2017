@@ -62,7 +62,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/test_send_email',function() {
         $user = User::find(1);
-        $hello = new Hello();
+        $hello = new Hello($user);
+        Mail::to($user)->send($hello);
+    });
+
+    Route::get('/test_send_email2',function() {
+        $user = User::find(1);
+        $hello = new \App\Mail\HelloUser();
         Mail::to($user)->send($hello);
     });
 });

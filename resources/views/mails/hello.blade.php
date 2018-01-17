@@ -1,1 +1,1 @@
-Hello Pepe!
+Hello {{ $user->name }}
