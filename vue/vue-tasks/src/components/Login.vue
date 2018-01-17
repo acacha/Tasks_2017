@@ -9,10 +9,10 @@
 
               <form @submit.prevent="submit" method="post">
                   <div class="form-group has-feedback">
-                      <input type="email" class="form-control" placeholder="Email" v-model="email">
+                      <input type="email" class="form-control" placeholder="Email" v-model="email" name="email">
                   </div>
                   <div class="form-group has-feedback">
-                      <input type="password" class="form-control" placeholder="Password" v-model="password">
+                      <input type="password" class="form-control" placeholder="Password" v-model="password" name="password">
 
                   </div>
                   <div class="row">

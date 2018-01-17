@@ -22,6 +22,36 @@ Podem utilitzar un
 https://laravel.com/docs/5.5/passport#personal-access-tokens que afegirem als seeds amb un valor constant
 per facilitar el desenvolupament
 
+```
+php artisan passport:client --personal
+
+ What should we name the personal access client? [Laravel Personal Access Client]:
+ > Testing
+
+Personal access client created successfully.
+Client ID: 3
+Client Secret: liip3jRdWPPQeFSFCQogIcZbqcxKetja8xwpsqvt
+```
+
+Al seed podem afegir:
+
+```
+DB::table('oauth_clients')->insert(
+            [
+                'name' => 'Testing',
+                'secret' => 'liip3jRdWPPQeFSFCQogIcZbqcxKetja8xwpsqvt',
+                'redirect' => 'http://localhost',
+                'personal_access_client' => 1,
+                'password_client' => 0,
+                'revoked' => 0
+            ]
+        );
+```
+
+Aquest codi només s'hauria d'executar a testing i/o posar el secret a env.
+
+De fet el token estarà tant al .env del backend com al del frontend
+
 # Password Grant Proxy
 
 https://web.archive.org/web/20141208132104/http://alexbilbie.com/2014/11/oauth-and-javascript/
