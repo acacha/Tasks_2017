@@ -35,15 +35,6 @@ class Home extends BasePage
             'name' => 'Email'
         ]
     ];
-//
-//<li><a href="/tasks_old"><i class='fa fa-link'></i> <span>Tasques Vue Old</span></a></li>
-//<li><a href="/tasks"><i class='fa fa-link'></i> <span>Tasques Vue</span></a></li>
-//<li><a href="/tasks2"><i class='fa fa-link'></i> <span>Tasques Vue 2</span></a></li>
-//<li><a href="/email"><i class='fa fa-link'></i> <span>Email</span></a></li>
-//<li class="header">Settings</li>
-//<li><a href="/tokens"><i class='fa fa-link'></i> <span>Tokens</span></a></li>
-//<li class="header">Alumnes</li>
-//<li><a href="/students"><i class='fa fa-link'></i> <span>Projectes</span></a></li>
 
     /**
      * Get the URL for the page.
