@@ -110,9 +110,22 @@
         </ul>
       </nav>
     </aside>
-    <aside class="rigth_sidebar">Rigth Sidebar</aside>
+    <aside class="rigth_sidebar">
+      <div class="tabs">
+        <div class="tab is-tab-selected"><svg class="icon-sidebar-tab" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M6.47 9.8A5 5 0 0 1 .2 3.22l3.95 3.95 2.82-2.83L3.03.41a5 5 0 0 1 6.4 6.68l10 10-2.83 2.83L6.47 9.8z"/></svg></div>
+        <div class="tab"><svg class="icon-sidebar-tab" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M8 20H3V10H0L10 0l10 10h-3v10h-5v-6H8v6z"/></svg></div>
+        <div class="tab"><svg class="icon-sidebar-tab" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M3.94 6.5L2.22 3.64l1.42-1.42L6.5 3.94c.52-.3 1.1-.54 1.7-.7L9 0h2l.8 3.24c.6.16 1.18.4 1.7.7l2.86-1.72 1.42 1.42-1.72 2.86c.3.52.54 1.1.7 1.7L20 9v2l-3.24.8c-.16.6-.4 1.18-.7 1.7l1.72 2.86-1.42 1.42-2.86-1.72c-.52.3-1.1.54-1.7.7L11 20H9l-.8-3.24c-.6-.16-1.18-.4-1.7-.7l-2.86 1.72-1.42-1.42 1.72-2.86c-.3-.52-.54-1.1-.7-1.7L0 11V9l3.24-.8c.16-.6.4-1.18.7-1.7zM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></div>
+      </div>
+    </aside>
 
-    <footer>FOOTER</footer>
+    <footer>
+      <span>
+        <strong>Copyright © 2018 <a href="http://github.com/acacha">Sergi Tur Badenas</a>  cloned from Adminlte by Almsaeed Studio. All rights reserved.</strong>
+      </span>
+      <span>
+        <strong>Version</strong> 0.1
+      </span>
+    </footer>
   </div>
   </body>
 </template>
@@ -170,9 +183,10 @@
     padding: .2em .6em .3em;
   }
 
-  .icon, .icon-sidebar {
+  .icon, .icon-sidebar, .icon-sidebar-tab {
     display: inline-block;
     fill: currentColor;
+    /*background-color: inherit;*/
   }
 
   .icon {
@@ -181,10 +195,14 @@
   }
 
   .icon-sidebar {
-    height: 1rem;
-    width: 1rem;
+    height: 1em;
+    width: 1em;
     margin-right: 0.5em;
-    /*vertical-align: middle;*/
+  }
+
+  .icon-sidebar-tab {
+    height: 1.5em;
+    width: 1.5em;
   }
 
   .container {
@@ -370,7 +388,22 @@
     background-color: white;
     grid-row: 3;
     grid-column: 2/4;
+    padding:15px;
+    display: flex;
   }
+
+  footer a {
+    color: #3c8dbc;
+  }
+
+  footer a {
+    color: #3c8dbc;
+  }
+
+  footer span:last-child {
+    margin-left: auto;
+  }
+
   main {
     background-color: #ecf0f5;
     grid-row: 2;
@@ -395,8 +428,6 @@
   }
 
   /*BADGES*/
-
-
 
   .badge {
     border-radius: 0.25em;
@@ -430,6 +461,29 @@
 
   .label-success {
     background-color: #00a65a;
+  }
+
+  .tabs {
+    display: flex;
+    /*border-bottom: 1px solid #D7DBDD;*/
+    margin:auto;
+  }
+
+  .tab {
+    cursor: pointer;
+    border: 1px solid #151a1e;
+    padding: 1em;
+    color: #fff;
+    font-size: 12px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    background-color: #181f24;
+  }
+
+  .tab.is-tab-selected {
+    border-bottom: 1px solid transparent;
+    background-color: #222e32;
   }
 
   /* Responsive */
