@@ -98,3 +98,14 @@ http://acacha.org/mediawiki/Landing_Page#.WluBdHXWxhE
 Guies:
 - https://www.williamghelfi.com/blog/2013/08/04/bootstrap-in-practice-a-landing-page/
 - https://24ways.org/2012/how-to-make-your-site-look-half-decent/
+
+# Component Menu Vue
+
+Mantenir l'estat menu actiu
+Tree View amb vue: https://vuejs.org/v2/examples/tree-view.html
+Classes open i closed del menu
+Animacions css
+- Rotate del cheveron de cheveron-left a cheveron-down
+- Subllista apareix gradualment no de cop
+
+Adminlte: utilitza plugin jquery treeview: https://adminlte.io/docs/2.4/js-tree

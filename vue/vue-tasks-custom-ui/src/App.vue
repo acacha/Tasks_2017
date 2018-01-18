@@ -1,6 +1,31 @@
 <template>
   <body>
   <div class="container">
+    <header>
+      <b>AdminL</b>TE
+    </header>
+    <nav>
+      <a href="">
+        <svg @click="toogleSideBar" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+      </a>
+      <ul>
+        <li>
+          <a href="">Emails</a>
+        </li>
+        <li>
+          <a href="">Notifications</a>
+        </li>
+        <li>
+          <a href="">Tasks</a>
+        </li>
+        <li>
+          <a href="">Logged use</a>
+        </li>
+        <li>
+          <a href="">Preferences</a>
+        </li>
+      </ul>
+    </nav>
     <main>
       <section class="content-header">CONTENT HEADER</section>
       <section><router-view/></section>
@@ -10,10 +35,6 @@
     <aside class="rigth_sidebar">Rigth Sidebar</aside>
 
     <footer>FOOTER</footer>
-    <header>
-      <svg @click="toogleSideBar" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-      HEADER
-    </header>
   </div>
   </body>
   <!--https://codepen.io/oknoblich/pen/klnjw-->
@@ -50,19 +71,16 @@
     color: #333;
   }
 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   .icon {
     display: inline-block;
     height: 1.25em;
     width: 1.25em;
     fill: currentColor;
-  }
-
-  header,
-  footer,
-  aside,
-  main,
-  .content-header {
-    padding: 1.2rem;
   }
 
   .container {
@@ -73,22 +91,20 @@
 
   header {
     color: white;
-    background-color: #3c8dbc;
+    background-color: #367fa9;
     grid-row: 1;
-    grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column: 1;
   }
+
   footer {
     background-color: white;
     grid-row: 3;
-    grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column:2/4;
   }
   main {
     background-color: #ecf0f5;
     grid-row: 2;
-    grid-column-start: 2;
-    grid-column-end: 3;
+    grid-column: 2;
   }
   aside {
     color: white;
@@ -114,15 +130,57 @@
   /*}*/
 
   .left_sidebar {
-    grid-row: 2;
-    grid-column-start: 1;
-    grid-column-end: 2;
+    grid-row: 2/4;
+    grid-column: 1;
   }
 
   .rigth_sidebar {
     grid-row: 2;
-    grid-column-start: 3;
-    grid-column-end: 4;
+    grid-column: 3;
+  }
+
+  ul, li {
+    list-style: none;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  nav {
+    border: 1px solid black;
+    grid-row: 1;
+    grid-column: 2/4;
+    background-color: #3c8dbc;
+    color: #fff;
+    display: flex;
+  }
+
+  nav ul {
+    display: flex;
+    margin: 0px 0px 0px auto;
+  }
+
+  nav>a {
+    padding: 0.5rem;
+    margin-right: auto;
+    align-self: center;
+    border: 1px solid black;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  nav ul li {
+    border: 1px solid black;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  nav ul li:hover, nav>a:hover {
+    background-color: #367fa9;
   }
 
   /* Responsive */
