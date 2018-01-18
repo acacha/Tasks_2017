@@ -22,7 +22,7 @@ class TaskControllerTest extends TestCase
     {
         parent::setUp();
         initialize_task_permissions();
-        $this->withoutExceptionHandling();
+//        $this->withoutExceptionHandling();
     }
 
     /**

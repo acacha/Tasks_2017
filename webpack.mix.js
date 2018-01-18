@@ -12,6 +12,10 @@ const { mix } = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
+   .scripts([
+     'public/js/app.js',
+     'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js'
+     ], 'public/js/app.js')
    .js('resources/assets/js/app-landing.js', 'public/js/app-landing.js')
    .sourceMaps()
    .webpackConfig({
@@ -31,7 +35,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
        'node_modules/admin-lte/dist/css/skins/_all-skins.css',
        'public/css/adminlte-app.css',
        'node_modules/icheck/skins/square/blue.css',
-       'public/css/toastr.css'
+       'public/css/toastr.css',
+       'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css',
    ], 'public/css/all.css')
    .combine([
        'public/css/bootstrap.css',

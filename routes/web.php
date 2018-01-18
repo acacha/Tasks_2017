@@ -41,6 +41,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/students', 'StudentAssignmentsController@index');
 
+    // Email
+
+    Route::get('/email', 'EmailController@index');
+    Route::post('/email', 'EmailController@store');
+
     //PROVES
     Route::view('/proves', 'proves');
 
@@ -70,5 +75,11 @@ Route::group(['middleware' => 'auth'], function () {
         $user = User::find(1);
         $hello = new \App\Mail\HelloUser();
         Mail::to($user)->send($hello);
+    });
+
+    Route::get('/mailable', function () {
+        $subject = 'Subject prova';
+        $body = 'Contingut de proves';
+        return new App\Mail\CustomEmail($subject, $body);
     });
 });

@@ -48,3 +48,7 @@ Vue.use(Vuetable)
 const app = new Vue({
     el: '#app'
 });
+
+$(function () {
+  $('.textarea').wysihtml5();
+});
