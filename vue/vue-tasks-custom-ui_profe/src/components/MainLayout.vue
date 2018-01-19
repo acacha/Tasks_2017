@@ -21,9 +21,28 @@
         <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M3.94 6.5L2.22 3.64l1.42-1.42L6.5 3.94c.52-.3 1.1-.54 1.7-.7L9 0h2l.8 3.24c.6.16 1.18.4 1.7.7l2.86-1.72 1.42 1.42-1.72 2.86c.3.52.54 1.1.7 1.7L20 9v2l-3.24.8c-.16.6-.4 1.18-.7 1.7l1.72 2.86-1.42 1.42-2.86-1.72c-.52.3-1.1.54-1.7.7L11 20H9l-.8-3.24c-.6-.16-1.18-.4-1.7-.7l-2.86 1.72-1.42-1.42 1.72-2.86c-.3-.52-.54-1.1-.7-1.7L0 11V9l3.24-.8c.16-.6.4-1.18.7-1.7zM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></li>
       </ul>
     </nav>
+
     <main>
-      <section class="content-header">CONTENT HEADER</section>
-      <section><router-view/></section>
+      <section class="content-header">
+        <h1>Blank Example Page <small>Subtitle example</small></h1>
+        <ol class="breadcrumb">
+          <li class="active">
+            <a href="#">Blank Example Page</a>
+          </li>
+          <li>
+            <a href="#">Sub section</a>
+          </li>
+          <li>
+            <a href="#">
+              <svg class="icon-sidebar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M8 20H3V10H0L10 0l10 10h-3v10h-5v-6H8v6z"/></svg>
+              Home
+            </a>
+          </li>
+        </ol>
+      </section>
+      <section>
+        <router-view/>
+      </section>
     </main>
 
     <aside class="left_sidebar" :class="{ isOpen: menuOpen }">
@@ -170,6 +189,13 @@
     color: inherit;
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Source Sans Pro',sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+  }
+
   .pull-left {
     float: left;
   }
@@ -282,7 +308,24 @@
     height: 35px;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
-    padding: 12px 5px 12px 15px;
+    padding: 12px 5px 12px 10px;
+  }
+
+  .btn {
+    box-shadow: none;
+    outline:none;
+    border: 1px solid transparent;
+  }
+
+  .btn-box-tool {
+    padding: 1px;
+    font-size: 15px;
+    background: transparent;
+    color: #97a0b3;
+  }
+
+  .btn-box-tool:hover {
+    color: #606c84;
   }
 
   .sidebar-form .btn {
@@ -408,6 +451,7 @@
     background-color: #ecf0f5;
     grid-row: 2;
     grid-column: 2;
+    padding: 15px;
     /*grid-column-end: 3; NOT NEEDED 3 is nex value of 2 so default!*/
   }
 
@@ -416,7 +460,68 @@
     background-color: #222d32;
   }
 
-  .content-header { background-color: #d2d6de; }
+  .content-header {
+    background: transparent;
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .content-header>h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  .content-header>h1>small {
+    font-size: 15px;
+    display: inline-block;
+    padding-left: 4px;
+    font-weight: 300;
+  }
+
+  .content-header>.breadcrumb {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0;
+  }
+
+  .content-header>.breadcrumb li {
+    margin: 0px;
+  }
+
+  .content-header>.breadcrumb li a {
+    font-size: 0.6em;
+    font-weight: 600;
+    padding: 5px 30px 5px 15px; /* Adjusting padding to get the proper space */
+    margin-left: -11px; /* Pull the items to the left, so the rounded right side will get over them */
+    color: #fff;
+    background-color: #3c8dbc;
+    /*text-transform: uppercase;*/
+    border-radius: 0 100px 100px 0; /* Get the right side rounded */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Apply the shadow */
+  }
+
+  /* Hover event */
+  .content-header>.breadcrumb li:hover a {
+    background-color: #367fa9;
+  }
+
+  /* Remove the shadow for first item, last in the right side when it gets reversed */
+  .content-header>.breadcrumb li:first-child a {
+    box-shadow: none;
+  }
+
+  /* Active item is a bit different */
+  .content-header>.breadcrumb li.active a {
+    color: #428EFE;
+    background-color: #fff;
+  }
+
+  /* Remove the shadow for the active's next item, to match the design more accurately */
+  #cssmenu ul li.active + li a {
+    box-shadow: none;
+  }
 
   .left_sidebar {
     grid-row: 2/4;
@@ -484,6 +589,44 @@
   .tab.is-tab-selected {
     border-bottom: 1px solid transparent;
     background-color: #222e32;
+  }
+
+  /*BOXES*/
+
+  .box {
+    border: 1px solid #d2d6de;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    width: 100%;
+    box-shadow: 1px 1px rgba(0,0,0,0.1);
+  }
+
+  .box-header {
+    border-bottom: 1px solid #f4f4f4;
+    padding: 10px;
+    color: #444;
+    display:flex;
+    align-items: center;
+  }
+
+  .box-title {
+    font-size: 18px;
+  }
+
+  .box-tools {
+    font-size: 18px;
+    margin-left: auto;
+  }
+
+  .box-body {
+    padding: 10px;
+  }
+
+  .box-footer {
+    padding: 10px;
+    border-top: 1px solid #f4f4f4;
   }
 
   /* Responsive */
