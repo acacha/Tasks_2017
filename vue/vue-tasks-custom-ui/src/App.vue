@@ -2,7 +2,7 @@
   <body>
   <div class="container">
     <header>
-      <b>AdminL</b>TE
+      <b>Admin</b>LTE
     </header>
     <nav>
       <a href="">
@@ -10,19 +10,21 @@
       </a>
       <ul>
         <li>
-          <a href="">Emails</a>
+          <a href="#Emails">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 8a6 6 0 0 1 4.03-5.67 2 2 0 1 1 3.95 0A6 6 0 0 1 16 8v6l3 2v1H1v-1l3-2V8zm8 10a2 2 0 1 1-4 0h4z"/></svg>
+          </a>
         </li>
         <li>
-          <a href="">Notifications</a>
+          <a href="#Notification">Notifications</a>
         </li>
         <li>
-          <a href="">Tasks</a>
+          <a href="#Tasks">Tasks</a>
         </li>
         <li>
-          <a href="">Logged use</a>
+          <a href="#Profile">Logged use</a>
         </li>
         <li>
-          <a href="">Preferences</a>
+          <a href="#Preferences">Preferences</a>
         </li>
       </ul>
     </nav>
@@ -94,6 +96,19 @@
     background-color: #367fa9;
     grid-row: 1;
     grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*ALTERNATIVE TO CENTER:*/
+    /*margin: auto;*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+    font-size: 20px;
+  }
+
+  header:hover {
+    cursor:pointer;
+    background-color: #357ca5;
   }
 
   footer {
@@ -157,26 +172,29 @@
     display: flex;
   }
 
+  nav>a {
+    padding: 0.5rem;
+    /*margin-right: auto; !** PULL-LEFT **!*/
+    height: 100%;
+    display: flex;
+    align-self: center;
+    align-items: center;
+  }
+
   nav ul {
     display: flex;
     margin: 0px 0px 0px auto;
   }
 
-  nav>a {
-    padding: 0.5rem;
-    margin-right: auto;
-    align-self: center;
-    border: 1px solid black;
+  nav ul li {
     height: 100%;
     display: flex;
     align-items: center;
+    border: 1px solid black;
   }
 
-  nav ul li {
-    border: 1px solid black;
-    height: 100%;
-    display: flex;
-    align-items: center;
+  nav ul li a {
+    padding: 12px 15px 12px 15px;
   }
 
   nav ul li:hover, nav>a:hover {
