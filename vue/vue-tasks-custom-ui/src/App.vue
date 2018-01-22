@@ -4,7 +4,7 @@
     <header>
       <b>Admin</b>LTE
     </header>
-    <nav>
+    <nav class="header-nav">
       <a href="">
         <svg @click="toogleSideBar" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
       </a>
@@ -21,7 +21,7 @@
           <a href="#Tasks">Tasks</a>
         </li>
         <li>
-          <a href="#Profile">Logged use</a>
+          <a href="#Profile"><img class="avatar" src="http://www.gravatar.com/avatar/046889f49471fd40d105eb76b9d83bf6.jpg" alt="Sergi Tur"> Sergi Tur Badenas</a>
         </li>
         <li>
           <a href="#Preferences">Preferences</a>
@@ -33,7 +33,44 @@
       <section><router-view/></section>
     </main>
 
-    <aside class="left_sidebar" :class="{ isOpen: menuOpen }">Left Sidebar</aside>
+    <aside class="left_sidebar" :class="{ isOpen: menuOpen }">
+      <div class="user-panel">
+        <div>
+          <img class="avatar" src="http://www.gravatar.com/avatar/046889f49471fd40d105eb76b9d83bf6.jpg" alt="Sergi Tur">
+        </div>
+        <div>
+          <p>Sergi Tur Badenas</p>
+          <svg height="14" width="14">
+            <circle cx="7" cy="7" r="5" stroke="#3d763e" stroke-width="1" fill="#3d763e" />
+          </svg>
+          Online
+        </div>
+      </div>
+      <form action="">
+        <input type="text" placeholder="Search">
+        <button type="submit">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
+        </button>
+      </form>
+      <nav>
+        <ul>
+          <li class="header">Main menu</li>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#tasques">Tasques</a></li>
+          <li><a href="#other">Other</a></li>
+          <!--<li>-->
+            <!--<a href="#options">Options</a>-->
+            <!--<ul><li><a href="#suboption1">subOption 1</a></li></ul>-->
+            <!--<ul><li><a href="#suboption2">subOption 2</a></li></ul>-->
+            <!--<ul><li><a href="#suboption3">subOption 3</a></li></ul>-->
+          <!--</li>-->
+          <li class="header">Secondary menu</li>
+          <li><a href="#menu1">Menu 1</a></li>
+          <li><a href="#menu2">Menu 2</a></li>
+          <li><a href="#menu3">Menu 3</a></li>
+        </ul>
+      </nav>
+    </aside>
     <aside class="rigth_sidebar">Rigth Sidebar</aside>
 
     <footer>FOOTER</footer>
@@ -76,6 +113,12 @@
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  .avatar {
+    border-radius: 50%;
+    height: 40px;
+    margin-right: 0.5em;
   }
 
   .icon {
@@ -149,6 +192,54 @@
     grid-column: 1;
   }
 
+  .user-panel {
+    padding: 10px;
+    /*border: 1px solid black;*/
+    /*background-color: white;*/
+    /*color: #111;*/
+    display:flex;
+    font-size: 10px;
+  }
+
+  .user-panel p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .left_sidebar form {
+    padding: 10px;
+  }
+
+  .left_sidebar ul {
+    margin: 0;
+    background-color: #2d3c42;
+    display: flex;
+    flex-direction: column;
+    /*border: 1px solid black;*/
+  }
+
+  .left_sidebar ul li a {
+    /*border: 1px solid black;*/
+    background-color: #2d3c42;
+    display: block;
+    padding: 12px 15px;
+  }
+
+  .left_sidebar ul li.header {
+    /*border: 1px solid black;*/
+    color: #4b646f;
+    background: #1a2226;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 12px 15px;
+    cursor: auto;
+  }
+
+  .left_sidebar ul li a:hover {
+    background-color: #222d32;
+  }
+
   .rigth_sidebar {
     grid-row: 2;
     grid-column: 3;
@@ -163,8 +254,7 @@
     padding: 0;
   }
 
-  nav {
-    border: 1px solid black;
+  .header-nav {
     grid-row: 1;
     grid-column: 2/4;
     background-color: #3c8dbc;
@@ -172,7 +262,7 @@
     display: flex;
   }
 
-  nav>a {
+  .header-nav>a {
     padding: 0.5rem;
     /*margin-right: auto; !** PULL-LEFT **!*/
     height: 100%;
@@ -181,23 +271,24 @@
     align-items: center;
   }
 
-  nav ul {
+  .header-nav ul {
     display: flex;
     margin: 0px 0px 0px auto;
   }
 
-  nav ul li {
+  .header-nav ul li {
     height: 100%;
     display: flex;
     align-items: center;
-    border: 1px solid black;
   }
 
-  nav ul li a {
+  .header-nav ul li a {
     padding: 12px 15px 12px 15px;
+    display:flex;
+    align-items: center;
   }
 
-  nav ul li:hover, nav>a:hover {
+  .header-nav ul li:hover, .header-nav>a:hover {
     background-color: #367fa9;
   }
 

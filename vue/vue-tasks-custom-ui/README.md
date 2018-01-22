@@ -145,6 +145,7 @@ Utilitzant display:none i activant desactivant amb Javascript o pseudo class tar
 # Landing Page
 
 http://acacha.org/mediawiki/Landing_Page#.WluBdHXWxhE
+Vuetify: https://vuetifyjs.com/pre-made-themes
 
 Guies:
 - https://www.williamghelfi.com/blog/2013/08/04/bootstrap-in-practice-a-landing-page/
@@ -155,6 +156,7 @@ Conceptes es poden repassar/introduir:
 - Navigation bar
 - Background images or patterns
 - Fancy Alternatives: Parallax backgrounds
+  - Amb Vuetify:  https://vuetifyjs.com/components/parallax
   - https://www.w3schools.com/howto/tryhow_css_parallax_demo.htm | https://www.w3schools.com/howto/tryhow_css_parallax_demo_none.htm
   - https://davidwalsh.name/parallax
   - https://css-tricks.com/tour-performant-responsive-css-site/
@@ -199,3 +201,14 @@ Animacions css
 - Subllista apareix gradualment no de cop
 
 Adminlte: utilitza plugin jquery treeview: https://adminlte.io/docs/2.4/js-tree
+
+# Materialize
+
+Especification:
+- https://material.io/guidelines/material-design/
+
+Material design spec: es pot aplicar a qualsevol plantilla és una forma de disenyar amb unes especificacions generals i múltiples implementacions
+- AdminLTE: https://ducthanhnguyen.github.io/MaterialAdminLTE/
+
+De fet es pot aplicar a qualsevol aplicació basada en bootstrap:
+- https://fezvrasta.github.io/bootstrap-material-design/
