@@ -14,7 +14,7 @@
                 value="true"
                 v-for="(item, i) in items"
                 :key="i"
-                :to="item.path"
+                to="item.path"
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
