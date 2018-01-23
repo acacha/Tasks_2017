@@ -12,7 +12,7 @@
                 </v-flex>
                 <v-flex class="text-xs-center" mt-5>
                     <v-btn to="/register">Register</v-btn>
-                    <v-btn to="/login">Sign In</v-btn>
+                    <v-btn to="/login">Login</v-btn>
                 </v-flex>
             </v-layout>
         </v-container>

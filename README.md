@@ -10,6 +10,96 @@
 [![Daily Downloads](https://poser.pugx.org/acacha/tasks/d/daily)](https://packagist.org/packages/acacha/tasks)
 [![composer.lock](https://poser.pugx.org/acacha/tasks/composerlock)](https://packagist.org/packages/acacha/tasks)
 
+# Expresivitat i domini
+
+
+$order->setStatus('paid');
+$order->setPaidAmount(120);
+$order->setPaidCurrency('EUR');
+$order->setCustomer($customer);
+
+Accions/comandes amb el llenguatge del client/domini:
+
+$order->pay($order)
+
+o objecte
+
+PayOrder
+- Dependencia (per DI als constructor): $order (model eloquent)
+- Mètode: pay()
+
+
+# Domain Driven Design
+
+No tots és CRUD. Posem un exemple més real.
+
+
+En comptes de todo-list app -> Tasks management app
+
+Característiques
+- Model principal continua sent task, però amb més informació i relacions
+  - name, description, completed com fins ara
+  - Relacions
+    - Tasques assignades a un projecte (pot ser multitenant app, és a dir mateixa base de dades per a cada projecte, múltiples bases de dades)
+    - Tasques assignades a un (1 a n) o a múltiples freelancers (n a n)
+    - 
+  - Tasques associades a usuaris amb un cert rol: és qui ha de fer la tasca-> autonom/freelancet 
+- Aparició de nous rols:
+  - Freelancer: el que ha de fer una tasca associada a un projecte. 
+  - ProjectManager: el responsable de gestiona el projecte: interacciona i fa de nexe entre client i freelancer
+  - Client
+- Tots interaccionen amb les tasques (operacions "CRUD"") però no són iguals les operacions i a més hi ha interrelacions i coupling
+  - Per posar exemples: 
+    - Un client no assigna freelancers a una tasca ()ho fa el project manager
+    - Un freelancer no tanca les tasques (les ha de validar el project manager)
+    - RETRIEVE: Els clients i els projects manager veuen totes les tasques però els freelancers només veuen les seves
+    - Tots els exemples que estic posant són exemples que poden canviar en cada domini: cal conèixer cada cas (domini)
+- Entre en jo el concepte estat: una tasca pot estar en diferents estats
+ - Els estats poden ser implicits (camp estat)
+ - O explicits: depenen dels valors de certs camps sabem en quin estat estem
+ 
+WORKFLOW
+--------
+
+El workflow ja no és un CRUD no?
+
+Suposem (donem ja fet o limitem la nostra app a un sol projecte).
+
+- Client escull un projecte i són els encarregats de crear tasques
+  - Assignem nom i descripció a una tasca
+- El project manager assigna tasca a un freelancer
+  - Assigna hores estimades per realitzar la tasca i un freelancer per ferla
+- El freelancer consulta les tasques
+  - Escull una tasca i es posa a fer-la (cal indicar-ho d'alguna forma canvi estat)
+  - Tant el project manager com el client poden veure 
+- El freelancer indica el progres 
+- El freelancer indica a acabat tasca
+- Project manager valida la tasca
+- El client paga la tasca
+
+Al final potser realment podem veure l'aplicació com múltiples aplicacions, depenent de la perspectiva
+
+- Domini aplicació perpectiva freelancer
+- Domini aplicació perpectiva Task manager
+- Domini aplicació perspectiva client
+- I encara podriem definir un rol sol ser comú a totes aplicacions: gestió usuaris i rols (admin del sistema)  
+ 
+# Més usos dels esdeveniments
+
+## Tracking: Event Sourcing | Audit log
+
+Capturar amb un esdeveniment els canvis estat (per exemple Eloquent Event Models) i portar un track registre d'aquests canvis:
+
+"How many of you have an UPDATE or DELETE statement in your system? OK. Keep your hands up. How many of you sat and talked with the CEO and board of directors of your company about how that data had no value? How many of you can predict where your company will be, a year from now, and what they may ask you about today? Do you have a magic eight ball? What will the company ask me? Will they ask me about this? I think not. So how did you make this decision to destroy data? You personally didn't feel it was valuable? Or maybe you didn't think about it. Data is massively, massively, valuable. And any time you choose one of these, you are losing data. The fun part is figuring out what data you’re losing."
+
+Paquet interessant: https://github.com/VentureCraft/revisionable
+
+Aplicació: Timeline: https://adminlte.io/themes/AdminLTE/pages/examples/profile.html
+
+https://martinfowler.com/eaaDev/EventSourcing.html 
+
+- Una informació que sovint no es guarda a la base de dades és quin usuari crea un registre a la base de dades i encara menys el audit log
+       
 # Notes dia 15 de Gener
 
 - Laravel API Resources: https://laravel.com/docs/5.5/eloquent-resources // Transformers    

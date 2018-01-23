@@ -19,6 +19,7 @@ Vue.component('tasks-container', require('./components/tasks/TasksContainerCompo
 Vue.component('tasks-crud-list', require('./components/tasks/TasksCrudListComponent.vue'));
 
 Vue.component('tasks', require('./components/TasksComponent.vue'));
+Vue.component('tasks1', require('./components/Tasks1Component.vue'));
 Vue.component('tasks-old', require('./components/TasksOldComponent.vue'));
 Vue.component('message', require('./components/MessageComponent.vue'));
 Vue.component('widget', require('./components/WidgetComponent.vue'));

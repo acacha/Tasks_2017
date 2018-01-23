@@ -34,8 +34,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     //PURE JAVASCRIPT INTERFACE + AJAX/AXIOS REQUESTS TO REST JSON API
     Route::view('/tasks', 'tasks');
-    Route::view('/tasks_old', 'tasks_old');
+    Route::view('/tasks1', 'tasks1');
     Route::view('/tasks2', 'tasks2');
+    Route::view('/tasks_old', 'tasks_old');
 
     Route::view('/tokens', 'tokens');
 
