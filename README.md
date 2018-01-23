@@ -73,7 +73,7 @@ Suposem (donem ja fet o limitem la nostra app a un sol projecte).
   - Escull una tasca i es posa a fer-la (cal indicar-ho d'alguna forma canvi estat)
   - Tant el project manager com el client poden veure 
 - El freelancer indica el progres 
-- El freelancer indica a acabat tasca
+- El freelancer indica ha acabat tasca
 - Project manager valida la tasca
 - El client paga la tasca
 
@@ -82,8 +82,17 @@ Al final potser realment podem veure l'aplicació com múltiples aplicacions, de
 - Domini aplicació perpectiva freelancer
 - Domini aplicació perpectiva Task manager
 - Domini aplicació perspectiva client
-- I encara podriem definir un rol sol ser comú a totes aplicacions: gestió usuaris i rols (admin del sistema)  
+- I encara podriem definir un rol sol ser comú a totes aplicacions: gestió usuaris i rols (admin del sistema)
+
+## Workflow/interficies i CRUD
+
+Hi ha interfícies més orientades a CRUD:
+- Datatables: Vuetify: https://vuetifyjs.com/components/data-tables | Jquery datatables: https://datatables.net/   
  
+Hi altres que es poden adaptar més al workflow real aplicació: 
+ - Steppers/Wizards: https://vuetifyjs.com/components/steppers | https://github.com/PygmySlowLoris/vue-stepper
+    - Vue material: https://vuematerial.io/components/steppers/
+    
 # Més usos dels esdeveniments
 
 ## Tracking: Event Sourcing | Audit log
