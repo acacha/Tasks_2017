@@ -331,7 +331,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 a {
   text-decoration: none;
@@ -364,6 +364,8 @@ header {
   justify-content: center;
   align-items: stretch;
   min-height: 50px;
+  color: #555;
+  font-size: 16px;
 }
 
 header .brand {

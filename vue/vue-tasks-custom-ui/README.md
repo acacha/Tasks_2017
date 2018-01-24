@@ -74,6 +74,10 @@ Clearfix hack: http://learnlayout.com/clearfix.html
 
 https://fonts.google.com/
 
+- Serif
+- Sans  (sense serif)
+- mono
+
 # Text
 
 https://www.w3schools.com/css/css_text.asp

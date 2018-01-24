@@ -49,7 +49,7 @@
     },
     methods: {
       submit () {
-        axios.post('http://localhost:8060/api/v1/proxy/oauth/token', {
+        axios.post('http://task.test/api/v1/proxy/oauth/token', {
           'username': this.email,
           'password': this.password
         }).then(response => {

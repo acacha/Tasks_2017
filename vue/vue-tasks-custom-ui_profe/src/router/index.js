@@ -4,6 +4,8 @@ import MainLayout from '@/components/MainLayout'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Landing from '@/components/Landing'
+import Cards from '@/components/Cards'
+import Dropdown from '@/components/Dropdown'
 
 Vue.use(Router)
 
@@ -27,6 +29,16 @@ const router = new Router({
           path: '/',
           name: 'HelloWorld',
           component: HelloWorld
+        },
+        {
+          path: '/cards',
+          name: 'Cards',
+          component: Cards
+        },
+        {
+          path: '/dropdown',
+          name: 'Dropdown',
+          component: Dropdown
         }
       ]
     }

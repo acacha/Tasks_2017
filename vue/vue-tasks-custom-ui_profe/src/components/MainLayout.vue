@@ -1,5 +1,4 @@
 <template>
-  <body>
   <div class="container">
     <header>
       <strong>Admin</strong>LTE
@@ -17,7 +16,17 @@
         </li>
         <li><a href="#"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 8a6 6 0 0 1 4.03-5.67 2 2 0 1 1 3.95 0A6 6 0 0 1 16 8v6l3 2v1H1v-1l3-2V8zm8 10a2 2 0 1 1-4 0h4z"/></svg></a></li>
         <li><a href="#"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.03 2.6a3 3 0 0 1 5.94 0L15 3v1h1a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2h1V3l2.03-.4zM5 6H4v12h12V6h-1v1H5V6zm5-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg></a></li>
-        <li><img class="avatar" src="http://www.gravatar.com/avatar/046889f49471fd40d105eb76b9d83bf6.jpg" alt="sergiturbadenas@gmail.com">Sergi Tur Badenas</li>
+        <li>
+          <img class="avatar" src="http://www.gravatar.com/avatar/046889f49471fd40d105eb76b9d83bf6.jpg" alt="sergiturbadenas@gmail.com">
+          Sergi Tur Badenas
+
+
+
+
+
+
+
+        </li>
         <li><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M3.94 6.5L2.22 3.64l1.42-1.42L6.5 3.94c.52-.3 1.1-.54 1.7-.7L9 0h2l.8 3.24c.6.16 1.18.4 1.7.7l2.86-1.72 1.42 1.42-1.72 2.86c.3.52.54 1.1.7 1.7L20 9v2l-3.24.8c-.16.6-.4 1.18-.7 1.7l1.72 2.86-1.42 1.42-2.86-1.72c-.52.3-1.1.54-1.7.7L11 20H9l-.8-3.24c-.6-.16-1.18-.4-1.7-.7l-2.86 1.72-1.42-1.42 1.72-2.86c-.3-.52-.54-1.1-.7-1.7L0 11V9l3.24-.8c.16-.6.4-1.18.7-1.7zM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></li>
       </ul>
     </nav>
@@ -63,71 +72,9 @@
           <svg class="icon-sidebar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
         </button>
       </form>
-      <nav class="sidebar-nav">
-        <ul>
-          <li class="header">Main Navigation</li>
-          <li><a href="#dashboard"><svg class="icon-sidebar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"/></svg> Dashboard</a></li>
-          <li>
-            <a href="#tasks">
-            <svg class="icon-sidebar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.03 2.6a3 3 0 0 1 5.94 0L15 3v1h1a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2h1V3l2.03-.4zM5 6H4v12h12V6h-1v1H5V6zm5-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
-            Tasks
-            <span class="pull-right">
-              <span class="badge badge-danger">4</span>
-            </span>
-            </a>
-          </li>
-          <li>
-            <a href="#proves">Proves
-            <span class="pull-right">
-              <span class="badge badge-successfull">new</span>
-            </span>
-            </a>
-          </li>
-          <li><a href="#tokens">Tokens</a></li>
-          <li><a href="#other">Other</a></li>
-          <li class="treeview">
-            <div class="pull-right pull-right-vertical-center">
-              <svg class="icon-sidebar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
-            <a href="#other">SubList Open</a>
-            <ul>
-              <li>
-                <a href="#submenu1">
-                  <svg class="icon-sidebar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm4 2.75V20l-4-4-4 4v-8.25a6.97 6.97 0 0 0 8 0z"/></svg>
-                  Submenu 1
-                </a>
-              </li>
-              <li>
-                <a href="#submenu1">
-                  <svg class="icon-sidebar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm4 2.75V20l-4-4-4 4v-8.25a6.97 6.97 0 0 0 8 0z"/></svg>
-                  Submenu 2
-                </a>
-              </li>
-              <li>
-                <a href="#submenu1">
-                  <svg class="icon-sidebar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm4 2.75V20l-4-4-4 4v-8.25a6.97 6.97 0 0 0 8 0z"/></svg>
-                  Submenu 3
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <div class="pull-right pull-right-vertical-center">
-              <svg class="icon-sidebar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.05 9.293L6.343 10 12 15.657l1.414-1.414L9.172 10l4.242-4.243L12 4.343z"/></svg>
-            </div>
-            <a href="#other">SubList Closed</a>
-            <ul style="display:none">
-              <li><a href="#submenu1">Submenu closed 1</a></li>
-              <li><a href="#submenu2">Submenu closed 2</a></li>
-              <li><a href="#submenu3">Submenu closed 3</a></li>
-            </ul>
-          </li>
-          <li class="header">Secondary Navigation</li>
-          <li><a href="#link1">Link 1</a></li>
-          <li><a href="#link2">Link 2</a></li>
-          <li><a href="#link3">Prova link superllarg a veure si dona pel cul</a></li>
-        </ul>
-      </nav>
+
+      <nav-sidebar></nav-sidebar>
+
     </aside>
     <aside class="rigth_sidebar">
       <div class="tabs">
@@ -146,12 +93,13 @@
       </span>
     </footer>
   </div>
-  </body>
 </template>
 
 <script>
+  import NavSidebar from './layout/partials/NavSidebar'
   export default {
     name: 'MainLayout',
+    components: { 'nav-sidebar': NavSidebar },
     data () {
       return {
         menuOpen: false
