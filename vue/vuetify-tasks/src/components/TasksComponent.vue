@@ -10,6 +10,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import * as actions from '../store/action-types'
 
   export default {
     name: 'Tasks',
@@ -17,7 +18,7 @@
       ...mapGetters(['tasks'])
     },
     mounted () {
-      this.$store.dispatch('fetchTasks')
+      this.$store.dispatch(actions.FETCH_TASKS)
     }
   }
 </script>

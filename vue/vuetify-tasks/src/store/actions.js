@@ -1,20 +1,12 @@
-export const increment = (context) => {
-  context.commit('increment')
-}
+import * as types from './mutation-types'
+import * as actions from './action-types'
+import tasks from '../api/tasks'
 
-export const fetchTasks = function (context) {
-  // axios.get('api/v1/tasks').then(response => {
-  //   let tasks = response.data
-  //   context.commit('tasks', tasks)
-  //   // state.tasks = tasks
-  // })
-  // .catch(error => {
-  //   console.log(error)
-  // })
-  let tasks = [
-    {'name': 'Comprar pa'},
-    {'name': 'Estudiar més'},
-    {'name': 'bla bla bla'}
-  ]
-  context.commit('tasks', tasks)
+export default {
+  [ actions.INCREMENT ] (context) {
+    context.commit(types.INCREMENT)
+  },
+  [ actions.FETCH_TASKS ] (context) {
+    context.commit(types.SET_TASKS, tasks.fetch())
+  }
 }

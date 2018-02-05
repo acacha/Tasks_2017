@@ -1,0 +1,5 @@
+// TASKS
+export const FETCH_TASKS = 'FETCH_TASKS'
+
+// COUNTER
+export const INCREMENT = 'INCREMENT'
