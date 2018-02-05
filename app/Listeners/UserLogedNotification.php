@@ -32,5 +32,7 @@ class UserLogedNotification
     public function handle(LogedUser $event)
     {
         Log::info('TODO send notification');
+        Notification::send(null, new LogedUserNotification($event->user));
+
     }
 }

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
  *
  * @package App\Listeners
  */
-class AssignDefaultPermission
+class AssignDefaultPermission implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -32,6 +32,6 @@ class AssignDefaultPermission
      */
     public function handle(LogedUser $event)
     {
-        Log::info('TODO assign default permission');
+        $event->user->assignRole('task-manager');
     }
 }

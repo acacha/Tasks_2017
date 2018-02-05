@@ -21,7 +21,7 @@
       }
     },
     mounted() {
-      crud.getAll().then( response => {
+      crudTasks.getAll().then( response => {
         this.tasks = response.data
       }).catch( error => {
         console.log(error)

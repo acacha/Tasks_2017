@@ -1,5 +1,5 @@
 <template>
-  <body>
+  <div>
     <header>
       <div class="brand">
         <a href="#">Acacha Tasks</a>
@@ -8,9 +8,9 @@
       <nav class="main-navigation">
         <ul>
           <li><a href="#Home">Home</a></li>
-          <li><a href="#Home">Description</a></li>
-          <li><a href="#Home">ShowCase</a></li>
-          <li><a href="#Home">Contact</a></li>
+          <li><a href="#Description">Description</a></li>
+          <li><a href="#ShowCase">ShowCase</a></li>
+          <li><a href="#Contact">Contact</a></li>
         </ul>
       </nav>
 
@@ -22,14 +22,15 @@
       </nav>
 
     </header>
-    <section class="home">
+	  <a name="home"></a>
+	  <section class="home">
       <h1><a href="#">Acacha Tasks</a></h1>
       <h2>... a wonderful task manager!</h2>
       <button class="btn btn-success">Get started!</button>
       <img src="../assets/todolist.jpg">
 
     </section>
-
+	  <a name="description"></a>
     <section class="description">
       <!--https://www.flaticon.com/packs/help-and-support?group_id=1-->
 
@@ -316,7 +317,7 @@
         AdminLTE Created by Abdullah Almsaeed <a href="https://almsaeedstudio.com/">almsaeedstudio.com</a> <br>
         Pratt Landing Page PROVA Created by <a href="http://www.blacktie.co">BLACKTIE.CO</a></p>
     </footer>
-  </body>
+  </div>
 
 </template>
 

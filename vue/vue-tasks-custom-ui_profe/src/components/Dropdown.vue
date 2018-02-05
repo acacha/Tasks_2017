@@ -9,7 +9,8 @@
                 <a href="#">Link 2</a>
                 <a href="#">Link 3</a>
             </div>
-        </div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolor ipsum similique. Autem consequuntur cum cupiditate dignissimos eveniet harum in non obcaecati officia officiis, placeat quae quis quos rem rerum.
+    </div>
     </div>
 </template>
 
@@ -33,7 +34,6 @@
         background-color: #f9f9f9;
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
     }
 
     .dropdown-content a {
@@ -57,12 +57,12 @@
 <script>
   export default {
     name: 'name',
-    data() {
+    data () {
       return {
         data: 'example'
       }
     },
-    mounted() {
+    mounted () {
       console.log('Mounted ok')
     }
   }

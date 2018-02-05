@@ -149,12 +149,12 @@
 <script>
   export default {
     name: 'name',
-    data() {
+    data () {
       return {
         data: 'example'
       }
     },
-    mounted() {
+    mounted () {
       console.log('Mounted ok')
     }
   }
