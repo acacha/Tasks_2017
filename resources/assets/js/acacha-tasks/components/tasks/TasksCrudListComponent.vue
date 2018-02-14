@@ -27,7 +27,7 @@
                     <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
                     <div class="tools">
                         <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
+                        <i class="fa fa-trash-o" click="delete(task)"></i>
                     </div>
                 </li>
 
@@ -50,6 +50,11 @@
       tasks: {
         type: Array,
         required: true
+      }
+    },
+    methods: {
+      delete (task) {
+        this.$emit('delete', task) //payload
       }
     }
   }

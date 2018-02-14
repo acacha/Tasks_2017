@@ -1,5 +1,5 @@
 <template>
-    <tasks-crud-list :tasks="tasks" @create="create"></tasks-crud-list>
+    <tasks-crud-list :tasks="tasks" @create="create" @delete="delete"></tasks-crud-list>
 </template>
 
 <style>
@@ -31,6 +31,11 @@
 //      }).catch( error => {
 //        console.log(error)
 //      })
+    },
+    methods: {
+      delete(task) {
+        crud.delete(task)
+      }
     }
   }
 </script>

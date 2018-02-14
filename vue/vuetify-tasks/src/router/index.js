@@ -27,7 +27,7 @@ export default new Router({
     {
       path: '/tasks',
       name: 'Tasks',
-      component: Tasks
+      component: Tasks  // Page Components o Container
     }
   ]
 })
