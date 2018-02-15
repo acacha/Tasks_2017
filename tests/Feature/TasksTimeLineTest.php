@@ -8,6 +8,10 @@ use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * Class TasksTimeLineTest
+ * @package Tests\Feature
+ */
 class TasksTimeLineTest extends TestCase
 {
     use RefreshDatabase;
