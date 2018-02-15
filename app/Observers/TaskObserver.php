@@ -71,9 +71,9 @@ class TaskObserver
      */
     public function deleted(Task $task)
     {
-        TaskEvent::deleted([
+        TaskEvent::create([
             'time' => Carbon::now(),
-            'type' => 'retrieved',
+            'type' => 'deleted',
             'task_name' => $task->name,
             'user_name' => $task->user->name,
         ]);
