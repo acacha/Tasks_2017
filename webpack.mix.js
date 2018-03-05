@@ -17,7 +17,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
      'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js'
      ], 'public/js/app.js')
    .js('resources/assets/js/app-landing.js', 'public/js/app-landing.js')
-   .sourceMaps()
    .webpackConfig({
      resolve: {
        modules: [
