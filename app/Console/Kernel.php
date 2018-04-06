@@ -2,8 +2,11 @@
 
 namespace App\Console;
 
+use App\Mail\HelloUser;
+use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,8 +28,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function () {
+            Mail::to(User::find(1))->send(new HelloUser());
+        })->everyMinute();
     }
 
     /**

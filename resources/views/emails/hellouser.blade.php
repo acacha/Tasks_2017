@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-{{ body }}
+Prova body
 
 @component('mail::button', ['url' => ''])
 Button Text
